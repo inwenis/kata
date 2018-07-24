@@ -3,24 +3,20 @@ package com.company;
 public class Diamond {
 
     public static String printDiamond(char letter) {
-        if(letter == 'A') {
-            return "A\nA";
-        } else {
-            String rightSideOfDiamond = printRightSideOfDiamond(letter);
-            String[] lines = rightSideOfDiamond.split("\n");
-            String diamond = "";
-            diamond += spacesRepeatedTimes(letter - lines[0].charAt(lines[0].length() - 1)) + lines[0] + "\n";
-            for (int i = 1; i < lines.length - 1; i++) {
-                String line = lines[i];
-                diamond += spacesRepeatedTimes(letter - line.charAt(line.length() - 1));
-                diamond += new StringBuilder(line).reverse().toString().substring(0, line.length() - 1);
-                diamond += line;
-                diamond += "\n";
-            }
-            diamond += spacesRepeatedTimes(letter - lines[lines.length - 1].charAt(lines[lines.length - 1].length() - 1)) + lines[lines.length - 1];
-
-            return diamond;
+        String rightSideOfDiamond = printRightSideOfDiamond(letter);
+        String[] lines = rightSideOfDiamond.split("\n");
+        String diamond = "";
+        diamond += spacesRepeatedTimes(letter - lines[0].charAt(lines[0].length() - 1)) + lines[0] + "\n";
+        for (int i = 1; i < lines.length - 1; i++) {
+            String line = lines[i];
+            diamond += spacesRepeatedTimes(letter - line.charAt(line.length() - 1));
+            diamond += new StringBuilder(line).reverse().toString().substring(0, line.length() - 1);
+            diamond += line;
+            diamond += "\n";
         }
+        diamond += spacesRepeatedTimes(letter - lines[lines.length - 1].charAt(lines[lines.length - 1].length() - 1)) + lines[lines.length - 1];
+
+        return diamond;
     }
 
     public static String printRightSideOfDiamond(char letter) {
