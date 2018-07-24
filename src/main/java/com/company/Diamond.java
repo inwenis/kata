@@ -1,55 +1,46 @@
 package com.company;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class Diamond {
 
     public static String printDiamond(char letter) {
-        String rightSideOfDiamond = printRightSideOfDiamond(letter);
-        String[] lines = rightSideOfDiamond.split("\n");
-        String diamond = "";
+        if(letter == 'A') {
+            return "A\nA";
+        }
 
-        for (String line : lines) {
-            diamond += spacesRepeatedTimes(letter - getCharForLine(line));
-            diamond += reverseString(line).substring(0, line.length() - 1);
-            diamond += line;
+        String diamond = "";
+        int howManyLinesToPrint = letter - 'A' + 1;
+
+        diamond += spacesRepeatedTimes(letter - 'A');
+        diamond += 'A';
+        diamond += "\n";
+
+        for (int i = 1; i < howManyLinesToPrint; i++) {
+            char currentLetter = (char) ('A' + i);
+            int spacesBeforeLetter = letter - currentLetter;
+            int spacesBetweenLetters = (i - 1) * 2 + 1;
+            diamond += spacesRepeatedTimes(spacesBeforeLetter);
+            diamond += currentLetter;
+            diamond += spacesRepeatedTimes(spacesBetweenLetters);
+            diamond += currentLetter;
             diamond += "\n";
         }
+
+        List<String> reversedLines = new ArrayList<>();
+        String[] lines = diamond.split("\n");
+        Arrays.stream(lines,0, lines.length - 1) //skip last line which should not be repeated
+            .collect(Collectors.toCollection(LinkedList::new))
+            .descendingIterator()
+            .forEachRemaining(reversedLines::add);
+        for (String line : reversedLines) {
+            diamond += line + "\n";
+        }
+
         diamond = removeLastNewLineCharacter(diamond);
 
         return diamond;
-    }
-
-    private static String reverseString(String line) {
-        return new StringBuilder(line).reverse().toString();
-    }
-
-    private static char getCharForLine(String firstLine) {
-        return firstLine.charAt(firstLine.length() - 1);
-    }
-
-    private static String printRightSideOfDiamond(char letter) {
-        if(letter == 'A') {
-            return "A\nA";
-        } else {
-            String upperRightDiamondEdge = printUpperRightDiamondEdge(letter);
-            String[] lines = upperRightDiamondEdge.split("\n");
-            upperRightDiamondEdge += "\n";
-            for (int i = lines.length - 2; i >= 0; i--) {
-                upperRightDiamondEdge += lines[i] + "\n";
-            }
-            return upperRightDiamondEdge;
-        }
-    }
-
-    private static String printUpperRightDiamondEdge(char letter) {
-        int howManyLinesToPrint = letter - 'A' + 1;
-        String result = "";
-        for (int i = 0; i < howManyLinesToPrint; i++) {
-            result += spacesRepeatedTimes(i);
-            result += String.valueOf((char)('A' + i));
-            result += "\n";
-        }
-        result = removeLastNewLineCharacter(result);
-        return result;
     }
 
     private static String spacesRepeatedTimes(int i) {
