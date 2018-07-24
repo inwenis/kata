@@ -25,4 +25,10 @@ public class DiamondTest {
                 "  C";
         Assert.assertEquals(expected, Diamond.printUpperRightDiamondEdge('C'));
     }
+
+    @Test
+    public void when_input_is_letter_A_returns_AA() {
+        Assert.assertEquals("A\nA", Diamond.printDiamond('A'));
+
+    }
 }

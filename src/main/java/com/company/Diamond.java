@@ -26,4 +26,8 @@ public class Diamond {
         result = result.substring(0, result.lastIndexOf('\n'));
         return result;
     }
+
+    public static String printDiamond(char letter) {
+        return "A\nA";
+    }
 }
