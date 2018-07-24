@@ -6,17 +6,21 @@ public class Diamond {
         String rightSideOfDiamond = printRightSideOfDiamond(letter);
         String[] lines = rightSideOfDiamond.split("\n");
         String diamond = "";
-        diamond += spacesRepeatedTimes(letter - lines[0].charAt(lines[0].length() - 1)) + lines[0] + "\n";
-        for (int i = 1; i < lines.length - 1; i++) {
+
+        for (int i = 0; i < lines.length; i++) {
             String line = lines[i];
-            diamond += spacesRepeatedTimes(letter - line.charAt(line.length() - 1));
+            diamond += spacesRepeatedTimes(letter - getCharForLine(line));
             diamond += new StringBuilder(line).reverse().toString().substring(0, line.length() - 1);
             diamond += line;
             diamond += "\n";
         }
-        diamond += spacesRepeatedTimes(letter - lines[lines.length - 1].charAt(lines[lines.length - 1].length() - 1)) + lines[lines.length - 1];
+        diamond = removeLastNewLineCharacter(diamond);
 
         return diamond;
+    }
+
+    private static char getCharForLine(String firstLine) {
+        return firstLine.charAt(firstLine.length() - 1);
     }
 
     public static String printRightSideOfDiamond(char letter) {
