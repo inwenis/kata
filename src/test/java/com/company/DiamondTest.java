@@ -6,7 +6,7 @@ import org.junit.Test;
 public class DiamondTest {
     @Test
     public void when_input_is_A_returns_A() {
-        Assert.assertEquals("A", Diamond.printDiamond('A'));
+        Assert.assertEquals("A", Diamond.printUpperRightDiamondEdge('A'));
     }
 
     @Test
@@ -14,7 +14,7 @@ public class DiamondTest {
         String expected =
                 "A\n" +
                 " B";
-        Assert.assertEquals(expected, Diamond.printDiamond('B'));
+        Assert.assertEquals(expected, Diamond.printUpperRightDiamondEdge('B'));
     }
 
     @Test
@@ -23,6 +23,6 @@ public class DiamondTest {
                 "A\n" +
                 " B\n" +
                 "  C";
-        Assert.assertEquals(expected, Diamond.printDiamond('C'));
+        Assert.assertEquals(expected, Diamond.printUpperRightDiamondEdge('C'));
     }
 }

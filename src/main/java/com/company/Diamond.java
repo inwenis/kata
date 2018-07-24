@@ -2,7 +2,7 @@ package com.company;
 
 public class Diamond {
 
-    public static String printDiamond(char letter) {
+    public static String printUpperRightDiamondEdge(char letter) {
         int howManyLinesToPrint = letter - 'A' + 1;
         String result = "";
         for (int i = 0; i < howManyLinesToPrint; i++) {
