@@ -10,6 +10,29 @@ public class Diamond {
             return "A\nA";
         }
 
+        String upperPartOfDiamond = getUpperPartOfDiamond(letter);
+        String reversedDiamond = getReversedLines(upperPartOfDiamond);
+        String reversedDiamondWithOutFirstLine = reversedDiamond.substring(reversedDiamond.indexOf('\n') + 1);
+        String wholeDiamond = upperPartOfDiamond + reversedDiamondWithOutFirstLine;
+        return removeLastNewLineCharacter(wholeDiamond);
+    }
+
+    private static String getReversedLines(String diamond) {
+        String reversedDiamond = "";
+
+        List<String> reversedLines = new ArrayList<>();
+        String[] lines = diamond.split("\n");
+        Arrays.stream(lines)
+            .collect(Collectors.toCollection(LinkedList::new))
+            .descendingIterator()
+            .forEachRemaining(reversedLines::add);
+        for (String line : reversedLines) {
+            reversedDiamond += line + "\n";
+        }
+        return reversedDiamond;
+    }
+
+    private static String getUpperPartOfDiamond(char letter) {
         String diamond = "";
         int howManyLinesToPrint = letter - 'A' + 1;
 
@@ -27,19 +50,6 @@ public class Diamond {
             diamond += currentLetter;
             diamond += "\n";
         }
-
-        List<String> reversedLines = new ArrayList<>();
-        String[] lines = diamond.split("\n");
-        Arrays.stream(lines,0, lines.length - 1) //skip last line which should not be repeated
-            .collect(Collectors.toCollection(LinkedList::new))
-            .descendingIterator()
-            .forEachRemaining(reversedLines::add);
-        for (String line : reversedLines) {
-            diamond += line + "\n";
-        }
-
-        diamond = removeLastNewLineCharacter(diamond);
-
         return diamond;
     }
 
