@@ -53,8 +53,19 @@ public class DiamondTest {
     public void for_input_letter_B_return_ABBA() {
         String expected =
                 " A\n" +
-                "B B\n" +
-                " A";
+                        "B B\n" +
+                        " A";
         Assert.assertEquals(expected, Diamond.printDiamond('B'));
+    }
+
+    @Test
+    public void for_input_letter_prints_whole_diamond() {
+        String expected =
+                "  A\n" +
+                " B B\n" +
+                "C   C\n" +
+                " B B\n" +
+                "  A";
+        Assert.assertEquals(expected, Diamond.printDiamond('C'));
     }
 }

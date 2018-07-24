@@ -44,8 +44,22 @@ public class Diamond {
     public static String printDiamond(char letter) {
         if(letter == 'A') {
             return "A\nA";
-        } else {
+        } else if (letter == 'B') {
             return " A\nB B\n A";
+        } else {
+            String rightSideOfDiamond = printRightSideOfDiamond(letter);
+            String[] lines = rightSideOfDiamond.split("\n");
+            String diamond = "";
+            diamond += " " + " " + lines[0] + "\n";
+            for (int i = 1; i < lines.length - 1; i++) {
+                String line = lines[i];
+                diamond += spacesRepeatedTimes(letter - line.charAt(line.length() - 1));
+                diamond += new StringBuilder(line).reverse().toString().substring(0, line.length() - 1);
+                diamond += line;
+                diamond += "\n";
+            }
+            diamond += " " + " " + lines[lines.length - 1];
+            return diamond;
         }
     }
 }
