@@ -48,4 +48,13 @@ public class DiamondTest {
     public void for_input_letter_A_return_AA() {
         Assert.assertEquals("A\nA", Diamond.printDiamond('A'));
     }
+
+    @Test
+    public void for_input_letter_B_return_ABBA() {
+        String expected =
+                " A\n" +
+                "B B\n" +
+                " A";
+        Assert.assertEquals(expected, Diamond.printDiamond('B'));
+    }
 }

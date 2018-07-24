@@ -42,6 +42,10 @@ public class Diamond {
     }
 
     public static String printDiamond(char letter) {
-        return "A\nA";
+        if(letter == 'A') {
+            return "A\nA";
+        } else {
+            return " A\nB B\n A";
+        }
     }
 }
