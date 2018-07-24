@@ -27,7 +27,7 @@ public class Diamond {
         return result;
     }
 
-    public static String printDiamond(char letter) {
+    public static String printRightSideOfDiamond(char letter) {
         if(letter == 'A') {
             return "A\nA";
         } else {

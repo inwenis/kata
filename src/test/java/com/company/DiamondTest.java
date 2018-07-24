@@ -28,7 +28,7 @@ public class DiamondTest {
 
     @Test
     public void when_input_is_letter_A_returns_AA() {
-        Assert.assertEquals("A\nA", Diamond.printDiamond('A'));
+        Assert.assertEquals("A\nA", Diamond.printRightSideOfDiamond('A'));
     }
 
     @Test
@@ -41,6 +41,6 @@ public class DiamondTest {
                 "  C\n" +
                 " B\n" +
                 "A\n";
-        Assert.assertEquals(expected, Diamond.printDiamond('D'));
+        Assert.assertEquals(expected, Diamond.printRightSideOfDiamond('D'));
     }
 }
