@@ -50,7 +50,7 @@ public class Diamond {
             String rightSideOfDiamond = printRightSideOfDiamond(letter);
             String[] lines = rightSideOfDiamond.split("\n");
             String diamond = "";
-            diamond += " " + " " + lines[0] + "\n";
+            diamond += spacesRepeatedTimes(letter - lines[0].charAt(lines[0].length() - 1)) + lines[0] + "\n";
             for (int i = 1; i < lines.length - 1; i++) {
                 String line = lines[i];
                 diamond += spacesRepeatedTimes(letter - line.charAt(line.length() - 1));
@@ -58,7 +58,8 @@ public class Diamond {
                 diamond += line;
                 diamond += "\n";
             }
-            diamond += " " + " " + lines[lines.length - 1];
+            diamond += spacesRepeatedTimes(letter - lines[lines.length - 1].charAt(lines[lines.length - 1].length() - 1)) + lines[lines.length - 1];
+
             return diamond;
         }
     }
