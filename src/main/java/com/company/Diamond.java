@@ -7,16 +7,19 @@ public class Diamond {
         String[] lines = rightSideOfDiamond.split("\n");
         String diamond = "";
 
-        for (int i = 0; i < lines.length; i++) {
-            String line = lines[i];
+        for (String line : lines) {
             diamond += spacesRepeatedTimes(letter - getCharForLine(line));
-            diamond += new StringBuilder(line).reverse().toString().substring(0, line.length() - 1);
+            diamond += reverseString(line).substring(0, line.length() - 1);
             diamond += line;
             diamond += "\n";
         }
         diamond = removeLastNewLineCharacter(diamond);
 
         return diamond;
+    }
+
+    private static String reverseString(String line) {
+        return new StringBuilder(line).reverse().toString();
     }
 
     private static char getCharForLine(String firstLine) {
