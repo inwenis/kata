@@ -26,7 +26,7 @@ public class Diamond {
         return firstLine.charAt(firstLine.length() - 1);
     }
 
-    public static String printRightSideOfDiamond(char letter) {
+    private static String printRightSideOfDiamond(char letter) {
         if(letter == 'A') {
             return "A\nA";
         } else {
@@ -40,7 +40,7 @@ public class Diamond {
         }
     }
 
-    public static String printUpperRightDiamondEdge(char letter) {
+    private static String printUpperRightDiamondEdge(char letter) {
         int howManyLinesToPrint = letter - 'A' + 1;
         String result = "";
         for (int i = 0; i < howManyLinesToPrint; i++) {
