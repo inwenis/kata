@@ -5,8 +5,6 @@ public class Diamond {
     public static String printDiamond(char letter) {
         if(letter == 'A') {
             return "A\nA";
-        } else if (letter == 'B') {
-            return " A\nB B\n A";
         } else {
             String rightSideOfDiamond = printRightSideOfDiamond(letter);
             String[] lines = rightSideOfDiamond.split("\n");
