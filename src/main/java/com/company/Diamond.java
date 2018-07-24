@@ -28,6 +28,16 @@ public class Diamond {
     }
 
     public static String printDiamond(char letter) {
-        return "A\nA";
+        if(letter == 'A') {
+            return "A\nA";
+        } else {
+            String upperRightDiamondEdge = printUpperRightDiamondEdge(letter);
+            String[] lines = upperRightDiamondEdge.split("\n");
+            upperRightDiamondEdge += "\n";
+            for (int i = lines.length - 2; i >= 0; i--) {
+                upperRightDiamondEdge += lines[i] + "\n";
+            }
+            return upperRightDiamondEdge;
+        }
     }
 }

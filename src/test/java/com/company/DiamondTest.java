@@ -29,6 +29,18 @@ public class DiamondTest {
     @Test
     public void when_input_is_letter_A_returns_AA() {
         Assert.assertEquals("A\nA", Diamond.printDiamond('A'));
+    }
 
+    @Test
+    public void for_input_letter_returns_whole_diamond() {
+        String expected =
+                "A\n" +
+                " B\n" +
+                "  C\n" +
+                "   D\n" +
+                "  C\n" +
+                " B\n" +
+                "A\n";
+        Assert.assertEquals(expected, Diamond.printDiamond('D'));
     }
 }
