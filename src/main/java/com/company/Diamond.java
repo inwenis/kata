@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.Enumeration;
-
 public class Diamond {
 
     public static String printDiamond(char letter) {
