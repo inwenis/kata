@@ -12,4 +12,14 @@ public class PalindromeTest {
     public void when_checking_single_letter_string_returns_true() {
         Assert.assertTrue(Palindrome.isPalindrome("a"));
     }
+
+    @Test
+    public void when_checking_two_letter_palindrome_returns_true() {
+        Assert.assertTrue(Palindrome.isPalindrome("xx"));
+    }
+
+    @Test
+    public void when_checking_two_letter_no_palindrome_returns_false() {
+        Assert.assertFalse(Palindrome.isPalindrome("xy"));
+    }
 }
