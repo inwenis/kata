@@ -37,4 +37,9 @@ public class PalindromeTest {
     public void when_checking_no_palindrome_of_any_length_returns_false() {
         Assert.assertFalse(Palindrome.isPalindrome("xxyx"));
     }
+
+    @Test
+    public void when_checking_palindrome_of_any_length_returns_true() {
+        Assert.assertTrue(Palindrome.isPalindrome("axxa"));
+    }
 }

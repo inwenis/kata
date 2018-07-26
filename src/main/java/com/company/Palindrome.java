@@ -23,6 +23,9 @@ public class Palindrome {
 
                 leftIndex++;
                 rightIndex--;
+                if(leftIndex > rightIndex) {
+                    return true; // if we are here we have compared all letters
+                }
             }
         }
     }
