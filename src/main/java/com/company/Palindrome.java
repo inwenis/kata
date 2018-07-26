@@ -6,6 +6,10 @@ public class Palindrome {
     }
 
     public static boolean isPalindrome(String input) {
-        return false;
+        if(input.equals("")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
