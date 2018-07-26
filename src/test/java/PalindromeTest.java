@@ -27,4 +27,9 @@ public class PalindromeTest {
     public void when_checking_3_letters_palindrome_returns_true() {
         Assert.assertTrue(Palindrome.isPalindrome("xyx"));
     }
+
+    @Test
+    public void when_checking_3_letters_no_palindrome_returns_false() {
+        Assert.assertFalse(Palindrome.isPalindrome("xya"));
+    }
 }
