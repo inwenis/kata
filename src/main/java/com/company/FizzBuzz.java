@@ -7,16 +7,12 @@ public class FizzBuzz {
     }
 
     public static String print(int from, int to) {
-        if(to == 1) {
-            return "1";
-        } else {
-            String numbers = "";
-            for (int i = from; i <= to; i++) {
-                numbers += i + "\n";
-            }
-            numbers = removeLastNewLineCharacter(numbers);
-            return numbers;
+        String numbers = "";
+        for (int i = from; i <= to; i++) {
+            numbers += i + "\n";
         }
+        numbers = removeLastNewLineCharacter(numbers);
+        return numbers;
     }
 
     private static String removeLastNewLineCharacter(String numbers) {
