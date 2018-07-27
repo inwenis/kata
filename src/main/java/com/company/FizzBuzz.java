@@ -13,18 +13,31 @@ public class FizzBuzz {
 
         String numbers = "";
         for (int i = from; i <= to; i++) {
-            if(i % 3 == 0 && i % 5 == 0) {
-                numbers += "FizzBuzz" + "\n";
-            } else if (i % 3 == 0 || String.valueOf(i).contains("3")) {
-                numbers += "Fizz" + "\n";
-            } else if (i % 5 == 0 || String.valueOf(i).contains("5")) {
-                numbers += "Buzz" + "\n";
+            if(isFizzBuzz(i)) {
+                numbers += "FizzBuzz";
+            } else if (isFizz(i)) {
+                numbers += "Fizz";
+            } else if (isBuzz(i)) {
+                numbers += "Buzz";
             } else {
-                numbers += i + "\n";
+                numbers += i;
             }
+            numbers += "\n";
         }
         numbers = removeLastNewLineCharacter(numbers);
         return numbers;
+    }
+
+    private static boolean isFizzBuzz(int i) {
+        return isFizz(i) && isBuzz(i);
+    }
+
+    private static boolean isBuzz(int i) {
+        return i % 5 == 0 || String.valueOf(i).contains("5");
+    }
+
+    private static boolean isFizz(int i) {
+        return i % 3 == 0 || String.valueOf(i).contains("3");
     }
 
     private static String removeLastNewLineCharacter(String numbers) {
