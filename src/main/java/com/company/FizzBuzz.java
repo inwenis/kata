@@ -9,7 +9,11 @@ public class FizzBuzz {
     public static String print(int from, int to) {
         String numbers = "";
         for (int i = from; i <= to; i++) {
-            numbers += i + "\n";
+            if(i % 3 == 0) {
+                numbers += "Fizz" + "\n";
+            } else {
+                numbers += i + "\n";
+            }
         }
         numbers = removeLastNewLineCharacter(numbers);
         return numbers;
