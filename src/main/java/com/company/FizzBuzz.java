@@ -16,8 +16,13 @@ public class FizzBuzz {
             for (int i = 1; i <= to; i++) {
                 numbers += i + "\n";
             }
-            numbers = numbers.substring(0, numbers.length() - 1);
+            numbers = removeLastNewLineCharacter(numbers);
             return numbers;
         }
+    }
+
+    private static String removeLastNewLineCharacter(String numbers) {
+        numbers = numbers.substring(0, numbers.length() - 1);
+        return numbers;
     }
 }
