@@ -28,4 +28,9 @@ public class FizzBuzzTest {
     public void when_asked_to_print_numbers_up_to_a_number_greater_than_100_truncates_the_result_to_100() {
         Assert.assertEquals("98\nFizz\nBuzz", FizzBuzz.print(98, 120));
     }
+
+    @Test
+    public void when_asked_to_print_number_dividable_by_3_and_5_prints_FizzBuzz() {
+        Assert.assertEquals("14\nFizzBuzz\n16", FizzBuzz.print(14, 16));
+    }
 }
