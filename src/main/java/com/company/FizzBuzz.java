@@ -9,8 +9,6 @@ public class FizzBuzz {
     public static String print(int from, int to) {
         if(to == 1) {
             return "1";
-        } else if(to == 2) {
-            return "1\n2";
         } else {
             String numbers = "";
             for (int i = from; i <= to; i++) {
