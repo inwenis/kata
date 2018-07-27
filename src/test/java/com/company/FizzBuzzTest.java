@@ -35,7 +35,7 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void when_asekd_to_print_number_containing_3_prints_Fizz_insted_of_the_number() {
+    public void when_asked_to_print_number_containing_3_prints_Fizz_instead_of_the_number() {
         Assert.assertEquals("Fizz\n14", FizzBuzz.print(13, 14));
     }
 }
