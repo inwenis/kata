@@ -7,6 +7,10 @@ public class FizzBuzz {
     }
 
     public static String print(int from, int to) {
+        if(to > 100) {
+            to = 100;
+        }
+
         String numbers = "";
         for (int i = from; i <= to; i++) {
             if(i % 3 == 0) {

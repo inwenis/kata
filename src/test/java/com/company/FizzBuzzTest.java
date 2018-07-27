@@ -23,4 +23,9 @@ public class FizzBuzzTest {
     public void when_asked_to_print_numbers_from_any_to_any_number_prints_all_number_with_Buzz_every_3rd_number_and_Buzz_every_5th_number() {
         Assert.assertEquals("Fizz\n4\nBuzz\nFizz\n7", FizzBuzz.print(3,7));
     }
+
+    @Test
+    public void when_asked_to_print_numbers_up_to_a_number_greater_than_100_truncates_the_result_to_100() {
+        Assert.assertEquals("98\nFizz\nBuzz", FizzBuzz.print(98, 120));
+    }
 }
