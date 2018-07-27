@@ -15,7 +15,7 @@ public class FizzBuzz {
         for (int i = from; i <= to; i++) {
             if(i % 3 == 0 && i % 5 == 0) {
                 numbers += "FizzBuzz" + "\n";
-            } else if(i % 3 == 0) {
+            } else if(i % 3 == 0 || String.valueOf(i).contains("3")) {
                 numbers += "Fizz" + "\n";
             } else if (i % 5 == 0) {
                 numbers += "Buzz" + "\n";

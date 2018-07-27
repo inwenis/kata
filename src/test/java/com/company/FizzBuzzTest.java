@@ -33,4 +33,9 @@ public class FizzBuzzTest {
     public void when_asked_to_print_number_dividable_by_3_and_5_prints_FizzBuzz() {
         Assert.assertEquals("14\nFizzBuzz\n16", FizzBuzz.print(14, 16));
     }
+
+    @Test
+    public void when_asekd_to_print_number_containing_3_prints_Fizz_insted_of_the_number() {
+        Assert.assertEquals("Fizz\n14", FizzBuzz.print(13, 14));
+    }
 }
