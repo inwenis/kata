@@ -13,7 +13,7 @@ public class FizzBuzz {
             return "1\n2";
         } else {
             String numbers = "";
-            for (int i = 1; i <= to; i++) {
+            for (int i = from; i <= to; i++) {
                 numbers += i + "\n";
             }
             numbers = removeLastNewLineCharacter(numbers);

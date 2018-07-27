@@ -18,4 +18,9 @@ public class FizzBuzzTest {
     public void when_asked_to_print_numbers_from_1_to_any_number_prints_all_number() {
         Assert.assertEquals("1\n2\n3\n4\n5", FizzBuzz.print(1,5));
     }
+
+    @Test
+    public void when_asked_to_print_numbers_from_any_to_any_number_prints_all_number() {
+        Assert.assertEquals("3\n4\n5\n6\n7", FizzBuzz.print(3,7));
+    }
 }
