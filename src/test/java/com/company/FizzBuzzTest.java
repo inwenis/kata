@@ -15,12 +15,12 @@ public class FizzBuzzTest {
     }
 
     @Test
-    public void when_asked_to_print_numbers_from_1_to_any_number_prints_all_numbers_with_Fizz_every_3rd_number() {
-        Assert.assertEquals("1\n2\nFizz\n4\n5", FizzBuzz.print(1,5));
+    public void when_asked_to_print_numbers_from_1_to_any_number_prints_all_numbers_with_Fizz_every_3rd_number_and_Buzz_every_5th_number() {
+        Assert.assertEquals("1\n2\nFizz\n4\nBuzz", FizzBuzz.print(1,5));
     }
 
     @Test
-    public void when_asked_to_print_numbers_from_any_to_any_number_prints_all_number() {
-        Assert.assertEquals("Fizz\n4\n5\nFizz\n7", FizzBuzz.print(3,7));
+    public void when_asked_to_print_numbers_from_any_to_any_number_prints_all_number_with_Buzz_every_3rd_number_and_Buzz_every_5th_number() {
+        Assert.assertEquals("Fizz\n4\nBuzz\nFizz\n7", FizzBuzz.print(3,7));
     }
 }
