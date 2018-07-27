@@ -9,8 +9,15 @@ public class FizzBuzz {
     public static String print(int from, int to) {
         if(to == 1) {
             return "1";
-        } else {
+        } else if(to == 2) {
             return "1\n2";
+        } else {
+            String numbers = "";
+            for (int i = 1; i <= to; i++) {
+                numbers += i + "\n";
+            }
+            numbers = numbers.substring(0, numbers.length() - 1);
+            return numbers;
         }
     }
 }
