@@ -34,15 +34,17 @@ function Get-BowlingScore {
             if($null -eq $nextFrame) {
                 #no bonus
             } else {
-                $sum += charToScore $nextFrame[0]
-            }
 
-            if($null -eq $nextNextFrame) {
-                #no bonus
-            } else {
-                $sum += charToScore $nextNextFrame[0]
+                if($nextFrame[1] -eq '/') {
+                    $sum += 10
+                } elseif (charToScore $nextFrame[0] -lt 10 -and charToScore $nextFrame[1] -lt 10) {
+                    $sum += charToScore $nextFrame[0]
+                    $sum += charToScore $nextFrame[1]
+                } elseif ($nextFrame[0] -eq 'X') {
+                    $sum += 10
+                    $sum += charToScore $nextNextFrame[0]
+                }
             }
-
         } elseif (($frame[1] -eq '/')) {
             $sum = 10
             if($null -eq $nextFrame) {
@@ -58,9 +60,14 @@ function Get-BowlingScore {
     }
 
     foreach ($frameIndex in @(0..9)) {
-        if($frameIndex -lt 9) {
+        if($frameIndex -lt 8) {
+            $score += scoreForFrame $frames[$frameIndex] $frames[$frameIndex + 1] $frames[$frameIndex + 2]
+        } elseif ($frameIndex -eq 8) {
+
             $score += scoreForFrame $frames[$frameIndex] $frames[$frameIndex + 1] $frames[$frameIndex + 2]
         } else {
+
+
             if($frames.Length -eq 11) {
                 $score += scoreForFrame $frames[$frameIndex] $frames[$frameIndex + 1]
             }
