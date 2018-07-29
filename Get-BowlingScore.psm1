@@ -1,15 +1,15 @@
 function Get-BowlingScore {
-    param([string]$frames)
+    param([string]$framesAsText)
 
     [int]$score = 0
 
-    $frames2 = @()
+    $frames = @()
     for ($i = 0; $i -lt 20; $i+=2) {
-        $frames2 += @($frames.substring($i, 2))
+        $frames += @($framesAsText.substring($i, 2))
     }
 
-    if($frames.Length -gt 20) {
-        $frames2 += @($frames.substring(20, 1) + " ")
+    if($framesAsText.Length -gt 20) {
+        $frames += @($framesAsText.substring(20, 1) + " ")
     }
 
     function charToScore {
@@ -44,13 +44,13 @@ function Get-BowlingScore {
 
     foreach ($frameIndex in @(0..9)) {
         if($frameIndex -lt 9) {
-            $score += scoreForFrame $frames2[$frameIndex] $frames2[$frameIndex + 1]
+            $score += scoreForFrame $frames[$frameIndex] $frames[$frameIndex + 1]
         } else {
-            if($frames2.Length -eq 11) {
-                $score += scoreForFrame $frames2[$frameIndex] $frames2[$frameIndex + 1]
+            if($frames.Length -eq 11) {
+                $score += scoreForFrame $frames[$frameIndex] $frames[$frameIndex + 1]
             }
             else {
-                $score += scoreForFrame $frames2[$frameIndex] $null
+                $score += scoreForFrame $frames[$frameIndex] $null
             }
         }
     }
