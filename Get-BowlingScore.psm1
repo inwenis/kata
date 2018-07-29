@@ -13,6 +13,12 @@ function Get-BowlingScore {
                 $score += 10 - [int][string]$frames[$i-1]
             }
 
+            if($frames[$i+1] -eq '-') {
+                #no bonus
+            } else {
+                $score += [int][string]$frames[$i + 1]
+            }
+
         } else {
             $score += [int][string]$frames[$i]
         }
