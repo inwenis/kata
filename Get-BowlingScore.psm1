@@ -8,14 +8,19 @@ function Get-BowlingScore {
         $frames2 += @($frames.substring($i, 2))
     }
 
-    function scoreForFrame {
-        param([string]$frame, [string]$nextFrame)
-        if ($frame[0] -eq '-') {
-            #do nothing
+    function charToScore {
+        param([char]$score)
+        if ($score[0] -eq '-') {
+            return 0
         } 
         else {
-            $sum += [int][string]$frame[0]
+            return [int][string]$score
         }
+    }
+    function scoreForFrame {
+        param([string]$frame, [string]$nextFrame)
+
+        $sum = charToScore $frame[0]
 
         if ($frame[1] -eq '-') {
             #do nothing
@@ -24,7 +29,7 @@ function Get-BowlingScore {
             if($null -eq $nextFrame) {
                 #no bonus
             } else {
-                $sum += [int][string]$nextFrame[0]
+                $sum += charToScore $nextFrame[0]
             }
         }
         else {
