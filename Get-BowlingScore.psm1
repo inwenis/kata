@@ -31,7 +31,11 @@ function Get-BowlingScore {
         if ($frame[1] -eq '-') {
             #do nothing
         } elseif (($frame[1] -eq ' ')) {
-            #do nothing
+            if($null -eq $nextFrame) {
+                #no bonus
+            } else {
+                $sum += charToScore $nextFrame[0]
+            }
         } elseif (($frame[1] -eq '/')) {
             $sum = 10
             if($null -eq $nextFrame) {
