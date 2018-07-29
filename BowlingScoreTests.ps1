@@ -11,4 +11,4 @@ function test {
 }
 
 test -expected 10 -testInput "1-1-1-1-1-1-1-1-1-1-" -message "10 frames with score 1 should return 10"
-#test 0 "0-0-0-0-0-0-0-0-0-0-" "10 frames with score 0 should return 0"
+test 0 "0-0-0-0-0-0-0-0-0-0-" "10 frames with score 0 should return 0"
