@@ -3,24 +3,41 @@ function Get-BowlingScore {
 
     [int]$score = 0
 
-    for ($i = 0; $i -lt $frames.Length; $i+=1) {
-        if($frames[$i] -eq '-') {
-            #do nothing
-        } elseif ($frames[$i] -eq '/') {
-            if($frames[$i-1] -eq '-') {
-                $score += 10
-            } else {
-                $score += 10 - [int][string]$frames[$i-1]
-            }
+    $frames2 = @()
+    for ($i = 0; $i -lt $frames.Length; $i+=2) {
+        $frames2 += @($frames.substring($i, 2))
+    }
 
-            if($frames[$i+1] -eq '-') {
+    function scoreForFrame {
+        param([string]$frame, [string]$nextFrame)
+        if ($frame[0] -eq '-') {
+            #do nothing
+        } 
+        else {
+            $sum += [int][string]$frame[0]
+        }
+
+        if ($frame[1] -eq '-') {
+            #do nothing
+        } elseif (($frame[1] -eq '/')) {
+            $sum = 10
+            if($null -eq $nextFrame) {
                 #no bonus
             } else {
-                $score += [int][string]$frames[$i + 1]
+                $sum += [int][string]$nextFrame[0]
             }
+        }
+        else {
+            $sum += [int][string]$frame[1]
+        }
+        return $sum
+    }
 
+    for ($i = 0; $i -lt $frames2.Count; $i++) {
+        if($i -lt $frames2.Count - 1) {
+            $score += scoreForFrame $frames2[$i] $frames2[$i + 1]
         } else {
-            $score += [int][string]$frames[$i]
+            $score += scoreForFrame $frames2[$i] $null
         }
     }
 
