@@ -13,12 +13,14 @@ function Get-BowlingScore {
     }
 
     function charToScore {
-        param([char]$score)
-        if ($score[0] -eq '-') {
+        param([char]$symbol)
+        if ($symbol -eq '-') {
             return 0
-        } 
+        } elseif ($symbol -eq 'X') {
+            return 10
+        }
         else {
-            return [int][string]$score
+            return [int][string]$symbol
         }
     }
     function scoreForFrame {
@@ -27,6 +29,8 @@ function Get-BowlingScore {
         $sum = charToScore $frame[0]
 
         if ($frame[1] -eq '-') {
+            #do nothing
+        } elseif (($frame[1] -eq ' ')) {
             #do nothing
         } elseif (($frame[1] -eq '/')) {
             $sum = 10
