@@ -24,3 +24,4 @@ test 13 "X 1-1-0-0-0-0-0-0-0-" "bonus for strike is double pins from next roll a
 test 30 "X 1/0-0-0-0-0-0-0-0-" "mixing strike and spare should work"
 test 30 "X X 0-0-0-0-0-0-0-0-" "strike after a strike"
 test 33 "X X 1-0-0-0-0-0-0-0-" "after a strike next 2 rolls are in 2 frames"
+test 13 "0-0-0-0-0-0-0-0-0-X 12" "2 extra rolls for a strike"
