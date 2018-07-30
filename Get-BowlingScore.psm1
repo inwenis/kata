@@ -12,7 +12,7 @@ function Get-BowlingScore {
         $frames += @($framesAsText.substring(20, 1) + " ")
     }
 
-    function charToScore { # aka. how many pins down
+    function symbolToPinsDown { # aka. how many pins down
         param([char]$symbol)
         if ($symbol -eq '-') {
             return 0
@@ -27,25 +27,25 @@ function Get-BowlingScore {
         param([string]$frame, [string]$nextFrame, [string]$nextNextFrame)
 
         if ($frame -match "[0-9-]{2}") {
-            $sum += charToScore $frame[0]
-            $sum += charToScore $frame[1]
+            $sum += symbolToPinsDown $frame[0]
+            $sum += symbolToPinsDown $frame[1]
         } elseif ($frame -match "[0-9-]/") {
             $sum += 10
             if ($null -ne $nextFrame) {
-                $sum += charToScore $nextFrame[0]
+                $sum += symbolToPinsDown $nextFrame[0]
             } else {
                 # nextFrame is null -> no bonus
             }
         } elseif ($frame -match "X ") {
             $sum += 10
             if ($nextFrame -match "[0-9-]{2}") {
-                $sum += charToScore $nextFrame[0]
-                $sum += charToScore $nextFrame[1]
-            } elseif ($frame -match "[0-9-]/") {
+                $sum += symbolToPinsDown $nextFrame[0]
+                $sum += symbolToPinsDown $nextFrame[1]
+            } elseif ($nextFrame -match "[0-9-]/") {
                 $sum += 10
-            } elseif ($frame -match "X ") {
+            } elseif ($nextFrame -match "X ") {
                 $sum += 10
-                $sum += charToScore $nextNextFrame[0]
+                $sum += symbolToPinsDown $nextNextFrame[0]
             } else {
                 throw "this shoudl not happen"
             }
