@@ -38,14 +38,16 @@ function Get-BowlingScore {
             }
         } elseif ($frame -match "X ") {
             $sum += 10
-            if ($nextFrame -match "[0-9-]/") {
+            if ($nextFrame -match "[0-9-]{2}") {
+                $sum += charToScore $nextFrame[0]
+                $sum += charToScore $nextFrame[1]
+            } elseif ($frame -match "[0-9-]/") {
                 $sum += 10
-            } elseif ($nextFrame -match "X ") {
+            } elseif ($frame -match "X ") {
                 $sum += 10
                 $sum += charToScore $nextNextFrame[0]
             } else {
-                $sum += charToScore $nextFrame[0]
-                $sum += charToScore $nextFrame[1]
+                throw "this shoudl not happen"
             }
         } else {
             throw "this shoudl not happen"
