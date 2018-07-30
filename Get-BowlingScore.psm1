@@ -12,6 +12,9 @@ function Get-BowlingScore {
         $frames += @($framesAsText.substring(20, 1) + " ")
     } elseif ($framesAsText[18] -eq "X") {
         $frames += @($framesAsText.substring(20, 2))
+        if ($framesAsText[20] -eq "X") {
+            $frames += @($framesAsText.substring(22, 2))
+        }
     }
 
     function symbolToPinsDown { # aka. how many pins down
@@ -61,7 +64,9 @@ function Get-BowlingScore {
         $score += scoreForFrame $frames[$frameIndex] $frames[$frameIndex + 1] $frames[$frameIndex + 2]
     }
     $score += scoreForFrame $frames[8] $frames[9] $null
-    if($frames.Length -eq 11) {
+    if($frames.Length -eq 12) {
+        $score += scoreForFrame $frames[9] $frames[10] $frames[11]
+    } elseif($frames.Length -eq 11) {
         $score += scoreForFrame $frames[9] $frames[10] $null
     } else {
         $score += scoreForFrame $frames[9] $null $null
