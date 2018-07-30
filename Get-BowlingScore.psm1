@@ -63,7 +63,13 @@ function Get-BowlingScore {
     foreach ($frameIndex in @(0..7)) {
         $score += scoreForFrame $frames[$frameIndex] $frames[$frameIndex + 1] $frames[$frameIndex + 2]
     }
-    $score += scoreForFrame $frames[8] $frames[9] $null
+    
+    if($frames.Length -gt 10) {
+        $score += scoreForFrame $frames[8] $frames[9] $frames[10]
+    } else {
+        $score += scoreForFrame $frames[8] $frames[9] $null
+    }
+    
     if($frames.Length -eq 12) {
         $score += scoreForFrame $frames[9] $frames[10] $frames[11]
     } elseif($frames.Length -eq 11) {
