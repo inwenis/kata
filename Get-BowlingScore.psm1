@@ -12,7 +12,7 @@ function Get-BowlingScore {
         $frames += @($framesAsText.substring(20, 1) + " ")
     }
 
-    function charToScore {
+    function charToScore { # aka. how many pins down
         param([char]$symbol)
         if ($symbol -eq '-') {
             return 0
@@ -24,37 +24,28 @@ function Get-BowlingScore {
         }
     }
     function scoreForFrame {
-        param([string]$frame, [string]$nextFrame, $nextNextFrame)
+        param([string]$frame, [string]$nextFrame, [string]$nextNextFrame)
 
-        $sum = charToScore $frame[0]
-
-        if ($frame[1] -eq '-') {
-            #do nothing
-        } elseif (($frame[1] -eq ' ')) {
-            if($null -eq $nextFrame) {
-                #no bonus
+        if ($frame -match "[0-9-]{2}") {
+            $sum += charToScore $frame[0]
+            $sum += charToScore $frame[1]
+        } elseif ($frame -match "[0-9-]/") {
+            $sum += 10
+            if ($null -ne $nextFrame) {
+                $sum += charToScore $nextFrame[0]
             } else {
-
-                if($nextFrame[1] -eq '/') {
-                    $sum += 10
-                } elseif (charToScore $nextFrame[0] -lt 10 -and charToScore $nextFrame[1] -lt 10) {
-                    $sum += charToScore $nextFrame[0]
-                    $sum += charToScore $nextFrame[1]
-                } elseif ($nextFrame[0] -eq 'X') {
-                    $sum += 10
-                    $sum += charToScore $nextNextFrame[0]
-                }
+                # nextFrame is null -> no bonus
             }
-        } elseif (($frame[1] -eq '/')) {
-            $sum = 10
-            if($null -eq $nextFrame) {
-                #no bonus
+        } elseif ($frame -match "X ") {
+            $sum += 10
+            if ($nextFrame -match "[0-9-]/") {
+                $sum += 10
             } else {
                 $sum += charToScore $nextFrame[0]
+                $sum += charToScore $nextFrame[1]
             }
-        }
-        else {
-            $sum += [int][string]$frame[1]
+        } else {
+            throw "this shoudl not happen"
         }
         return $sum
     }
