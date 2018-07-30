@@ -36,11 +36,7 @@ function Get-BowlingScore {
             $sum += symbolToPinsDown $frame[1]
         } elseif ($frame -match "[0-9-]/") {
             $sum += 10
-            if ($null -ne $nextFrame) {
-                $sum += symbolToPinsDown $nextFrame[0]
-            } else {
-                # nextFrame is null -> no bonus
-            }
+            $sum += symbolToPinsDown $nextFrame[0]
         } elseif ($frame -match "X ") {
             $sum += 10
             if ($nextFrame -match "[0-9-]{2}") {
