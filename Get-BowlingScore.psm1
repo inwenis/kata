@@ -48,10 +48,10 @@ function Get-BowlingScore {
                 $sum += 10
                 $sum += symbolToPinsDown $nextNextFrame[0]
             } else {
-                throw "this shoudl not happen"
+                throw "this should not happen"
             }
         } else {
-            throw "this shoudl not happen"
+            throw "this should not happen"
         }
         return $sum
     }
