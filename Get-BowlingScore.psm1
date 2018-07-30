@@ -42,6 +42,7 @@ function Get-BowlingScore {
                 $sum += 10
             } elseif ($nextFrame -match "X ") {
                 $sum += 10
+                $sum += charToScore $nextNextFrame[0]
             } else {
                 $sum += charToScore $nextFrame[0]
                 $sum += charToScore $nextFrame[1]
