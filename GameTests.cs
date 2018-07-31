@@ -33,7 +33,7 @@ public class GameTests
         Assert.AreEqual(20, sut.Score());
     }
 
-    //[Test]
+    [Test]
     public void when_2_rolls_in_a_frame_knock_down_all_pins_bonus_for_spare_doubles_pins_from_next_roll()
     {
         RollMany(1, 5);

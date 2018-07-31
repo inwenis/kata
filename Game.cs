@@ -14,8 +14,17 @@ public class Game
         int rollIndex = 0;
         for(int frame = 0; frame < 10 ; frame++)
         {
-            score += _rolls[rollIndex];
-            score += _rolls[rollIndex+1];
+            if(_rolls[rollIndex] + _rolls[rollIndex+1] == 10)
+            {
+                score += 10;
+                score += _rolls[rollIndex+2];
+            }
+            else
+            {
+                score += _rolls[rollIndex];
+                score += _rolls[rollIndex+1];
+            }
+            
             rollIndex += 2;
         }
         return score;
