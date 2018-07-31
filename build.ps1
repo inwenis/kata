@@ -1,2 +1,2 @@
 nuget install nunit -outputdirectory packages
-csc *
+csc *.cs
