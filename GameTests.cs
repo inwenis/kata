@@ -25,6 +25,11 @@ public class GameTests
         sut.Roll(5);
     }
 
+    public void RollStrike()
+    {
+        RollMany(1, 10);
+    }
+
     [Test]
     public void when_all_rolls_have_0_pins_down_score_is_0()
     {
@@ -51,7 +56,7 @@ public class GameTests
     [Test]
     public void when_10_pins_are_knocked_down_in_one_roll_the_bonus_for_a_strike_is_doubled_pins_from_next_2_rolls()
     {
-        RollMany(1, 10); //strike
+        RollStrike();
         RollMany(1, 1);
         RollMany(1, 1);
         RollMany(17, 0);
