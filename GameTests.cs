@@ -19,6 +19,12 @@ public class GameTests
         }
     }
 
+    public void RollSpare()
+    {
+        sut.Roll(5);
+        sut.Roll(5);
+    }
+
     [Test]
     public void when_all_rolls_have_0_pins_down_score_is_0()
     {
@@ -36,9 +42,8 @@ public class GameTests
     [Test]
     public void when_2_rolls_in_a_frame_knock_down_all_pins_bonus_for_spare_doubles_pins_from_next_roll()
     {
-        RollMany(1, 5);
-        RollMany(1, 5); //spare
-        RollMany(1, 2); //bonus for spare
+        RollSpare();
+        RollMany(1, 2);
         RollMany(17, 0);
         Assert.AreEqual(14, sut.Score());
     }
