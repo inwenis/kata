@@ -20,7 +20,7 @@ public class Game
                 score += _rolls[rollIndex+2];
                 rollIndex += 2;
             }
-            else if (_rolls[rollIndex] == 10) //strike
+            else if (IsStrike(_rolls[rollIndex])) //strike
             {
                 score += 10;
                 score += _rolls[rollIndex+1];
@@ -40,5 +40,10 @@ public class Game
     public bool IsSpare(int roll1, int roll2)
     {
         return roll1 + roll2 == 10;
+    }
+
+    public bool IsStrike(int roll)
+    {
+        return roll == 10;
     }
 }
