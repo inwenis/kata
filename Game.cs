@@ -1,14 +1,20 @@
 public class Game
 {
-    int _score = 0;
+    int[] _rolls = new int[21];
+    int _currentRollIndex = 0;
 
     public void Roll(int pinsDown)
     {
-        _score += pinsDown;
+        _rolls[_currentRollIndex++] = pinsDown;
     }
 
     public int Score()
     {
-        return _score;
+        int score = 0;
+        foreach(var roll in _rolls)
+        {
+            score += roll;
+        }
+        return score;
     }
 }
