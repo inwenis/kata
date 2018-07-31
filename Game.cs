@@ -14,18 +14,25 @@ public class Game
         int rollIndex = 0;
         for(int frame = 0; frame < 10 ; frame++)
         {
-            if(IsSpare(_rolls[rollIndex], _rolls[rollIndex+1]))
+            if (IsSpare(_rolls[rollIndex], _rolls[rollIndex+1]))
             {
                 score += 10;
                 score += _rolls[rollIndex+2];
+                rollIndex += 2;
+            }
+            else if (_rolls[rollIndex] == 10) //strike
+            {
+                score += 10;
+                score += _rolls[rollIndex+1];
+                score += _rolls[rollIndex+2];
+                rollIndex += 1;
             }
             else
             {
                 score += _rolls[rollIndex];
                 score += _rolls[rollIndex+1];
+                rollIndex += 2;
             }
-            
-            rollIndex += 2;
         }
         return score;
     }
