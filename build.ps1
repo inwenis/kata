@@ -1,6 +1,5 @@
-if(-not(Test-Path "packages\nunit*")) {
-    nuget install nunit -outputdirectory packages
-}
+if(-not(Test-Path "packages\nunit*")) { nuget install nunit -outputdirectory packages }
+if(-not(Test-Path "packages\nunit.console*")) { nuget install nunit.console -outputdirectory packages }
 
 if(-not(Test-Path "out")) {
     mkdir "out"
