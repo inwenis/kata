@@ -11,9 +11,12 @@ public class Game
     public int Score()
     {
         int score = 0;
-        foreach(var roll in _rolls)
+        int rollIndex = 0;
+        for(int frame = 0; frame < 10 ; frame++)
         {
-            score += roll;
+            score += _rolls[rollIndex];
+            score += _rolls[rollIndex+1];
+            rollIndex += 2;
         }
         return score;
     }
