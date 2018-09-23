@@ -39,8 +39,8 @@ namespace anagram_kata
 
             if (onlyWordsWithMatchingLetters.Length > 1)
             {
-                var anagrams = _words[0] + " " + _words[1];
-                return new []{anagrams};
+                var anagram = onlyWordsWithMatchingLetters[0] + " " + onlyWordsWithMatchingLetters[1];
+                return new []{anagram};
             }
             else
             {
