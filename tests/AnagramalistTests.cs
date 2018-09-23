@@ -1,4 +1,5 @@
-﻿using anagram_kata;
+﻿using System.Linq;
+using anagram_kata;
 using NUnit.Framework;
 
 namespace tests
@@ -23,7 +24,7 @@ namespace tests
             var wordsWithOnePossibleAnagram = new string[]{"document", "ing"};
             var sut = new Anagramalist(wordsWithOnePossibleAnagram);
 
-            var result = sut.ComputeAll2WordsAnagrams("documenting");
+            var result = sut.ComputeAll2WordsAnagrams("documenting").ToArray();
 
             CollectionAssert.AreEqual(new []{"document ing"} ,result);
         }
@@ -34,9 +35,20 @@ namespace tests
             var wordsWithOnePossibleAnagram = new string[]{"document", "documentX", "ing"};
             var sut = new Anagramalist(wordsWithOnePossibleAnagram);
 
+            var result = sut.ComputeAll2WordsAnagrams("documenting").ToArray();
+
+            CollectionAssert.AreEqual(new []{"document ing"}, result.ToArray());
+        }
+
+        [Test]
+        public void ComputeAll2WordsAnagrams_Given3InputWordsWhichCanProduce2Anagrams_Returns2Anagrams()
+        {
+            var wordsWithOnePossibleAnagram = new string[]{"document", "ing", "nig"};
+            var sut = new Anagramalist(wordsWithOnePossibleAnagram);
+
             var result = sut.ComputeAll2WordsAnagrams("documenting");
 
-            CollectionAssert.AreEqual(new []{"document ing"} ,result);
+            CollectionAssert.AreEqual(new []{"document ing", "document nig"} ,result);
         }
     }
 }

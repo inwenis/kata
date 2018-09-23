@@ -37,14 +37,30 @@ namespace anagram_kata
         {
             var onlyWordsWithMatchingLetters = _words.Where(word => word.All(c => anagramSubject.Contains(c))).ToArray();
 
-            if (onlyWordsWithMatchingLetters.Length > 1)
+            if (onlyWordsWithMatchingLetters.Length >= 2)
             {
-                var anagram = onlyWordsWithMatchingLetters[0] + " " + onlyWordsWithMatchingLetters[1];
-                return new []{anagram};
+                foreach (var firstWord in onlyWordsWithMatchingLetters.ToArray())
+                {
+                    var anagramSubjectCharacters = anagramSubject.ToList();
+                    foreach (var character in firstWord)
+                    {
+                        anagramSubjectCharacters.Remove(character);
+                    }
+
+                    var possibleSecondsWords = onlyWordsWithMatchingLetters
+                        .SkipWhile(x => x != firstWord)
+                        .Where(word => word.All(c => anagramSubjectCharacters.Contains(c)))
+                        .ToArray();
+
+                    foreach (var secondWord in possibleSecondsWords)
+                    {
+                        yield return firstWord + " " + secondWord;
+                    }
+                }
             }
             else
             {
-                return new string[0];
+                yield break;
             }
         }
     }
