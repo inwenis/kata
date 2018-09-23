@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace tests
 {
     [TestFixture]
-    public class Class1
+    public class AnagramalistTests
     {
         [Test]
         public void ComputeAll2WordsAnagrams_GivenNoWords_ReturnsNoAnagrams()
