@@ -10,8 +10,8 @@ namespace anagram_kata
     {
         static void Main(string[] args)
         {
-//            var words = new [] { "document", "ing"};
-            var words = ReadFromFile("wordlist.txt");
+            var words = new [] { "document", "ing", "nig", "tnemucod"};
+//            var words = ReadFromFile("wordlist.txt");
             
             var anagramalist = new Anagramalist(words);
             var anagrams = anagramalist.ComputeAll2WordsAnagrams("documenting");

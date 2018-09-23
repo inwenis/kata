@@ -26,6 +26,7 @@ namespace anagram_kata
                 var possibleSecondsWords = wordsWhichCanBeUsedInAnagrams
                     .SkipWhile(x => x != firstWord)
                     .Where(word => CharactersAreSubsetOf(word, remainingCharacters))
+                    .Where(word => !RemoveCharacters(remainingCharacters, word).Any())
                     .ToArray();
 
                 foreach (var secondWord in possibleSecondsWords)
@@ -36,6 +37,11 @@ namespace anagram_kata
         }
 
         private static List<char> RemoveCharacters(string left, string right)
+        {
+            return RemoveCharacters(left.ToList(), right);
+        }
+
+        private static List<char> RemoveCharacters(List<char> left, string right)
         {
             var remainingCharacters = left.ToList();
             foreach (var character in right)
