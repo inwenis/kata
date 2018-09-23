@@ -10,10 +10,14 @@ namespace anagram_kata
     {
         static void Main(string[] args)
         {
-            var words = new [] { "document", "ing", "nig", "tnemucod"};
-//            var words = ReadFromFile("wordlist.txt");
-            
-            var anagramalist = new Anagramalist(words);
+            var additionalWords = "document ing nig tnemucod tuned coming" +
+                "ceding mount document gin condign mute induct gnome coming tuned gnomic tuned cumin tonged cum denoting";
+            var splitted = additionalWords.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            var words = ReadFromFile("wordlist.txt");
+
+            var allWords = words.Union(splitted).ToArray();
+
+            var anagramalist = new Anagramalist(allWords);
             var anagrams = anagramalist.ComputeAll2WordsAnagrams("documenting");
             foreach (var anagram in anagrams)
             {
@@ -28,8 +32,7 @@ namespace anagram_kata
         {
             var allLines = File.ReadAllLines("wordlist.txt");
             var withoutHeader = allLines.Skip(1).ToArray();
-            var withoutLast = withoutHeader.Take(withoutHeader.Count() - 1);
-            var words = withoutLast.SelectMany(line => line.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries));
+            var words = withoutHeader.SelectMany(line => line.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries));
             return words.ToArray();
         }
     }
