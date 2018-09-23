@@ -35,21 +35,17 @@ namespace anagram_kata
 
         public IEnumerable<string> ComputeAll2WordsAnagrams(string anagramSubject)
         {
-            var onlyWordsWithMatchingLetters = _words.Where(word => word.All(c => anagramSubject.Contains(c))).ToArray();
+            var possibleFirstWords = _words.Where(word => CharactersAreSubsetOf(word, anagramSubject)).ToArray();
 
-            if (onlyWordsWithMatchingLetters.Length >= 2)
+            if (possibleFirstWords.Length >= 2)
             {
-                foreach (var firstWord in onlyWordsWithMatchingLetters.ToArray())
+                foreach (var firstWord in possibleFirstWords.ToArray())
                 {
-                    var anagramSubjectCharacters = anagramSubject.ToList();
-                    foreach (var character in firstWord)
-                    {
-                        anagramSubjectCharacters.Remove(character);
-                    }
+                    var remainingCharacters = RemoveCharacters(anagramSubject, firstWord);
 
-                    var possibleSecondsWords = onlyWordsWithMatchingLetters
+                    var possibleSecondsWords = possibleFirstWords
                         .SkipWhile(x => x != firstWord)
-                        .Where(word => word.All(c => anagramSubjectCharacters.Contains(c)))
+                        .Where(word => word.All(c => remainingCharacters.Contains(c)))
                         .ToArray();
 
                     foreach (var secondWord in possibleSecondsWords)
@@ -62,6 +58,37 @@ namespace anagram_kata
             {
                 yield break;
             }
+        }
+
+        private static List<char> RemoveCharacters(string left, string right)
+        {
+            var remainingCharacters = left.ToList();
+            foreach (var character in right)
+            {
+                if (!remainingCharacters.Remove(character))
+                {
+                    var leftRemaining = string.Join("", remainingCharacters);
+                    throw new InvalidOperationException(
+                        $"Can not remove {left} - {right}. Remaining characters are: {leftRemaining}. Could not remove {character}");
+                }
+            }
+
+            return remainingCharacters;
+        }
+
+        private static bool CharactersAreSubsetOf(string setToCheck, string setToCheckAgainst)
+        {
+            var charactersList = setToCheckAgainst.ToList();
+
+            foreach (var character in setToCheck)
+            {
+                if (!charactersList.Remove(character))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

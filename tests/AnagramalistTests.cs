@@ -50,5 +50,16 @@ namespace tests
 
             CollectionAssert.AreEqual(new []{"document ing", "document nig"} ,result);
         }
+
+        [Test]
+        public void ComputeAll2WordsAnagrams_WordsThatHaveTooManyCharacters_AreNotInResultAnagrams()
+        {
+            var words = new string[]{"documenttttt", "ing"};
+            var sut = new Anagramalist(words);
+
+            var result = sut.ComputeAll2WordsAnagrams("documenting");
+
+            Assert.IsEmpty(result);
+        }
     }
 }
