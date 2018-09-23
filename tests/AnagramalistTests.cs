@@ -61,5 +61,16 @@ namespace tests
 
             Assert.IsEmpty(result);
         }
+
+        [Test]
+        public void ComputeAll2WordsAnagrams_SecondWordHasTooManyCharacters_IsNotPresentInResultAnagram()
+        {
+            var words = new string[]{"document", "inn"};
+            var sut = new Anagramalist(words);
+
+            var result = sut.ComputeAll2WordsAnagrams("documenting");
+
+            Assert.IsEmpty(result);
+        }
     }
 }

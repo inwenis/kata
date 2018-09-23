@@ -45,7 +45,7 @@ namespace anagram_kata
 
                     var possibleSecondsWords = possibleFirstWords
                         .SkipWhile(x => x != firstWord)
-                        .Where(word => word.All(c => remainingCharacters.Contains(c)))
+                        .Where(word => CharactersAreSubsetOf(word, remainingCharacters))
                         .ToArray();
 
                     foreach (var secondWord in possibleSecondsWords)
@@ -77,6 +77,11 @@ namespace anagram_kata
         }
 
         private static bool CharactersAreSubsetOf(string setToCheck, string setToCheckAgainst)
+        {
+            return CharactersAreSubsetOf(setToCheck, setToCheckAgainst.ToList());
+        }
+
+        private static bool CharactersAreSubsetOf(string setToCheck, List<char> setToCheckAgainst)
         {
             var charactersList = setToCheckAgainst.ToList();
 
