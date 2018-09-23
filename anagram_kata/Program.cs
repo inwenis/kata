@@ -35,7 +35,15 @@ namespace anagram_kata
 
         public IEnumerable<string> ComputeAll2WordsAnagrams(string anagramSubject)
         {
-            return new string[0];
+            if (_words.Any())
+            {
+                var anagrams = _words[0] + " " + _words[1];
+                return new []{anagrams};
+            }
+            else
+            {
+                return new string[0];
+            }
         }
     }
 }

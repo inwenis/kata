@@ -16,5 +16,16 @@ namespace tests
 
             Assert.IsEmpty(result);
         }
+
+        [Test]
+        public void ComputeAll2WordsAnagrams_GivenOneMatchingAnagram_ReturnsOneAnagram()
+        {
+            var wordsWithOnePossibleAnagram = new string[]{"document", "ing"};
+            var sut = new Anagramalist(wordsWithOnePossibleAnagram);
+
+            var result = sut.ComputeAll2WordsAnagrams("documenting");
+
+            CollectionAssert.AreEqual(new []{"document ing"} ,result);
+        }
     }
 }
