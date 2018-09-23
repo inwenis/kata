@@ -35,7 +35,9 @@ namespace anagram_kata
 
         public IEnumerable<string> ComputeAll2WordsAnagrams(string anagramSubject)
         {
-            if (_words.Any())
+            var onlyWordsWithMatchingLetters = _words.Where(word => word.All(c => anagramSubject.Contains(c))).ToArray();
+
+            if (onlyWordsWithMatchingLetters.Length > 1)
             {
                 var anagrams = _words[0] + " " + _words[1];
                 return new []{anagrams};

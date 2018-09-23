@@ -27,5 +27,16 @@ namespace tests
 
             CollectionAssert.AreEqual(new []{"document ing"} ,result);
         }
+
+        [Test]
+        public void ComputeAll2WordsAnagrams_GivenInputWordWithLetterNotPresentInSubject_ReturnsNoAnagrams()
+        {
+            var wordsWithOnePossibleAnagram = new string[]{"documentX", "ing"};
+            var sut = new Anagramalist(wordsWithOnePossibleAnagram);
+
+            var result = sut.ComputeAll2WordsAnagrams("documenting");
+
+            Assert.IsEmpty(result);
+        }
     }
 }
