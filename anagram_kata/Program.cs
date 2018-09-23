@@ -35,20 +35,22 @@ namespace anagram_kata
 
         public IEnumerable<string> ComputeAll2WordsAnagrams(string anagramSubject)
         {
-            var possibleFirstWords = _words.Where(word => CharactersAreSubsetOf(word, anagramSubject)).ToArray();
+            var wordsWhichCanBeUsedInAnagrams = _words
+                .Where(word => CharactersAreSubsetOf(word, anagramSubject))
+                .ToArray();
 
-            foreach (var firstWord in possibleFirstWords.ToArray())
+            foreach (var firstWord in wordsWhichCanBeUsedInAnagrams.ToArray())
             {
                 var remainingCharacters = RemoveCharacters(anagramSubject, firstWord);
 
-                var possibleSecondsWords = possibleFirstWords
+                var possibleSecondsWords = wordsWhichCanBeUsedInAnagrams
                     .SkipWhile(x => x != firstWord)
                     .Where(word => CharactersAreSubsetOf(word, remainingCharacters))
                     .ToArray();
 
                 foreach (var secondWord in possibleSecondsWords)
                 {
-                    yield return firstWord + " " + secondWord;
+                    yield return $"{firstWord} {secondWord}";
                 }
             }
         }
