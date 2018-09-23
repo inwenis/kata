@@ -37,26 +37,19 @@ namespace anagram_kata
         {
             var possibleFirstWords = _words.Where(word => CharactersAreSubsetOf(word, anagramSubject)).ToArray();
 
-            if (possibleFirstWords.Length >= 2)
+            foreach (var firstWord in possibleFirstWords.ToArray())
             {
-                foreach (var firstWord in possibleFirstWords.ToArray())
+                var remainingCharacters = RemoveCharacters(anagramSubject, firstWord);
+
+                var possibleSecondsWords = possibleFirstWords
+                    .SkipWhile(x => x != firstWord)
+                    .Where(word => CharactersAreSubsetOf(word, remainingCharacters))
+                    .ToArray();
+
+                foreach (var secondWord in possibleSecondsWords)
                 {
-                    var remainingCharacters = RemoveCharacters(anagramSubject, firstWord);
-
-                    var possibleSecondsWords = possibleFirstWords
-                        .SkipWhile(x => x != firstWord)
-                        .Where(word => CharactersAreSubsetOf(word, remainingCharacters))
-                        .ToArray();
-
-                    foreach (var secondWord in possibleSecondsWords)
-                    {
-                        yield return firstWord + " " + secondWord;
-                    }
+                    yield return firstWord + " " + secondWord;
                 }
-            }
-            else
-            {
-                yield break;
             }
         }
 
