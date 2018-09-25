@@ -13,7 +13,9 @@ namespace anagram_kata2
         static void Main(string[] args)
         {
             var allLines = File.ReadAllLines("wordlist.txt");
-            var words = allLines.Where(x => x != string.Empty).ToArray();
+            var words = allLines
+                .Where(x => x != string.Empty)
+                .ToArray();
 
             var sw = new Stopwatch();
             sw.Start();
@@ -36,15 +38,22 @@ namespace anagram_kata2
     {
         public static string[] FindAllAnagrams(string[] words)
         {
-            var anagrams = words
+            var groupBy = words
                 .GroupBy(word => word.Length)
+                .ToArray();
+            var groupByWhereAtLest2 = groupBy
                 .Where(groupedByLength => groupedByLength.Count() > 1)
+                .ToArray();
+            var groupByAtleast2withSameLetters = groupByWhereAtLest2
                 .Where(x =>
                 {
                     var ordered = new string(x.First().OrderBy(c => c).ToArray());
                     var sameLetters = x.Where(w => new string(w.OrderBy(c => c).ToArray()) == ordered);
                     return sameLetters.Count() > 1;
                 })
+                .ToArray();
+
+            var anagrams = groupByAtleast2withSameLetters
                 .Select(x =>
                 {
                     var ordered = new string(x.First().OrderBy(c => c).ToArray());
