@@ -6,16 +6,9 @@ namespace anagram_kata
 {
     public class Anagramalist
     {
-        private string[] _words;
-
-        public Anagramalist(string[] words)
+        public IEnumerable<string> ComputeAll2WordsAnagrams(string anagramSubject, string[] words)
         {
-            _words = words;
-        }
-
-        public IEnumerable<string> ComputeAll2WordsAnagrams(string anagramSubject)
-        {
-            var wordsWhichCanBeUsedInAnagrams = _words
+            var wordsWhichCanBeUsedInAnagrams = words
                 .Where(word => CharactersAreSubsetOf(word, anagramSubject))
                 .ToArray();
 

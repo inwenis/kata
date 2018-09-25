@@ -17,8 +17,8 @@ namespace anagram_kata
 
             var allWords = words.Union(splitted).ToArray();
 
-            var anagramalist = new Anagramalist(allWords);
-            var anagrams = anagramalist.ComputeAll2WordsAnagrams("documenting");
+            var anagramalist = new Anagramalist();
+            var anagrams = anagramalist.ComputeAll2WordsAnagrams("documenting", allWords);
             foreach (var anagram in anagrams)
             {
                 Console.WriteLine(anagram);
