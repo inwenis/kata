@@ -44,23 +44,15 @@ namespace anagram_kata2
             var groupByWhereAtLest2 = groupBy
                 .Where(groupedByLength => groupedByLength.Count() > 1)
                 .ToArray();
-            var groupByAtleast2withSameLetters = groupByWhereAtLest2
-                .Where(x =>
+            var anagrams = groupByWhereAtLest2
+                .SelectMany(x =>
                 {
-                    var ordered = new string(x.First().OrderBy(c => c).ToArray());
-                    var sameLetters = x.Where(w => new string(w.OrderBy(c => c).ToArray()) == ordered);
-                    return sameLetters.Count() > 1;
+                    return x.GroupBy(w => new string(w.OrderBy(c => c).ToArray()))
+                        .Where(g => g.Count() > 1)
+                        .Select(g => string.Join(" ", g));
                 })
                 .ToArray();
 
-            var anagrams = groupByAtleast2withSameLetters
-                .Select(x =>
-                {
-                    var ordered = new string(x.First().OrderBy(c => c).ToArray());
-                    var sameLetters = x.Where(w => new string(w.OrderBy(c => c).ToArray()) == ordered);
-                    return string.Join(" ", sameLetters);
-                })
-                .ToArray();
             return anagrams;
         }
     }

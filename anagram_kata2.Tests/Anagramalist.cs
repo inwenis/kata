@@ -72,4 +72,14 @@ public class AnagramalistTests
 
         Assert.IsEmpty(result);
     }
+
+    [Test]
+    public void FindAllAnagrams_FirstWordHasSameLengthButHasDifferentLetters_AnagramIsReturnedAnyway()
+    {
+        string[] input = new []{"xxxx", "word", "drow"};
+
+        var result = Anagramalist.FindAllAnagrams(input);
+
+        CollectionAssert.AreEqual(new []{"word drow"}, result);
+    }
 }
