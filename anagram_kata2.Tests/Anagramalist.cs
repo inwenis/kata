@@ -22,4 +22,15 @@ public class AnagramalistTests
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
+
+    [Test]
+    public void FindAllAnagrams_3WordsInInputWithSameLetters_Returns3WordsAnagram()
+    {
+        string[] input = new []{"word", "drow", "drwo"};
+
+        var result = Anagramalist.FindAllAnagrams(input);
+
+        CollectionAssert.AreEqual(new []{"word drow drwo"}, result);
+
+    }
 }

@@ -21,9 +21,13 @@ namespace anagram_kata2
             {
                 return new string[0];
             }
-            else
+            else if(words.Length == 2)
             {
                 return new []{words[0] + " " + words[1]};
+            }
+            else
+            {
+                return new []{words[0] + " " + words[1] + " " + words[2]};
             }
         }
     }
