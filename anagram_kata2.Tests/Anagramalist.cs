@@ -42,4 +42,14 @@ public class AnagramalistTests
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
+
+    [Test]
+    public void FindAllAnagrams_NonMachingWordInInputWithSameLength_Returns2WordsAnagram()
+    {
+        string[] input = new []{"word", "drow", "xxxx"};
+
+        var result = Anagramalist.FindAllAnagrams(input);
+
+        CollectionAssert.AreEqual(new []{"word drow"}, result);
+    }
 }

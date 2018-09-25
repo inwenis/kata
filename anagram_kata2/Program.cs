@@ -20,7 +20,12 @@ namespace anagram_kata2
             var anagrams = words
                 .GroupBy(word => word.Length)
                 .Where(groupedByLength => groupedByLength.Count() > 1)
-                .Select(x => string.Join(" ", x))
+                .Select(x =>
+                {
+                    var ordered = new string(x.First().OrderBy(c => c).ToArray());
+                    var sameLetters = x.Where(w => new string(w.OrderBy(c => c).ToArray()) == ordered);
+                    return string.Join(" ", sameLetters);
+                })
                 .ToArray();
             return anagrams;
         }
