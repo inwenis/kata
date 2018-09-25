@@ -12,4 +12,12 @@ namespace anagram_kata2
         {
         }
     }
+
+    public class Anagramalist
+    {
+        public static string[] FindAllAnagrams(string[] words)
+        {
+            return new string[0];
+        }
+    }
 }
