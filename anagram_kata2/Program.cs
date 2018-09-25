@@ -39,14 +39,9 @@ namespace anagram_kata2
         public static string[] FindAllAnagrams(string[] words)
         {
             var anagrams = words
-                .GroupBy(word => word.Length)
-                .Where(groupedByLength => groupedByLength.Count() > 1)
-                .SelectMany(x =>
-                {
-                    return x.GroupBy(w => new string(w.OrderBy(c => c).ToArray()))
-                        .Where(g => g.Count() > 1)
-                        .Select(g => string.Join(" ", g));
-                })
+                .GroupBy(w => new string(w.OrderBy(c => c).ToArray()))
+                .Where(g => g.Count() > 1)
+                .Select(x => string.Join(" ", x))
                 .ToArray();
 
             return anagrams;
