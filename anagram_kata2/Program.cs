@@ -17,7 +17,14 @@ namespace anagram_kata2
     {
         public static string[] FindAllAnagrams(string[] words)
         {
-            return new string[0];
+            if (!words.Any())
+            {
+                return new string[0];
+            }
+            else
+            {
+                return new []{words[0] + " " + words[1]};
+            }
         }
     }
 }
