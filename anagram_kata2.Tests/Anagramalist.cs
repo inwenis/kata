@@ -52,4 +52,14 @@ public class AnagramalistTests
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
+
+    [Test]
+    public void FindAllAnagrams_2PossibleAnagramsInInput_Returns2Anagrams()
+    {
+        string[] input = new []{"word", "drow", "dog", "god"};
+
+        var result = Anagramalist.FindAllAnagrams(input);
+
+        CollectionAssert.AreEqual(new []{"word drow", "dog god"}, result);
+    }
 }
