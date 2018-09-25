@@ -22,7 +22,7 @@ namespace anagram_kata2
             var allAnagrams = Anagramalist.FindAllAnagrams(words);
             sw.Stop();
 
-            foreach (var anagram in allAnagrams)
+            foreach (var anagram in allAnagrams.OrderByDescending(x => x.Length).Take(10))
             {
                 Console.WriteLine(anagram);
             }
