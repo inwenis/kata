@@ -62,4 +62,15 @@ public class AnagramalistTests
 
         CollectionAssert.AreEqual(new []{"word drow", "dog god"}, result);
     }
+
+    
+    [Test]
+    public void FindAllAnagrams_WordsHasSameLengthButThereIsNoAnagrams_ReturnsEmptyArray()
+    {
+        string[] input = new []{"word", "yyyy", "xxxx"};
+
+        var result = Anagramalist.FindAllAnagrams(input);
+
+        Assert.IsEmpty(result);
+    }
 }

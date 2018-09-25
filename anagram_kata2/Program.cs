@@ -20,6 +20,11 @@ namespace anagram_kata2
             var allAnagrams = Anagramalist.FindAllAnagrams(words);
             sw.Stop();
 
+            foreach (var anagram in allAnagrams)
+            {
+                Console.WriteLine(anagram);
+            }
+
             Console.WriteLine($"time: {sw.Elapsed}");
             Console.WriteLine($"anagrams: {allAnagrams.Length} (expected: 20683)");
             Console.WriteLine("Press [enter] to exit");
@@ -34,6 +39,12 @@ namespace anagram_kata2
             var anagrams = words
                 .GroupBy(word => word.Length)
                 .Where(groupedByLength => groupedByLength.Count() > 1)
+                .Where(x =>
+                {
+                    var ordered = new string(x.First().OrderBy(c => c).ToArray());
+                    var sameLetters = x.Where(w => new string(w.OrderBy(c => c).ToArray()) == ordered);
+                    return sameLetters.Count() > 1;
+                })
                 .Select(x =>
                 {
                     var ordered = new string(x.First().OrderBy(c => c).ToArray());
