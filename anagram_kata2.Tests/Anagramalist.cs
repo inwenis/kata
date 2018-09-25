@@ -31,6 +31,15 @@ public class AnagramalistTests
         var result = Anagramalist.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow drwo"}, result);
+    }
 
+    [Test]
+    public void FindAllAnagrams_3WordsInInputButOnlyTwoHaveSameLetters_Returns2WordsAnagram()
+    {
+        string[] input = new []{"word", "drow", "x"};
+
+        var result = Anagramalist.FindAllAnagrams(input);
+
+        CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
 }
