@@ -14,6 +14,8 @@ namespace anagram_kata2
                 .Where(x => x != string.Empty)
                 .ToArray();
 
+            var resultLost = TestAnagramalist(words);
+
             double sumSeconds = 0;
 
             for (int i = 0; i < 10; i++)
