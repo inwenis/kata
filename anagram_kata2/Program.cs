@@ -14,21 +14,43 @@ namespace anagram_kata2
                 .Where(x => x != string.Empty)
                 .ToArray();
 
+            double sumSeconds = 0;
+
+            for (int i = 0; i < 10; i++)
+            {
+                var result = TestAnagramalist(words);
+                sumSeconds += result.Time.TotalSeconds;
+                if (result.Anagrams.Length != 20683)
+                {
+                    throw new Exception("wrong number of anagrams");
+                }
+            }
+
+            Console.WriteLine("mean time:");
+            Console.WriteLine(sumSeconds/10);
+
+            Console.WriteLine("Press [enter] to exit");
+            Console.ReadLine();
+        }
+
+        private static TestResult TestAnagramalist(string[] words)
+        {
             var sw = new Stopwatch();
             sw.Start();
             var allAnagrams = Anagramalist.FindAllAnagrams(words);
             sw.Stop();
-
-            foreach (var anagram in allAnagrams.OrderByDescending(x => x.Length).Take(10))
+            return new TestResult
             {
-                Console.WriteLine(anagram);
-            }
-
-            Console.WriteLine($"time: {sw.Elapsed}");
-            Console.WriteLine($"anagrams: {allAnagrams.Length} (expected: 20683)");
-            Console.WriteLine("Press [enter] to exit");
-            Console.ReadLine();
+                Anagrams = allAnagrams,
+                Time = sw.Elapsed
+            };
         }
+    }
+
+    internal class TestResult
+    {
+        public string[] Anagrams { get; set; }
+        public TimeSpan Time { get; set; }
     }
 
     public class Anagramalist
