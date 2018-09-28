@@ -5,10 +5,18 @@ using NUnit.Framework;
 [TestFixture]
 public class AnagramalistTests
 {
+    private IAnagramalist _sut;
+
+    [SetUp]
+    public void CreateSut()
+    {
+        _sut = new AnagramalistLinq();
+    }
+
     [Test]
     public void FindAllAnagrams_NoWords_ReturnsEmptyResult()
     {
-        var result = Anagramalist.FindAllAnagrams(new string[0]);
+        var result = _sut.FindAllAnagrams(new string[0]);
 
         Assert.IsNotNull(result);
         Assert.IsEmpty(result);
@@ -19,7 +27,7 @@ public class AnagramalistTests
     {
         string[] input = new []{"word", "drow"};
 
-        var result = Anagramalist.FindAllAnagrams(input);
+        var result = _sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
@@ -29,7 +37,7 @@ public class AnagramalistTests
     {
         string[] input = new []{"word", "drow", "drwo"};
 
-        var result = Anagramalist.FindAllAnagrams(input);
+        var result = _sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow drwo"}, result);
     }
@@ -39,7 +47,7 @@ public class AnagramalistTests
     {
         string[] input = new []{"word", "drow", "x"};
 
-        var result = Anagramalist.FindAllAnagrams(input);
+        var result = _sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
@@ -49,7 +57,7 @@ public class AnagramalistTests
     {
         string[] input = new []{"word", "drow", "xxxx"};
 
-        var result = Anagramalist.FindAllAnagrams(input);
+        var result = _sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
@@ -59,7 +67,7 @@ public class AnagramalistTests
     {
         string[] input = new []{"word", "drow", "dog", "god"};
 
-        var result = Anagramalist.FindAllAnagrams(input);
+        var result = _sut.FindAllAnagrams(input);
 
         Assert.IsTrue(result.Contains("word drow"));
         Assert.IsTrue(result.Contains("dog god"));
@@ -70,7 +78,7 @@ public class AnagramalistTests
     {
         string[] input = new []{"word", "yyyy", "xxxx"};
 
-        var result = Anagramalist.FindAllAnagrams(input);
+        var result = _sut.FindAllAnagrams(input);
 
         Assert.IsEmpty(result);
     }
@@ -80,7 +88,7 @@ public class AnagramalistTests
     {
         string[] input = new []{"xxxx", "word", "drow"};
 
-        var result = Anagramalist.FindAllAnagrams(input);
+        var result = _sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
