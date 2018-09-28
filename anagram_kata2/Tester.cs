@@ -11,7 +11,7 @@ namespace anagram_kata2
             var resultLost = RunSingleTest(sut, words);
 
             double sumSeconds = 0;
-            for (int i = 0; i < testRepeatCount; i++)
+            for (int i = 1; i <= testRepeatCount; i++)
             {
                 var result = RunSingleTest(sut, words);
                 sumSeconds += result.Time.TotalSeconds;
@@ -22,7 +22,7 @@ namespace anagram_kata2
 
                 Console.SetCursorPosition(0, Console.CursorTop);
                 Console.Write(
-                    $"test {i} of {testRepeatCount}    last run: {result.Time.TotalSeconds}s average: {sumSeconds / (i + 1)}s          ");
+                    $"test {i} of {testRepeatCount}    last run: {result.Time.TotalSeconds}s average: {sumSeconds / (i)}s          ");
             }
 
             Console.WriteLine();

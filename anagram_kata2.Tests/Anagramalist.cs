@@ -10,6 +10,8 @@ public class AnagramalistTests
         new AnagramalistLinq(), 
         new AnagramalistConcurentDictionary(),
         new AnagramalistParallelLinq(),
+        new AnagramalistDictionary(),
+        new AnagramalistParallelForWithBatches()
     };
 
     [Test, TestCaseSource("SystemsToTest")]

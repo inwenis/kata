@@ -20,7 +20,9 @@ namespace anagram_kata2
             {
                 new AnagramalistLinq(),
                 new AnagramalistParallelLinq(),
-                new AnagramalistConcurentDictionary()
+                new AnagramalistConcurentDictionary(),
+                new AnagramalistDictionary(),
+                new AnagramalistParallelForWithBatches()
             };
 
             foreach (var sut in allImplementations)
