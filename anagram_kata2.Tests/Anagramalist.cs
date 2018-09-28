@@ -1,4 +1,5 @@
-﻿using anagram_kata2;
+﻿using System.Linq;
+using anagram_kata2;
 using NUnit.Framework;
 
 [TestFixture]
@@ -60,7 +61,8 @@ public class AnagramalistTests
 
         var result = Anagramalist.FindAllAnagrams(input);
 
-        CollectionAssert.AreEqual(new []{"word drow", "dog god"}, result);
+        Assert.IsTrue(result.Contains("word drow"));
+        Assert.IsTrue(result.Contains("dog god"));
     }
 
     [Test]
