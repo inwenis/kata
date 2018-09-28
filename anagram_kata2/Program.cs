@@ -30,7 +30,7 @@ namespace anagram_kata2
             foreach (var sut in allImplementations)
             {
                 Console.WriteLine($"{sut.GetType()}");
-                var time = Tester.RunMultileTests(sut, words, 5, expectedNumberOfAnagrams);
+                var time = Tester.RunMultileTests(sut, words, 20, expectedNumberOfAnagrams);
                 Console.WriteLine($"average time: {time}s");
                 Console.WriteLine();
             }
