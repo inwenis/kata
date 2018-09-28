@@ -5,90 +5,88 @@ using NUnit.Framework;
 [TestFixture]
 public class AnagramalistTests
 {
-    private IAnagramalist _sut;
-
-    [SetUp]
-    public void CreateSut()
+    static object[] SystemsToTest = new IAnagramalist[] 
     {
-        _sut = new AnagramalistConcurentDictionary();
-    }
+        new AnagramalistLinq(), 
+        new AnagramalistConcurentDictionary()
+    };
 
-    [Test]
-    public void FindAllAnagrams_NoWords_ReturnsEmptyResult()
+    [Test, TestCaseSource("SystemsToTest")]
+    public void FindAllAnagrams_NoWords_ReturnsEmptyResult(IAnagramalist sut)
     {
-        var result = _sut.FindAllAnagrams(new string[0]);
+        var result = sut.FindAllAnagrams(new string[0]);
 
         Assert.IsNotNull(result);
         Assert.IsEmpty(result);
     }
 
-    [Test]
-    public void FindAllAnagrams_OnePossibleAnagramInInput_ReturnsAnagram()
+    [Test, TestCaseSource("SystemsToTest")]
+    public void FindAllAnagrams_OnePossibleAnagramInInput_ReturnsAnagram(IAnagramalist sut)
     {
         string[] input = new []{"word", "drow"};
 
-        var result = _sut.FindAllAnagrams(input);
+        var result = sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
 
-    [Test]
-    public void FindAllAnagrams_3WordsInInputWithSameLetters_Returns3WordsAnagram()
+    [Test, TestCaseSource("SystemsToTest")]
+    public void FindAllAnagrams_3WordsInInputWithSameLetters_Returns3WordsAnagram(IAnagramalist sut)
     {
         string[] input = new []{"word", "drow", "drwo"};
 
-        var result = _sut.FindAllAnagrams(input);
+        var result = sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow drwo"}, result);
     }
 
-    [Test]
-    public void FindAllAnagrams_3WordsInInputButOnlyTwoHaveSameLetters_Returns2WordsAnagram()
+    [Test, TestCaseSource("SystemsToTest")]
+    public void FindAllAnagrams_3WordsInInputButOnlyTwoHaveSameLetters_Returns2WordsAnagram(IAnagramalist sut)
     {
         string[] input = new []{"word", "drow", "x"};
 
-        var result = _sut.FindAllAnagrams(input);
+        var result = sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
 
-    [Test]
-    public void FindAllAnagrams_NonMachingWordInInputWithSameLength_Returns2WordsAnagram()
+    [Test, TestCaseSource("SystemsToTest")]
+    public void FindAllAnagrams_NonMachingWordInInputWithSameLength_Returns2WordsAnagram(IAnagramalist sut)
     {
         string[] input = new []{"word", "drow", "xxxx"};
 
-        var result = _sut.FindAllAnagrams(input);
+        var result = sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
 
-    [Test]
-    public void FindAllAnagrams_2PossibleAnagramsInInput_Returns2Anagrams()
+    [Test, TestCaseSource("SystemsToTest")]
+    public void FindAllAnagrams_2PossibleAnagramsInInput_Returns2Anagrams(IAnagramalist sut)
     {
         string[] input = new []{"word", "drow", "dog", "god"};
 
-        var result = _sut.FindAllAnagrams(input);
+        var result = sut.FindAllAnagrams(input);
 
-        CollectionAssert.Contains(result, "word drow");
-        CollectionAssert.Contains(result, "dog god");
+        Assert.IsTrue(result.Any(x => x.Contains("dog") && x.Contains("god")));
+        Assert.IsTrue(result.Any(x => x.Contains("word") && x.Contains("drow")));
     }
 
-    [Test]
-    public void FindAllAnagrams_WordsHasSameLengthButThereIsNoAnagrams_ReturnsEmptyArray()
+    [Test, TestCaseSource("SystemsToTest")]
+    public void FindAllAnagrams_WordsHasSameLengthButThereIsNoAnagrams_ReturnsEmptyArray(IAnagramalist sut)
     {
         string[] input = new []{"word", "yyyy", "xxxx"};
 
-        var result = _sut.FindAllAnagrams(input);
+        var result = sut.FindAllAnagrams(input);
 
         Assert.IsEmpty(result);
     }
 
-    [Test]
-    public void FindAllAnagrams_FirstWordHasSameLengthButHasDifferentLetters_AnagramIsReturnedAnyway()
+    [Test, TestCaseSource("SystemsToTest")]
+    public void FindAllAnagrams_FirstWordHasSameLengthButHasDifferentLetters_AnagramIsReturnedAnyway(IAnagramalist sut)
     {
         string[] input = new []{"xxxx", "word", "drow"};
 
-        var result = _sut.FindAllAnagrams(input);
+        var result = sut.FindAllAnagrams(input);
 
         CollectionAssert.AreEqual(new []{"word drow"}, result);
     }
