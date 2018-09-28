@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{379EE8E5-918F-4254-9187-65501D3778B1}</ProjectGuid>
+    <ProjectGuid>{BBFA84D4-ADBF-4523-8A18-C0A848744C93}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>anagram_kata2</RootNamespace>
-    <AssemblyName>anagram_kata2</AssemblyName>
+    <RootNamespace>test_string_vs_struct</RootNamespace>
+    <AssemblyName>test_string_vs_struct</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,32 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Anagramalist.cs" />
-    <Compile Include="AnagramalistConcurentDictionary.cs" />
-    <Compile Include="AnagramalistConcurentDictionary_CutomComparator.cs" />
-    <Compile Include="AnagramalistDictionary.cs" />
-    <Compile Include="AnagramalistDictionary_CustomComparator.cs" />
-    <Compile Include="AnagramalistLinq.cs" />
-    <Compile Include="AnagramalistParallelForWithBatches.cs" />
-    <Compile Include="AnagramalistParallelLinq.cs" />
-    <Compile Include="IAnagramalist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="wordlist.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\test_string_vs_struct\test_string_vs_struct.csproj">
-      <Project>{BBFA84D4-ADBF-4523-8A18-C0A848744C93}</Project>
-      <Name>test_string_vs_struct</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

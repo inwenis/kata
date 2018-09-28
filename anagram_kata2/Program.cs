@@ -18,6 +18,7 @@ namespace anagram_kata2
 
             var allImplementations = new List<IAnagramalist>()
             {
+                new AnagramalistWithOutSorting(),
                 new AnagramalistDictionary_CustomComparator(),
                 new AnagramalistLinq(),
                 new AnagramalistParallelLinq(),

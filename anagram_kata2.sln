@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anagram_kata2", "anagram_ka
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anagram_kata2.Tests", "anagram_kata2.Tests\anagram_kata2.Tests.csproj", "{D831640C-DA4E-44F5-AD4E-1708FCF3E4D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_string_vs_struct", "test_string_vs_struct\test_string_vs_struct.csproj", "{BBFA84D4-ADBF-4523-8A18-C0A848744C93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D831640C-DA4E-44F5-AD4E-1708FCF3E4D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D831640C-DA4E-44F5-AD4E-1708FCF3E4D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D831640C-DA4E-44F5-AD4E-1708FCF3E4D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBFA84D4-ADBF-4523-8A18-C0A848744C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBFA84D4-ADBF-4523-8A18-C0A848744C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBFA84D4-ADBF-4523-8A18-C0A848744C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBFA84D4-ADBF-4523-8A18-C0A848744C93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
