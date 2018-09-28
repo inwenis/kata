@@ -18,17 +18,19 @@ namespace anagram_kata2
 
             var allImplementations = new List<IAnagramalist>()
             {
+                new AnagramalistDictionary_CustomComparator(),
                 new AnagramalistLinq(),
                 new AnagramalistParallelLinq(),
                 new AnagramalistConcurentDictionary(),
                 new AnagramalistDictionary(),
-                new AnagramalistParallelForWithBatches()
+                new AnagramalistParallelForWithBatches(),
+                new AnagramalistConcurentDictionary_CutomComparator()
             };
 
             foreach (var sut in allImplementations)
             {
                 Console.WriteLine($"{sut.GetType()}");
-                var time = Tester.RunMultileTests(sut, words, 20, expectedNumberOfAnagrams);
+                var time = Tester.RunMultileTests(sut, words, 5, expectedNumberOfAnagrams);
                 Console.WriteLine($"average time: {time}s");
                 Console.WriteLine();
             }

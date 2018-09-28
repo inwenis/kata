@@ -11,7 +11,9 @@ public class AnagramalistTests
         new AnagramalistConcurentDictionary(),
         new AnagramalistParallelLinq(),
         new AnagramalistDictionary(),
-        new AnagramalistParallelForWithBatches()
+        new AnagramalistParallelForWithBatches(),
+        new AnagramalistConcurentDictionary_CutomComparator(),
+        new AnagramalistDictionary_CustomComparator(), 
     };
 
     [Test, TestCaseSource("SystemsToTest")]

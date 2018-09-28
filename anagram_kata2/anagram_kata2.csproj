@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="Anagramalist.cs" />
     <Compile Include="AnagramalistConcurentDictionary.cs" />
+    <Compile Include="AnagramalistConcurentDictionary_CutomComparator.cs" />
     <Compile Include="AnagramalistDictionary.cs" />
+    <Compile Include="AnagramalistDictionary_CustomComparator.cs" />
     <Compile Include="AnagramalistLinq.cs" />
     <Compile Include="AnagramalistParallelForWithBatches.cs" />
     <Compile Include="AnagramalistParallelLinq.cs" />
