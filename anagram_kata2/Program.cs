@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -15,18 +16,18 @@ namespace anagram_kata2
                 .Where(x => x != string.Empty)
                 .ToArray();
 
-            var linq = new AnagramalistLinq();
-            var parallelLinq = new AnagramalistParallelLinq();
-            var concurentDictionary = new AnagramalistConcurentDictionary();
+            var allImplementations = new List<IAnagramalist>()
+            {
+                new AnagramalistLinq(),
+                new AnagramalistParallelLinq(),
+                new AnagramalistConcurentDictionary()
+            };
 
-            var time1 = Tester.RunMultileTests(linq, words, 5, expectedNumberOfAnagrams);
-            Console.WriteLine($"average time: {time1}");
-            
-            var time2 = Tester.RunMultileTests(parallelLinq, words, 5, expectedNumberOfAnagrams);
-            Console.WriteLine($"average time: {time2}");
-
-            var time3 = Tester.RunMultileTests(concurentDictionary, words, 5, expectedNumberOfAnagrams);
-            Console.WriteLine($"average time: {time3}");
+            foreach (var sut in allImplementations)
+            {
+                var time = Tester.RunMultileTests(sut, words, 5, expectedNumberOfAnagrams);
+                Console.WriteLine($"average time: {time}s    {sut.GetType()}");
+            }
 
             Console.WriteLine("Press [enter] to exit");
             Console.ReadLine();
