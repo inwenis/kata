@@ -5,13 +5,13 @@ namespace anagram_kata2
 {
     public class Tester
     {
-        public static double RunMultileTests(IAnagramalist sut, string[] words, int testRepeats, int expectedNumberOfAnagrams)
+        public static double RunMultileTests(IAnagramalist sut, string[] words, int testRepeatCount, int expectedNumberOfAnagrams)
         {
             // run the anagramalist here so the JITer will compile all code
             var resultLost = RunSingleTest(sut, words);
 
             double sumSeconds = 0;
-            for (int i = 0; i < testRepeats; i++)
+            for (int i = 0; i < testRepeatCount; i++)
             {
                 var result = RunSingleTest(sut, words);
                 sumSeconds += result.Time.TotalSeconds;
@@ -19,9 +19,15 @@ namespace anagram_kata2
                 {
                     Console.WriteLine("Wrong Number of anagrams!");
                 }
+
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.Write(
+                    $"test {i} of {testRepeatCount}    last run: {result.Time.TotalSeconds}s average: {sumSeconds / (i + 1)}s          ");
             }
 
-            var average = sumSeconds / testRepeats;
+            Console.WriteLine();
+
+            var average = sumSeconds / testRepeatCount;
             return average;
         }
 
