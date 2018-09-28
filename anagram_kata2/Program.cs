@@ -16,11 +16,13 @@ namespace anagram_kata2
                 .ToArray();
 
             var linq = new AnagramalistLinq();
+            var concurentDictionary = new AnagramalistConcurentDictionary();
 
-            var averageTimeSeconds = Tester.RunMultileTests(linq, words, 100, expectedNumberOfAnagrams);
+            var time1 = Tester.RunMultileTests(linq, words, 5, expectedNumberOfAnagrams);
+            Console.WriteLine($"average time: {time1}");
 
-            Console.WriteLine("mean time:");
-            Console.WriteLine(averageTimeSeconds);
+            var time2 = Tester.RunMultileTests(concurentDictionary, words, 5, expectedNumberOfAnagrams);
+            Console.WriteLine($"average time: {time2}");
 
             Console.WriteLine("Press [enter] to exit");
             Console.ReadLine();

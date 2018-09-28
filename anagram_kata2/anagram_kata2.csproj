@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anagramalist.cs" />
+    <Compile Include="AnagramalistConcurentDictionary.cs" />
     <Compile Include="AnagramalistLinq.cs" />
     <Compile Include="IAnagramalist.cs" />
     <Compile Include="Program.cs" />

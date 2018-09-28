@@ -10,7 +10,7 @@ public class AnagramalistTests
     [SetUp]
     public void CreateSut()
     {
-        _sut = new AnagramalistLinq();
+        _sut = new AnagramalistConcurentDictionary();
     }
 
     [Test]
@@ -69,8 +69,8 @@ public class AnagramalistTests
 
         var result = _sut.FindAllAnagrams(input);
 
-        Assert.IsTrue(result.Contains("word drow"));
-        Assert.IsTrue(result.Contains("dog god"));
+        CollectionAssert.Contains(result, "word drow");
+        CollectionAssert.Contains(result, "dog god");
     }
 
     [Test]
