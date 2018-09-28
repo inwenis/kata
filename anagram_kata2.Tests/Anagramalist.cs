@@ -8,7 +8,8 @@ public class AnagramalistTests
     static object[] SystemsToTest = new IAnagramalist[] 
     {
         new AnagramalistLinq(), 
-        new AnagramalistConcurentDictionary()
+        new AnagramalistConcurentDictionary(),
+        new AnagramalistParallelLinq(),
     };
 
     [Test, TestCaseSource("SystemsToTest")]
