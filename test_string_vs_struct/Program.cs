@@ -54,29 +54,44 @@ namespace test_string_vs_struct
 
             for (int i = 0; i < count/2; i++)
             {
-                var leftStringOrdered = new string(strings[i].OrderBy(c => c).ToArray());
-                var rightStringOrdered = new string(strings[count - i - 1].OrderBy(c => c).ToArray());
-                Compare(rightStringOrdered, leftStringOrdered, out var stringComp, out var structComp);
+                var leftString = strings[i];
+                var rightString = strings[count - i - 1];
+                var leftStringOrdered = new string(leftString.OrderBy(c => c).ToArray());
+                var rightStringOrdered = new string(rightString.OrderBy(c => c).ToArray());
+                var leftStringAsAtruct = IRepresentOrderdString.FromString(leftString);
+                var rightStringAsStruct = IRepresentOrderdString.FromString(rightString);
+                var stringComp = leftStringOrdered == rightStringOrdered;
+                var structComp = leftStringAsAtruct == rightStringAsStruct;
                 if (structComp != stringComp)
                 {
                     Console.WriteLine(leftStringOrdered + " " + rightStringOrdered);
                     Console.WriteLine($"{leftStringOrdered} == {rightStringOrdered} = {stringComp}");
                     Console.WriteLine($"IRepresentOrderdString.FromString({leftStringOrdered}) == IRepresentOrderdString.FromString({rightStringOrdered}) = {structComp}");
+                    Console.WriteLine($"{leftStringAsAtruct}");
+                    Console.WriteLine($"{rightStringAsStruct}");
+                    Console.WriteLine();
                     Console.WriteLine("Press [enter] to continue");
                     Console.ReadLine();
                 }
             }
 
+
             Console.WriteLine("Press [enter] to exit");
             Console.ReadLine();
         }
+    }
 
-        private static void Compare(string rightString, string leftString, out bool stringComp, out bool structComp)
+    public class Math
+    {
+        public static ulong Pow(int num, int pow)
         {
-            var left = IRepresentOrderdString.FromString(leftString);
-            var right = IRepresentOrderdString.FromString(rightString);
-            stringComp = leftString == rightString;
-            structComp = left == right;
+            var numAsULong = (ulong) num;
+            ulong temp = numAsULong;
+            for (int i = 1; i < pow; i++)
+            {
+                temp *= numAsULong;
+            }
+            return temp;
         }
     }
 
@@ -85,6 +100,11 @@ namespace test_string_vs_struct
         public ulong one;
         public ulong two;
         public ulong three;
+
+        public override string ToString()
+        {
+            return $"{one:D21}{two:D21}{three:D21}";
+        }
 
         public static bool operator ==(IRepresentOrderdString c1, IRepresentOrderdString c2)
         {
@@ -105,30 +125,21 @@ namespace test_string_vs_struct
                 var index = word[i] - 65;
                 if (index <= 21)
                 {
-                    x.one += (ulong) Pow(10, index);
+                    x.one += Math.Pow(10, index);
                 }
                 else if(index <= 41)
                 {
                     index -= 21;
-                    x.one += (ulong) Pow(10, index);
+                    x.one += Math.Pow(10, index);
                 }
                 else
                 {
                     index -= 41;
-                    x.three += (ulong) Pow(10, index);
+                    x.three += Math.Pow(10, index);
                 }
             }
 
             return x;
-        }
-
-        private static int Pow(int num, int pow)
-        {
-            for (int i = 0; i < pow; i++)
-            {
-                num *= num;
-            }
-            return num;
         }
     }
 
