@@ -75,28 +75,34 @@ namespace test_string_vs_struct
                 }
             }
 
+            for (int i = 0; i < words.Length; i++)
+            {
+                var leftString = words[i];
+                var leftStringOrdered = new string(leftString.OrderBy(c => c).ToArray());
+                for (int j = 0; j < words.Length; j++)
+                {
+                    var rightString = words[j];
+                    var rightStringOrdered = new string(rightString.OrderBy(c => c).ToArray());
+                    var leftStringAsAtruct = IRepresentOrderdString.FromString(leftString);
+                    var rightStringAsStruct = IRepresentOrderdString.FromString(rightString);
+                    var stringComp = leftStringOrdered == rightStringOrdered;
+                    var structComp = leftStringAsAtruct == rightStringAsStruct;
+                    if (structComp != stringComp)
+                    {
+                        Console.WriteLine(leftStringOrdered + " " + rightStringOrdered);
+                        Console.WriteLine($"{leftStringOrdered} == {rightStringOrdered} = {stringComp}");
+                        Console.WriteLine($"IRepresentOrderdString.FromString({leftStringOrdered}) == IRepresentOrderdString.FromString({rightStringOrdered}) = {structComp}");
+                        Console.WriteLine($"{leftStringAsAtruct}");
+                        Console.WriteLine($"{rightStringAsStruct}");
+                        Console.WriteLine();
+                        Console.WriteLine("Press [enter] to continue");
+                        Console.ReadLine();
+                    }
+                }
+            }
 
             Console.WriteLine("Press [enter] to exit");
             Console.ReadLine();
-        }
-    }
-
-    public class Math
-    {
-        public static ulong Pow(int num, int pow)
-        {
-            if (pow == 0)
-            {
-                return 1;
-            }
-
-            var numAsULong = (ulong) num;
-            ulong temp = numAsULong;
-            for (int i = 1; i < pow; i++)
-            {
-                temp *= numAsULong;
-            }
-            return temp;
         }
     }
 }
