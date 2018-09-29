@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Anagramalist.cs" />
+    <Compile Include="AnagramalistParrallelForEach_CustomStruct.cs" />
     <Compile Include="AnagramalistConcurentDictionary.cs" />
     <Compile Include="AnagramalistConcurentDictionary_CutomComparator.cs" />
     <Compile Include="AnagramalistDictionary.cs" />
@@ -50,6 +50,7 @@
     <Compile Include="AnagramalistLinq.cs" />
     <Compile Include="AnagramalistParallelForWithBatches.cs" />
     <Compile Include="AnagramalistParallelLinq.cs" />
+    <Compile Include="AnagramalistParrallelGrouping_CustomStruct.cs" />
     <Compile Include="IAnagramalist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,7 +6,7 @@ using test_string_vs_struct;
 
 namespace anagram_kata2
 {
-    public class AnagramalistWithOutSorting : IAnagramalist
+    public class AnagramalistParrallelForEach_CustomStruct : IAnagramalist
     {
         public string[] FindAllAnagrams(string[] words)
         {
