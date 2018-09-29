@@ -18,6 +18,7 @@ namespace anagram_kata2
                 if (result.Anagrams.Length != expectedNumberOfAnagrams)
                 {
                     Console.WriteLine("Wrong Number of anagrams!");
+                    Console.WriteLine(result.Anagrams.Length);
                 }
 
                 Console.SetCursorPosition(0, Console.CursorTop);

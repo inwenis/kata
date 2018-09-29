@@ -1,0 +1,57 @@
+﻿namespace test_string_vs_struct
+{
+    public struct IRepresentOrderdString
+    {
+        public ulong one;
+        public ulong two;
+        public ulong three;
+
+        public override string ToString()
+        {
+            return $"{three:D20}{two:D20}{one:D20}";
+        }
+
+        public static bool operator ==(IRepresentOrderdString c1, IRepresentOrderdString c2)
+        {
+            return c1.one == c2.one && c1.two == c2.two && c1.three == c2.three;
+        }
+
+        public static bool operator !=(IRepresentOrderdString c1, IRepresentOrderdString c2)
+        {
+            return !(c1 == c2);
+        }
+
+        public static IRepresentOrderdString FromString(string word)
+        {
+            IRepresentOrderdString x = new IRepresentOrderdString();
+            for (int i = 0; i < word.Length; i++)
+            {
+                var index = word[i] - 'A';
+                if (index < 0)
+                {
+                    x.two += Math.Pow(10, 7);
+                }
+                else if (index <= 18)
+                {
+                    x.one += Math.Pow(10, index);
+                }
+                else if(index <= 37)
+                {
+                    index -= 19;
+                    x.two += Math.Pow(10, index);
+                }
+                else if(index <= 57)
+                {
+                    index -= 38;
+                    x.three += Math.Pow(10, index);
+                }
+                else
+                {
+                    x.two += Math.Pow(10, 8);
+                }
+            }
+
+            return x;
+        }
+    }
+}
