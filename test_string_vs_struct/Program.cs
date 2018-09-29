@@ -17,70 +17,56 @@ namespace test_string_vs_struct
                 .ToArray();
 
             var count = 300000;
-            var array = new string[count];
-            var array2 = new IRepresentOrderdString[count];
+            var strings = new string[count];
+            var structs = new IRepresentOrderdString[count];
 
             var random = new Random();
 
             for (int i = 0; i < count; i++)
             {
-                array2[i].one = (ulong) random.Next();
-                array2[i].two = (ulong) random.Next();
-                array2[i].three = (ulong) random.Next();
+                structs[i].one = (ulong) random.Next();
+                structs[i].two = (ulong) random.Next();
+                structs[i].three = (ulong) random.Next();
 
-                array[i] = words[random.Next(words.Length)];
+                strings[i] = words[random.Next(words.Length)];
             }
 
             var results = new bool[count/2];
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
+            Stopwatch structSW = new Stopwatch();
+            structSW.Start();
             for (int i = 0; i < count/2; i++)
             {
-                results[i] = array2[i] == array2[count - i - 1];
+                results[i] = structs[i] == structs[count - i - 1];
             }
-            sw.Stop();
-            Console.WriteLine($"struct:  {sw.Elapsed}");
+            structSW.Stop();
 
-            Stopwatch sw2 = new Stopwatch();
-            sw2.Start();
+            Stopwatch stringSW = new Stopwatch();
+            stringSW.Start();
             for (int i = 0; i < count/2; i++)
             {
-                results[i] = array[i] == array[count - i - 1];
+                results[i] = strings[i] == strings[count - i - 1];
             }
-            sw2.Stop();
-            Console.WriteLine($"strings: {sw2.Elapsed}");
+            stringSW.Stop();
+
+            Console.WriteLine($"comparing {count} struct:   {structSW.Elapsed}");
+            Console.WriteLine($"comparing {count} strings:  {stringSW.Elapsed}");
+            Console.WriteLine();
 
             for (int i = 0; i < count/2; i++)
             {
-                var leftString = array[i];
-                var rightString = array[count - i - 1];
-                Compare(rightString, leftString, out var structComp, out var stringComp);
+                var leftStringOrdered = new string(strings[i].OrderBy(c => c).ToArray());
+                var rightStringOrdered = new string(strings[count - i - 1].OrderBy(c => c).ToArray());
+                Compare(rightStringOrdered, leftStringOrdered, out var stringComp, out var structComp);
                 if (structComp != stringComp)
                 {
-                    Console.WriteLine(leftString + " " + rightString);
-                    Console.Write(stringComp);
-                    Console.Write(" ");
-                    Console.WriteLine(structComp);
-                    Console.Beep();
+                    Console.WriteLine(leftStringOrdered + " " + rightStringOrdered);
+                    Console.WriteLine($"{leftStringOrdered} == {rightStringOrdered} = {stringComp}");
+                    Console.WriteLine($"IRepresentOrderdString.FromString({leftStringOrdered}) == IRepresentOrderdString.FromString({rightStringOrdered}) = {structComp}");
+                    Console.WriteLine("Press [enter] to continue");
                     Console.ReadLine();
                 }
-                if (stringComp)
-                {
-                    Console.WriteLine(leftString + " " + rightString);
-                    Console.Write(stringComp);
-                    Console.Write(" ");
-                    Console.WriteLine(structComp);
-                    Console.Beep();
-                    Console.ReadLine();
-                }
-
             }
 
-            Compare("asdf", "asfd", out var stringComp2, out var structComp2);
-
-            Console.WriteLine(stringComp2);
-            Console.WriteLine(structComp2);
-            
             Console.WriteLine("Press [enter] to exit");
             Console.ReadLine();
         }
