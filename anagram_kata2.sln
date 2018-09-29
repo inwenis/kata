@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anagram_kata2.Tests", "anag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test_string_vs_struct", "test_string_vs_struct\test_string_vs_struct.csproj", "{BBFA84D4-ADBF-4523-8A18-C0A848744C93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "string_to_struct", "string_to_struct\string_to_struct.csproj", "{79A30276-AB44-40E3-992D-F8DAA9AD83BF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{BBFA84D4-ADBF-4523-8A18-C0A848744C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBFA84D4-ADBF-4523-8A18-C0A848744C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBFA84D4-ADBF-4523-8A18-C0A848744C93}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79A30276-AB44-40E3-992D-F8DAA9AD83BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79A30276-AB44-40E3-992D-F8DAA9AD83BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79A30276-AB44-40E3-992D-F8DAA9AD83BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79A30276-AB44-40E3-992D-F8DAA9AD83BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -52,52 +52,6 @@ namespace test_string_vs_struct
             Console.WriteLine($"comparing {count} strings:  {stringSW.Elapsed}");
             Console.WriteLine();
 
-            for (int i = 0; i < count/2; i++)
-            {
-                var leftString = strings[i];
-                var rightString = strings[count - i - 1];
-                var leftStringOrdered = new string(leftString.OrderBy(c => c).ToArray());
-                var rightStringOrdered = new string(rightString.OrderBy(c => c).ToArray());
-                var leftStringAsAtruct = IRepresentOrderdString.FromString(leftString);
-                var rightStringAsStruct = IRepresentOrderdString.FromString(rightString);
-                var stringComp = leftStringOrdered == rightStringOrdered;
-                var structComp = leftStringAsAtruct == rightStringAsStruct;
-                if (structComp != stringComp)
-                {
-                    Console.WriteLine(leftStringOrdered + " " + rightStringOrdered);
-                    Console.WriteLine($"{leftStringOrdered} == {rightStringOrdered} = {stringComp}");
-                    Console.WriteLine($"IRepresentOrderdString.FromString({leftStringOrdered}) == IRepresentOrderdString.FromString({rightStringOrdered}) = {structComp}");
-                    Console.WriteLine($"{leftStringAsAtruct}");
-                    Console.WriteLine($"{rightStringAsStruct}");
-                    Console.WriteLine();
-                    Console.WriteLine("Press [enter] to continue");
-                    Console.ReadLine();
-                }
-            }
-
-            Console.WriteLine("will now group");
-            var groupings = words
-                .AsParallel()
-                .GroupBy(x => IRepresentOrderdString.FromString(x))
-                .Where(x => x.Count() > 1)
-                .ToArray();
-
-            foreach (var grouping in groupings)
-            {
-                var stringKey = new string(grouping.First().OrderBy(c => c).ToArray());
-                var any = grouping.Any(w => new string(w.OrderBy(c => c).ToArray()) != stringKey);
-                if (any)
-                {
-                    Console.WriteLine("found one!");
-                    foreach (var word in grouping)
-                    {
-                        Console.WriteLine(word);
-                        Console.WriteLine(IRepresentOrderdString.FromString(word));
-                    }
-                    Console.ReadKey();
-                }
-            }
-
             Console.WriteLine("Press [enter] to exit");
             Console.ReadLine();
         }
