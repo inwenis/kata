@@ -8,7 +8,7 @@
 
         public override string ToString()
         {
-            return $"{one:D21}{two:D21}{three:D21}";
+            return $"{three:D20}{two:D20}{one:D20}";
         }
 
         public static bool operator ==(IRepresentOrderdString c1, IRepresentOrderdString c2)
@@ -28,18 +28,18 @@
             for (int i = 0; i < word.Length; i++)
             {
                 var index = word[i] - 65;
-                if (index <= 19)
+                if (index <= 18)
                 {
                     x.one += Math.Pow(10, index);
                 }
-                else if(index <= (19 * 2))
+                else if(index <= 37)
                 {
                     index -= 19;
-                    x.one += Math.Pow(10, index);
+                    x.two += Math.Pow(10, index);
                 }
                 else
                 {
-                    index -= (19 * 2);
+                    index -= 38;
                     x.three += Math.Pow(10, index);
                 }
             }

@@ -1,5 +1,6 @@
-﻿using NUnit.Framework;
-using test_string_vs_struct;
+﻿using System;
+using NUnit.Framework;
+using Math = test_string_vs_struct.Math;
 
 [TestFixture]
 class MathTests
@@ -18,5 +19,15 @@ class MathTests
     {
         var pow = Math.Pow(x, y);
         Assert.AreEqual(expected, pow);
+    }
+
+    [Test]
+    public void Test2()
+    {
+        var big1 = Math.Pow(10, 18);
+        var big2 = Math.Pow(10, 18);
+        Console.WriteLine(big1);
+        Console.WriteLine(big2);
+        Console.WriteLine(big1 + big2);
     }
 }
