@@ -24,11 +24,14 @@
         public static IRepresentOrderdString FromString(string word)
         {
             IRepresentOrderdString x = new IRepresentOrderdString();
-
             for (int i = 0; i < word.Length; i++)
             {
-                var index = word[i] - 65;
-                if (index <= 18)
+                var index = word[i] - 'A';
+                if (index < 0)
+                {
+                    x.two += Math.Pow(10, 7);
+                }
+                else if (index <= 18)
                 {
                     x.one += Math.Pow(10, index);
                 }
@@ -37,10 +40,14 @@
                     index -= 19;
                     x.two += Math.Pow(10, index);
                 }
-                else
+                else if(index <= 57)
                 {
                     index -= 38;
                     x.three += Math.Pow(10, index);
+                }
+                else
+                {
+                    x.two += Math.Pow(10, 8);
                 }
             }
 

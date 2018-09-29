@@ -75,29 +75,26 @@ namespace test_string_vs_struct
                 }
             }
 
-            for (int i = 0; i < words.Length; i++)
+            Console.WriteLine("will now group");
+            var groupings = words
+                .AsParallel()
+                .GroupBy(x => IRepresentOrderdString.FromString(x))
+                .Where(x => x.Count() > 1)
+                .ToArray();
+
+            foreach (var grouping in groupings)
             {
-                var leftString = words[i];
-                var leftStringOrdered = new string(leftString.OrderBy(c => c).ToArray());
-                for (int j = 0; j < words.Length; j++)
+                var stringKey = new string(grouping.First().OrderBy(c => c).ToArray());
+                var any = grouping.Any(w => new string(w.OrderBy(c => c).ToArray()) != stringKey);
+                if (any)
                 {
-                    var rightString = words[j];
-                    var rightStringOrdered = new string(rightString.OrderBy(c => c).ToArray());
-                    var leftStringAsAtruct = IRepresentOrderdString.FromString(leftString);
-                    var rightStringAsStruct = IRepresentOrderdString.FromString(rightString);
-                    var stringComp = leftStringOrdered == rightStringOrdered;
-                    var structComp = leftStringAsAtruct == rightStringAsStruct;
-                    if (structComp != stringComp)
+                    Console.WriteLine("found one!");
+                    foreach (var word in grouping)
                     {
-                        Console.WriteLine(leftStringOrdered + " " + rightStringOrdered);
-                        Console.WriteLine($"{leftStringOrdered} == {rightStringOrdered} = {stringComp}");
-                        Console.WriteLine($"IRepresentOrderdString.FromString({leftStringOrdered}) == IRepresentOrderdString.FromString({rightStringOrdered}) = {structComp}");
-                        Console.WriteLine($"{leftStringAsAtruct}");
-                        Console.WriteLine($"{rightStringAsStruct}");
-                        Console.WriteLine();
-                        Console.WriteLine("Press [enter] to continue");
-                        Console.ReadLine();
+                        Console.WriteLine(word);
+                        Console.WriteLine(IRepresentOrderdString.FromString(word));
                     }
+                    Console.ReadKey();
                 }
             }
 
