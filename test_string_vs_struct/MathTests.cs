@@ -5,9 +5,13 @@ using test_string_vs_struct;
 class MathTests
 {
     [Test]
-    public void Test1()
+    [TestCase(10, 0, 1)]
+    [TestCase(10, 1, 10)]
+    [TestCase(10, 2, 100)]
+    [TestCase(10, 3, 1000)]
+    public void Test_Pow(int x, int y, int expected)
     {
-        var pow = Math.Pow(10, 1);
-        Assert.AreEqual(10, pow);
+        var pow = Math.Pow(x, y);
+        Assert.AreEqual(expected, pow);
     }
 }
