@@ -119,39 +119,30 @@ namespace test_string_vs_struct
                 var index = word[i] - 65;
                 if (index <= 21)
                 {
-                    var num = 10;
-                    for (int j = 0; j < index; j++)
-                    {
-                        num *= 10;
-                    }
-
-                    x.one += (ulong) (num);
+                    x.one += (ulong) Pow(10, index);
                 }
                 else if(index <= 41)
                 {
                     index -= 21;
-                    var num = 10;
-                    for (int j = 0; j < index; j++)
-                    {
-                        num *= 10;
-                    }
-
-                    x.two += (ulong) (num);
+                    x.one += (ulong) Pow(10, index);
                 }
                 else
                 {
                     index -= 41;
-                    var num = 10;
-                    for (int j = 0; j < index; j++)
-                    {
-                        num *= 10;
-                    }
-
-                    x.three += (ulong) (num);
+                    x.three += (ulong) Pow(10, index);
                 }
             }
 
             return x;
+        }
+
+        private static int Pow(int num, int pow)
+        {
+            for (int i = 0; i < pow; i++)
+            {
+                num *= num;
+            }
+            return num;
         }
     }
 
