@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using test_string_vs_struct;
 
 [TestFixture]
@@ -18,7 +16,7 @@ class IRepresentOrderdStringTests
     [TestCase("Hloise's",                   "000000020001001001000010000000001000000000000000000010000000")]
     [TestCase("H?loise's",                  "000000020001001001000010000000002000000000000000000010000000")]
     [TestCase("H�loise's",                  "000000020001001001000010000000011000000000000000000010000000")]
-    public void Belorussian_s(string word, string expected)
+    public void Test(string word, string expected)
     {
         var representOrderdString = IRepresentOrderdString.FromString(word);
         Assert.AreEqual(expected, representOrderdString.ToString());
