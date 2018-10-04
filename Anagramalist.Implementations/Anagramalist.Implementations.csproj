@@ -4,8 +4,4 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\test_string_vs_struct\test_string_vs_struct.csproj" />
-  </ItemGroup>
-
 </Project>
