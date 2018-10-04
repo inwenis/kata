@@ -14,7 +14,7 @@ class MathTests
     [TestCase(10, 15, 1000000000000000UL)]
     [TestCase(10, 18, 1000000000000000000UL)]
     [TestCase(10, 19, 10000000000000000000UL)]
-    //[TestCase(10, 20, 100000000000000000000UL)]
+    //[TestCase(10, 20, 100000000000000000000UL)] // this number is too big for a ulong
     public void Test_Pow(int x, int y, ulong expected)
     {
         var pow = Math.Pow(x, y);
