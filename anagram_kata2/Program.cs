@@ -29,16 +29,22 @@ namespace anagram_kata2
                 new AnagramalistConcurentDictionary_CutomComparator()
             };
 
+            var testRepeatCount = 2;
+            var results = new List<dynamic>();
             foreach (var sut in allImplementations)
             {
-                Console.WriteLine($"{sut.GetType()}");
-                var time = Tester.RunMultileTests(sut, words, 20, expectedNumberOfAnagrams);
-                Console.WriteLine($"average time: {time}s");
-                Console.WriteLine();
+                var name = sut.GetType().Name;
+                Console.WriteLine($"{name}");
+                var timeInSeconds = Tester.RunMultileTests(sut, words, testRepeatCount, expectedNumberOfAnagrams);
+                results.Add(new {name = name, time = timeInSeconds});
             }
 
-            Console.WriteLine("Press [enter] to exit");
-            Console.ReadLine();
+            int index = 1;
+            foreach (var result in results.OrderBy(x => x.time))
+            {
+                Console.WriteLine($"{index}. {result.name, -49} average from {testRepeatCount} tests: {result.time:f6}s");
+                index++;
+            }
         }
     }
 }
