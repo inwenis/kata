@@ -3,7 +3,7 @@
     /// <summary>
     /// To understand what this struct does checkout the tests.
     /// But basically it's used to test if two words are anagrams.
-    /// If IRepresentOrderdString(wordA) == IRepresentOrderdString(wordB) is ture then wordA and wordB are anagrams
+    /// If IRepresentOrderdString.FromString(wordA) == IRepresentOrderdString.FromString(wordB) is ture then wordA and wordB are anagrams
     /// There is a limitaion - each character can appear at most 10 times in the word, with the exception of character 'z'.
     /// Character 'z' can appear only once.
     /// If characters appear more than 10 times or the 'z' character appers more than once the comparison might not work correctly.
