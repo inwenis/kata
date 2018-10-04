@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anagramalist.cs" />
+    <Compile Include="IRepresentOrderdStringTests.cs" />
+    <Compile Include="MathTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +58,10 @@
     <ProjectReference Include="..\anagram_kata2\anagram_kata2.csproj">
       <Project>{379EE8E5-918F-4254-9187-65501D3778B1}</Project>
       <Name>anagram_kata2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\test_string_vs_struct\test_string_vs_struct.csproj">
+      <Project>{bbfa84d4-adbf-4523-8a18-c0a848744c93}</Project>
+      <Name>test_string_vs_struct</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
