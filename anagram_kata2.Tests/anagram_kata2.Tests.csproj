@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Anagramalist.cs" />
+    <Compile Include="AnagramalistTests.cs" />
     <Compile Include="IRepresentOrderdStringTests.cs" />
     <Compile Include="MathTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,9 +55,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\anagram_kata2\anagram_kata2.csproj">
-      <Project>{379EE8E5-918F-4254-9187-65501D3778B1}</Project>
-      <Name>anagram_kata2</Name>
+    <ProjectReference Include="..\Anagramalist.Implementations\Anagramalist.Implementations.csproj">
+      <Project>{D593FFC8-7365-49FA-8009-75695AE5E716}</Project>
+      <Name>Anagramalist.Implementations</Name>
     </ProjectReference>
     <ProjectReference Include="..\test_string_vs_struct\test_string_vs_struct.csproj">
       <Project>{bbfa84d4-adbf-4523-8a18-c0a848744c93}</Project>
