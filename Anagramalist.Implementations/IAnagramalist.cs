@@ -1,4 +1,4 @@
-﻿namespace anagram_kata2
+﻿namespace Anagramalist.Implementations
 {
     public interface IAnagramalist
     {

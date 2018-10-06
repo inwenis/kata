@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using anagram_kata2;
+using Anagramalist.Implementations;
 using NUnit.Framework;
 
 [TestFixture]
@@ -34,7 +34,7 @@ public class AnagramalistTests
 
         var result = sut.FindAllAnagrams(input);
 
-        CollectionAssert.AreEqual(new []{"word drow"}, result);
+        Assert.IsTrue(result.Any(x => x.Contains("word") && x.Contains("drow")));
     }
 
     [Test, TestCaseSource("SystemsToTest")]
@@ -44,7 +44,7 @@ public class AnagramalistTests
 
         var result = sut.FindAllAnagrams(input);
 
-        CollectionAssert.AreEqual(new []{"word drow drwo"}, result);
+        Assert.IsTrue(result.Any(x => x.Contains("word") && x.Contains("drwo") && x.Contains("drow")));
     }
 
     [Test, TestCaseSource("SystemsToTest")]
@@ -54,7 +54,7 @@ public class AnagramalistTests
 
         var result = sut.FindAllAnagrams(input);
 
-        CollectionAssert.AreEqual(new []{"word drow"}, result);
+        Assert.IsTrue(result.Any(x => x.Contains("word") && x.Contains("drow") ));
     }
 
     [Test, TestCaseSource("SystemsToTest")]
@@ -64,7 +64,7 @@ public class AnagramalistTests
 
         var result = sut.FindAllAnagrams(input);
 
-        CollectionAssert.AreEqual(new []{"word drow"}, result);
+        Assert.IsTrue(result.Any(x => x.Contains("word") && x.Contains("drow") ));
     }
 
     [Test, TestCaseSource("SystemsToTest")]

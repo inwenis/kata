@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using test_string_vs_struct;
 
-namespace anagram_kata2
+namespace Anagramalist.Implementations
 {
     public class AnagramalistParrallelGrouping_CustomStruct : IAnagramalist
     {

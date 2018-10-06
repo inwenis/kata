@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Anagramalist.Implementations;
 
 namespace anagram_kata2
 {
@@ -16,7 +17,7 @@ namespace anagram_kata2
                 .Where(x => x != string.Empty)
                 .ToArray();
 
-            var allImplementations = new List<IAnagramalist>()
+            var implementations = new List<IAnagramalist>()
             {
                 new AnagramalistParrallelGrouping_CustomStruct(),
                 new AnagramalistParrallelForEach_CustomStruct(),
@@ -28,23 +29,8 @@ namespace anagram_kata2
                 new AnagramalistParallelForWithBatches(),
                 new AnagramalistConcurentDictionary_CutomComparator()
             };
-
-            var testRepeatCount = 2;
-            var results = new List<dynamic>();
-            foreach (var sut in allImplementations)
-            {
-                var name = sut.GetType().Name;
-                Console.WriteLine($"{name}");
-                var timeInSeconds = Tester.RunMultileTests(sut, words, testRepeatCount, expectedNumberOfAnagrams);
-                results.Add(new {name = name, time = timeInSeconds});
-            }
-
-            int index = 1;
-            foreach (var result in results.OrderBy(x => x.time))
-            {
-                Console.WriteLine($"{index}. {result.name, -49} average from {testRepeatCount} tests: {result.time:f6}s");
-                index++;
-            }
+            Console.WriteLine(".Net Framework");
+            Tester.TestAll(words, expectedNumberOfAnagrams, implementations, testRepeatCount: 50);
         }
     }
 }
