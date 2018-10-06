@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace anagram_kata2
+namespace Anagramalist.Implementations
 {
     public class AnagramalistParallelForWithBatches : IAnagramalist
     {

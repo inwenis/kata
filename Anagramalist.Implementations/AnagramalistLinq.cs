@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace anagram_kata2
+namespace Anagramalist.Implementations
 {
     public class AnagramalistLinq : IAnagramalist
     {

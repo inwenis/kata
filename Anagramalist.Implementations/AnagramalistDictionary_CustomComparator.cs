@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace anagram_kata2
+namespace Anagramalist.Implementations
 {
     public class AnagramalistDictionary_CustomComparator : IAnagramalist
     {

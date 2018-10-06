@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace anagram_kata2
+namespace Anagramalist.Implementations
 {
     public class Tester
     {

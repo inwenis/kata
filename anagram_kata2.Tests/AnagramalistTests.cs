@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using anagram_kata2;
+using Anagramalist.Implementations;
 using NUnit.Framework;
 
 [TestFixture]
