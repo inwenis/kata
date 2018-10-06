@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Anagramalist.Implementations;
@@ -28,7 +29,7 @@ namespace anagram_kata2
                 new AnagramalistParallelForWithBatches(),
                 new AnagramalistConcurentDictionary_CutomComparator()
             };
-
+            Console.WriteLine(".Net Core");
             Tester.TestAll(words, expectedNumberOfAnagrams, implementations, testRepeatCount: 50);
         }
 

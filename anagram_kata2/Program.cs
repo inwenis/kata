@@ -29,7 +29,7 @@ namespace anagram_kata2
                 new AnagramalistParallelForWithBatches(),
                 new AnagramalistConcurentDictionary_CutomComparator()
             };
-
+            Console.WriteLine(".Net Framework");
             Tester.TestAll(words, expectedNumberOfAnagrams, implementations, testRepeatCount: 50);
         }
     }
