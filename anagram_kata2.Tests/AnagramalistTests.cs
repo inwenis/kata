@@ -44,7 +44,7 @@ public class AnagramalistTests
 
         var result = sut.FindAllAnagrams(input);
 
-        CollectionAssert.AreEqual(new []{"word drow drwo"}, result);
+        Assert.IsTrue(result.Any(x => x.Contains("word") && x.Contains("drwo") && x.Contains("drow")));
     }
 
     [Test, TestCaseSource("SystemsToTest")]
