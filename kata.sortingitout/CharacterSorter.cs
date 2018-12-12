@@ -6,6 +6,17 @@ namespace kata.sortingitout
 {
     public class CharacterSorter
     {
+        public static string SortUsingBuildIn(string input)
+        {
+            var characters = input
+                .ToLower()
+                .Where(x => x >= 'a' && x <= 'z')
+                .OrderBy(x => x)
+                .ToArray();
+            var result = new string(characters);
+            return result;
+        }
+
         public static string Sort(string input)
         {
             var characterCount = new Dictionary<char, int>();

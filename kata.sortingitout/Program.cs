@@ -21,6 +21,7 @@ namespace kata.sortingitout
             }
             Console.WriteLine("[enter] to exit");
             Console.WriteLine(CharacterSorter.Sort("When not studying nuclear physics, Bambi likes to play beach volleyball."));
+            Console.WriteLine(CharacterSorter.SortUsingBuildIn("When not studying nuclear physics, Bambi likes to play beach volleyball."));
             Console.ReadLine();
         }
     }
