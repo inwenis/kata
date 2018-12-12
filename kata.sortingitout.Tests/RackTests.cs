@@ -31,5 +31,19 @@ namespace kata.sortingitout.Tests
             // assert
             CollectionAssert.AreEqual(new []{12, 22}, sut.Balls);
         }
+
+        [Test]
+        public static void Add_BallOutOfOrder_SavesBallsInAscendingOrder()
+        {
+            // arrange
+            var sut = new Rack();
+
+            // act
+            sut.Add(12);
+            sut.Add(5);
+
+            // assert
+            CollectionAssert.AreEqual(new []{5, 12}, sut.Balls);
+        }
     }
 }

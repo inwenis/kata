@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace kata.sortingitout
 {
@@ -11,9 +12,16 @@ namespace kata.sortingitout
             _balls = new List<int>();
         }
 
-        public void Add(int index)
+        public void Add(int ball)
         {
-            _balls.Add(index);
+            if (_balls.Any() && _balls[0] > ball)
+            {
+                _balls.Insert(0, ball);
+            }
+            else
+            {
+                _balls.Add(ball);
+            }
         }
 
         public IEnumerable<int> Balls
