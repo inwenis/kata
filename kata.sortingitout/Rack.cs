@@ -1,12 +1,24 @@
-﻿namespace kata.sortingitout
+﻿using System.Collections.Generic;
+
+namespace kata.sortingitout
 {
     public class Rack
     {
-        public void Add(int index)
+        private List<int> _balls;
+
+        public Rack()
         {
-            throw new System.NotImplementedException();
+            _balls = new List<int>();
         }
 
-        public string Balls { get; set; }
+        public void Add(int index)
+        {
+            _balls.Add(index);
+        }
+
+        public IEnumerable<int> Balls
+        {
+            get { return _balls; }
+        }
     }
 }
