@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace kata.sortingitout
 {
@@ -14,13 +13,30 @@ namespace kata.sortingitout
 
         public void Add(int ball)
         {
-            if (_balls.Any() && _balls.First.Value > ball)
+            if (_balls.First == null)
             {
                 _balls.AddFirst(ball);
             }
             else
             {
-                _balls.AddLast(ball);
+                var traveler = _balls.First;
+                while (true)
+                {
+                    if (traveler.Value > ball)
+                    {
+                        _balls.AddBefore(traveler, ball);
+                        break;
+                    }
+                    else if (traveler.Next == null)
+                    {
+                        _balls.AddAfter(traveler, ball);
+                        break;
+                    }
+                    else
+                    {
+                        traveler = traveler.Next;
+                    }
+                }
             }
         }
 
