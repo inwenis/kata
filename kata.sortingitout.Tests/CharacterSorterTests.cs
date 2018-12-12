@@ -47,4 +47,14 @@ class CharacterSorterTests
         // assert
         Assert.AreEqual("aaabbb", result);
     }
+
+    [Test]
+    public static void Sort_TextWithUpperCaseCharacters_TreatsAllCharactersAsLowerCase()
+    {
+        // act
+        var result = CharacterSorter.Sort("bbBaaA");
+
+        // assert
+        Assert.AreEqual("aaabbb", result);
+    }
 }

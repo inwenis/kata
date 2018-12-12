@@ -14,9 +14,11 @@ namespace kata.sortingitout
                 characterCount.Add(i, 0);
             }
 
-            for (int i = 0; i < input.Length; i++)
+            var inputLowerCase = input.ToLower();
+
+            for (int i = 0; i < inputLowerCase.Length; i++)
             {
-                var character = input[i];
+                var character = inputLowerCase[i];
                 if (character >= 'a' && character <= 'z')
                 {
                     characterCount[character]++;
