@@ -17,7 +17,10 @@ namespace kata.sortingitout
             for (int i = 0; i < input.Length; i++)
             {
                 var character = input[i];
-                characterCount[character]++;
+                if (character >= 'a' && character <= 'z')
+                {
+                    characterCount[character]++;
+                }
             }
 
             var builder = new StringBuilder(input.Length);

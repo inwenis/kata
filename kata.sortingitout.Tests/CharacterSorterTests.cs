@@ -37,4 +37,14 @@ class CharacterSorterTests
         // assert
         Assert.AreEqual("aaabbb", result);
     }
+
+    [Test]
+    public static void Sort_TextWithPunctation_IgnoresPunctationAndReturnsSortedText()
+    {
+        // act
+        var result = CharacterSorter.Sort("bbb.a a,a!");
+
+        // assert
+        Assert.AreEqual("aaabbb", result);
+    }
 }

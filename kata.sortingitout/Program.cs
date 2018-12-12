@@ -20,6 +20,7 @@ namespace kata.sortingitout
                 Console.Write(ball + " ");
             }
             Console.WriteLine("[enter] to exit");
+            Console.WriteLine(CharacterSorter.Sort("When not studying nuclear physics, Bambi likes to play beach volleyball."));
             Console.ReadLine();
         }
     }
