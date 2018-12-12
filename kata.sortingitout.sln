@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kata.sortingitout", "kata.sortingitout\kata.sortingitout.csproj", "{403AE4B7-D508-419B-80AD-43517EDB706E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kata.sortingitout.Tests", "kata.sortingitout.Tests\kata.sortingitout.Tests.csproj", "{A1AC4789-FC4E-4A15-B4A3-D79772111631}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{403AE4B7-D508-419B-80AD-43517EDB706E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{403AE4B7-D508-419B-80AD-43517EDB706E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{403AE4B7-D508-419B-80AD-43517EDB706E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AC4789-FC4E-4A15-B4A3-D79772111631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AC4789-FC4E-4A15-B4A3-D79772111631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AC4789-FC4E-4A15-B4A3-D79772111631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AC4789-FC4E-4A15-B4A3-D79772111631}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,6 +10,13 @@ namespace kata.sortingitout
     {
         static void Main(string[] args)
         {
+            var rack = new Rack();
+            rack.Add(12);
+            Console.WriteLine(rack.Balls);
+            foreach (var ball in rack.Balls)
+            {
+                Console.Write(ball + " ");
+            }
         }
     }
 }
