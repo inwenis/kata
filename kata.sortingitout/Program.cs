@@ -12,11 +12,15 @@ namespace kata.sortingitout
         {
             var rack = new Rack();
             rack.Add(12);
+            rack.Add(20);
+            rack.Add(15);
             Console.WriteLine(rack.Balls);
             foreach (var ball in rack.Balls)
             {
                 Console.Write(ball + " ");
             }
+            Console.WriteLine("[enter] to exit");
+            Console.ReadLine();
         }
     }
 }
