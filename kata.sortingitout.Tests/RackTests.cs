@@ -6,7 +6,7 @@ namespace kata.sortingitout.Tests
     public class RackTests
     {
         [Test]
-        public static void Test1()
+        public static void Add_SingleBall_SavesBall()
         {
             // arrange
             var sut = new Rack();
