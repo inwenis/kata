@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kata.sortingitout", "kata.s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kata.sortingitout.Tests", "kata.sortingitout.Tests\kata.sortingitout.Tests.csproj", "{A1AC4789-FC4E-4A15-B4A3-D79772111631}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmark", "Benchmark\Benchmark.csproj", "{82593572-3D1B-48D0-878E-5D7DD89BF125}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A1AC4789-FC4E-4A15-B4A3-D79772111631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1AC4789-FC4E-4A15-B4A3-D79772111631}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1AC4789-FC4E-4A15-B4A3-D79772111631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82593572-3D1B-48D0-878E-5D7DD89BF125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82593572-3D1B-48D0-878E-5D7DD89BF125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82593572-3D1B-48D0-878E-5D7DD89BF125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82593572-3D1B-48D0-878E-5D7DD89BF125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
