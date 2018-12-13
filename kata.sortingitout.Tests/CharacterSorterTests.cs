@@ -32,10 +32,10 @@ class CharacterSorterTests
     public static void Sort_UnsortedText_ReturnsSortedText()
     {
         // act
-        var result = CharacterSorter.Sort("bbbaaa");
+        var result = CharacterSorter.Sort("zbbbaaa");
 
         // assert
-        Assert.AreEqual("aaabbb", result);
+        Assert.AreEqual("aaabbbz", result);
     }
 
     [Test]

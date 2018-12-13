@@ -20,7 +20,7 @@ namespace kata.sortingitout
         public static string Sort(string input)
         {
             var characterCount = new Dictionary<char, int>();
-            for (char i = 'a'; i < 'z'; i++)
+            for (char i = 'a'; i <= 'z'; i++)
             {
                 characterCount.Add(i, 0);
             }
