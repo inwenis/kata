@@ -36,3 +36,25 @@ aaaaabbbbcccdeeeeeghhhiiiiklllllllmnnnnooopprsssstttuuvwyyyy
 The program ignores punctuation, and maps upper case to lower case.
 
 Are there any ways to perform this sort cheaply, and without using built-in libraries?
+
+## Benchmarking Sorting
+
+I have compared my sorting implementation and one using `Linq`. Both take advantage of the fact that we don't really have to sort characters, we can just count them.
+
+Benchamrks use [BenchmarkDotNet](https://benchmarkdotnet.org/):
+
+
+``` ini
+
+BenchmarkDotNet=v0.11.3, OS=Windows 10.0.17134.407 (1803/April2018Update/Redstone4)
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+Frequency=2742190 Hz, Resolution=364.6720 ns, Timer=TSC
+  [Host]     : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 32bit LegacyJIT-v4.7.3221.0
+  DefaultJob : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 32bit LegacyJIT-v4.7.3221.0
+
+
+```
+|             Method |     Mean |     Error |    StdDev |
+|------------------- |---------:|----------:|----------:|
+| TestSortUsingLinqu | 46.72 us | 0.8095 us | 0.6760 us |
+|     TestCustomSort | 25.44 us | 0.2268 us | 0.2122 us |
