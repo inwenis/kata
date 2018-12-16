@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Text;
 using BenchmarkDotNet.Attributes;
-using kata.sortingitout;
 
-namespace MyBenchmarks
+namespace kata.sortingitout.bemchmark
 {
     [MarkdownExporter, AsciiDocExporter, HtmlExporter, CsvMeasurementsExporter, RPlotExporter]
     public class SortingBenchmark

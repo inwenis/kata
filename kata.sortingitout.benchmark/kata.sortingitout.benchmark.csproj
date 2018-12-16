@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{82593572-3D1B-48D0-878E-5D7DD89BF125}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Benchmark</RootNamespace>
+    <RootNamespace>kata.sortingitout.bemchmark</RootNamespace>
     <AssemblyName>Benchmark</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

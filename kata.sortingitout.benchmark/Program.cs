@@ -1,6 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 
-namespace MyBenchmarks
+namespace kata.sortingitout.bemchmark
 {
     public class Program
     {
