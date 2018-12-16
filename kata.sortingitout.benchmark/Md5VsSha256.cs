@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Security.Cryptography;
 using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Running;
 
 namespace MyBenchmarks
 {
+    [MarkdownExporter, AsciiDocExporter, HtmlExporter, CsvMeasurementsExporter, RPlotExporter]
     public class Md5VsSha256
     {
         private const int N = 10000;
@@ -24,17 +24,5 @@ namespace MyBenchmarks
 
         [Benchmark]
         public byte[] Md5() => md5.ComputeHash(data);
-    }
-
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var test = new MyBench();
-            test.Custom();
-
-            //var summary = BenchmarkRunner.Run<Md5VsSha256>();
-            var summary = BenchmarkRunner.Run<MyBench>();
-        }
     }
 }

@@ -11,9 +11,11 @@ namespace kata.sortingitout
             var characters = input
                 .ToLower()
                 .Where(x => x >= 'a' && x <= 'z')
-                .OrderBy(x => x)
-                .ToArray();
-            var result = new string(characters);
+                .GroupBy(x => x)
+                .Select(x => (x.Key, x.Count()))
+                .OrderBy(x => x.Key)
+                .Select(x => Enumerable.Repeat(x.Key, x.Item2));
+            var result = string.Join("", characters);
             return result;
         }
 
