@@ -37,7 +37,7 @@ The program ignores punctuation, and maps upper case to lower case.
 
 Are there any ways to perform this sort cheaply, and without using built-in libraries?
 
-## Benchmarking Sorting
+# Benchmarking Sorting
 
 I have compared my sorting implementation and one using `Linq`. Both take advantage of the fact that we don't really have to sort characters, we can just count them.
 
