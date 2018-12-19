@@ -11,7 +11,7 @@ namespace kata02.karate.chop
 
         public static int Chop(int searchFor, int[] array)
         {
-            if(array.Length == 1)
+            if(array.Length >= 1)
             {
                 return array[0] == searchFor ? 0 : -1;
             }
