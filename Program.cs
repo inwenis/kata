@@ -33,51 +33,39 @@ namespace kata02.karate.chop
 
         public static int Chop(int searchFor, int[] array)
         {
-            if(array.Length >= 1)
+            if (array.Length == 0)
             {
-                int @from = 0;
-                int to = array.Length - 1;
-
-                while (true)
-                {
-                    if(array[to] < searchFor)
-                    {
-                        return -1;
-                    }
-                    if(array[@from]> searchFor)
-                    {
-                        return -1;
-                    }
-
-                    int check = @from + (to - @from)/2;
-                    System.Console.WriteLine($"{@from} {to} {check}");
-                    if (array[check] == searchFor)
-                    {
-                        return check;
-                    }
-
-                    if (@from == to)
-                    {
-                        return -1;
-                    }
-
-                    if (array[check] > searchFor)
-                    {
-                        @from = @from;
-                        to = check - 1;
-                    }
-                    else
-                    {
-                        @from = check + 1;
-                        to = to;
-                    }
-                }
-
                 return -1;
             }
-            else
+
+            int @from = 0;
+            int to = array.Length - 1;
+
+            while (true)
             {
-                return -1;
+                if(array[to] < searchFor)
+                {
+                    return -1;
+                }
+                if(array[@from]> searchFor)
+                {
+                    return -1;
+                }
+
+                int mid = @from + (to - @from)/2;
+
+                if (array[mid] == searchFor)
+                {
+                    return mid;
+                }
+                else if (array[mid] > searchFor)
+                {
+                    to = mid - 1;
+                }
+                else
+                {
+                    @from = mid + 1;
+                }
             }
         }
     }
