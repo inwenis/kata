@@ -36,17 +36,32 @@ namespace kata02.karate.chop
             if(array.Length >= 1)
             {
                 int @from = 0;
-                int to = array.Length;
+                int to = array.Length - 1;
 
-                while (to - @from > 0)
+                while (true)
                 {
+                    if(array[to] < searchFor)
+                    {
+                        return -1;
+                    }
+                    if(array[@from]> searchFor)
+                    {
+                        return -1;
+                    }
+
                     int check = @from + (to - @from)/2;
                     System.Console.WriteLine($"{@from} {to} {check}");
                     if (array[check] == searchFor)
                     {
                         return check;
                     }
-                    else if (array[check] > searchFor)
+
+                    if (@from == to)
+                    {
+                        return -1;
+                    }
+
+                    if (array[check] > searchFor)
                     {
                         @from = @from;
                         to = check - 1;
