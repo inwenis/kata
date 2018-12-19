@@ -1,6 +1,33 @@
 using NUnit.Framework;
+using static kata02.karate.chop.Program;
 
 [TestFixture]
-public class GameTests
+public class ChopTests
 {
+    [Test]
+    [TestCase(-1, 3, new int []{})]
+    [TestCase(-1, 3, new int []{1})]
+    [TestCase(0,  1, new int []{1})]
+    //
+    [TestCase(0,  1, new int []{1, 3, 5})]
+    [TestCase(1,  3, new int []{1, 3, 5})]
+    [TestCase(2,  5, new int []{1, 3, 5})]
+    [TestCase(-1, 0, new int []{1, 3, 5})]
+    [TestCase(-1, 2, new int []{1, 3, 5})]
+    [TestCase(-1, 4, new int []{1, 3, 5})]
+    [TestCase(-1, 6, new int []{1, 3, 5})]
+    //
+    [TestCase(0,  1, new int []{1, 3, 5, 7})]
+    [TestCase(1,  3, new int []{1, 3, 5, 7})]
+    [TestCase(2,  5, new int []{1, 3, 5, 7})]
+    [TestCase(3,  7, new int []{1, 3, 5, 7})]
+    [TestCase(-1, 0, new int []{1, 3, 5, 7})]
+    [TestCase(-1, 2, new int []{1, 3, 5, 7})]
+    [TestCase(-1, 4, new int []{1, 3, 5, 7})]
+    [TestCase(-1, 6, new int []{1, 3, 5, 7})]
+    [TestCase(-1, 8, new int []{1, 3, 5, 7})]
+    public static void Test_Chop(int expected, int searchFor, int[] array)
+    {
+        Assert.AreEqual(expected, Chop(searchFor, array));
+    }
 }
