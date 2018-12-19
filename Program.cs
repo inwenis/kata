@@ -33,26 +33,12 @@ namespace kata02.karate.chop
 
         public static int Chop(int searchFor, int[] array)
         {
-            if (array.Length == 0)
+            int left = 0;
+            int right = array.Length - 1;
+
+            while (left <= right)
             {
-                return -1;
-            }
-
-            int @from = 0;
-            int to = array.Length - 1;
-
-            while (true)
-            {
-                if(array[to] < searchFor)
-                {
-                    return -1;
-                }
-                if(array[@from]> searchFor)
-                {
-                    return -1;
-                }
-
-                int mid = @from + (to - @from)/2;
+                int mid = (left + right)/2;
 
                 if (array[mid] == searchFor)
                 {
@@ -60,13 +46,15 @@ namespace kata02.karate.chop
                 }
                 else if (array[mid] > searchFor)
                 {
-                    to = mid - 1;
+                    right = mid - 1;
                 }
                 else
                 {
-                    @from = mid + 1;
+                    left = mid + 1;
                 }
             }
+
+            return -1;
         }
     }
 }
