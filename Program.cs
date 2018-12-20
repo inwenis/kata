@@ -31,7 +31,7 @@ namespace kata02.karate.chop
             Chop(8, new int []{1, 3, 5, 7});
         }
 
-        public static int Chop(int searchFor, int[] array)
+        public static int ChopIterative(int searchFor, int[] array)
         {
             int left = 0;
             int right = array.Length - 1;
