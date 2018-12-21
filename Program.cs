@@ -31,6 +31,34 @@ namespace kata02.karate.chop
             // Chop(8, new int []{1, 3, 5, 7});
         }
 
+        public static int ChopRec2(int searchFor, int[] array)
+        {
+            int ChopRec(int left, int right)
+            {
+                int mid = (left + right)/2;
+
+                if (left > right)
+                {
+                    return -1;
+                }
+                else if (array[mid] == searchFor)
+                {
+                    return mid;
+                }
+                else if (array[mid] > searchFor)
+                {
+                    right = mid - 1;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
+                return ChopRec(left, right);
+            }
+
+            return ChopRec(0, array.Length - 1);
+        }
+
         public static int ChopRec(int searchFor, int[] array)
         {
             return ChopRec(searchFor, array, 0, array.Length - 1);
