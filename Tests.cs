@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using static kata02.karate.chop.Program;
+using kata02.karate.chop;
 
 [TestFixture]
 public class ChopTests
@@ -28,6 +28,7 @@ public class ChopTests
     [TestCase(-1, 8, new int []{1, 3, 5, 7})]
     public static void Test_Chop(int expected, int searchFor, int[] array)
     {
-        Assert.AreEqual(expected, Chop(searchFor, array));
+        Assert.AreEqual(expected, Program.ChopIterative(searchFor, array));
+        Assert.AreEqual(expected, Program.ChopRec(searchFor, array));
     }
 }
