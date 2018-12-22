@@ -62,8 +62,8 @@ namespace kata02.karate.chop
             else
             {
                 int half = (length + 1)/2;
-                int x = ChopUnsafe(searchFor, left + half, length - half);
-                return x == -1 ? -1 : x + half;
+                int indexInChoppedArray = ChopUnsafe(searchFor, left + half, length - half);
+                return indexInChoppedArray == -1 ? -1 : indexInChoppedArray + half;
             }
         }
 
