@@ -6,29 +6,64 @@ namespace kata02.karate.chop
     {
         static void Main(string[] args)
         {
-            // Console.WriteLine("Hello World!");
-            // Chop(5, new []{1,3,5});
-            // Chop(3, new int []{});
-            // Chop(3, new int []{1});
-            // Chop(1, new int []{1});
-            // //
-            // Chop(1, new int []{1, 3, 5});
-            // Chop(3, new int []{1, 3, 5});
-            // Chop(5, new int []{1, 3, 5});
-            // Chop(0, new int []{1, 3, 5});
-            // Chop(2, new int []{1, 3, 5});
-            // Chop(4, new int []{1, 3, 5});
-            // Chop(6, new int []{1, 3, 5});
-            // //
-            // Chop(1, new int []{1, 3, 5, 7});
-            // Chop(3, new int []{1, 3, 5, 7});
-            // Chop(5, new int []{1, 3, 5, 7});
-            // Chop(7, new int []{1, 3, 5, 7});
-            // Chop(0, new int []{1, 3, 5, 7});
-            // Chop(2, new int []{1, 3, 5, 7});
-            // Chop(4, new int []{1, 3, 5, 7});
-            // Chop(6, new int []{1, 3, 5, 7});
-            // Chop(8, new int []{1, 3, 5, 7});
+            Console.WriteLine("Hello World!");
+            ChopUnsafe(5, new []{1,3,5});
+            ChopUnsafe(3, new int []{});
+            ChopUnsafe(3, new int []{1});
+            ChopUnsafe(1, new int []{1});
+            //
+            ChopUnsafe(1, new int []{1, 3, 5});
+            ChopUnsafe(3, new int []{1, 3, 5});
+            ChopUnsafe(5, new int []{1, 3, 5});
+            ChopUnsafe(0, new int []{1, 3, 5});
+            ChopUnsafe(2, new int []{1, 3, 5});
+            ChopUnsafe(4, new int []{1, 3, 5});
+            ChopUnsafe(6, new int []{1, 3, 5});
+            //
+            ChopUnsafe(1, new int []{1, 3, 5, 7});
+            ChopUnsafe(3, new int []{1, 3, 5, 7});
+            ChopUnsafe(5, new int []{1, 3, 5, 7});
+            ChopUnsafe(7, new int []{1, 3, 5, 7});
+            ChopUnsafe(0, new int []{1, 3, 5, 7});
+            ChopUnsafe(2, new int []{1, 3, 5, 7});
+            ChopUnsafe(4, new int []{1, 3, 5, 7});
+            ChopUnsafe(6, new int []{1, 3, 5, 7});
+            ChopUnsafe(8, new int []{1, 3, 5, 7});
+        }
+
+        public static int ChopUnsafe(int searchFor, int[] array)
+        {
+            unsafe
+            {
+                fixed(int* left = array)
+                {
+                    return ChopUnsafe(searchFor, left, array.Length);
+                }
+            }
+        }
+
+        private static unsafe int ChopUnsafe(int searchFor, int* left, int length)
+        {
+            int mid = (length)/2;
+
+            if (length == 0)
+            {
+                return -1;
+            }
+            else if (*(left + mid) == searchFor)
+            {
+                return mid;
+            }
+            else if (*(left + mid) > searchFor)
+            {
+                length = length - mid - 1;
+            }
+            else
+            {
+                left = left + mid + 1;
+                length = length - mid - 1;
+            }
+            return ChopUnsafe(searchFor, left, length);
         }
 
         public static int ChopRec2(int searchFor, int[] array)
