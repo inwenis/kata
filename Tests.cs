@@ -31,5 +31,6 @@ public class ChopTests
         Assert.AreEqual(expected, Program.ChopIterative(searchFor, array));
         Assert.AreEqual(expected, Program.ChopRec(searchFor, array));
         Assert.AreEqual(expected, Program.ChopRec2(searchFor, array));
+        Assert.AreEqual(expected, Program.ChopUnsafe(searchFor, array));
     }
 }
