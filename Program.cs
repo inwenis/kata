@@ -44,7 +44,7 @@ namespace kata02.karate.chop
 
         private static unsafe int ChopUnsafe(int searchFor, int* left, int length)
         {
-            int mid = (length)/2;
+            int mid = (length - 1)/2;
 
             if (length == 0)
             {
@@ -57,13 +57,16 @@ namespace kata02.karate.chop
             else if (*(left + mid) > searchFor)
             {
                 length = length - mid - 1;
+                int x = ChopUnsafe(searchFor, left, length);
+                return x == -1 ? -1 : x;
             }
             else
             {
                 left = left + mid + 1;
                 length = length - mid - 1;
+                int x = ChopUnsafe(searchFor, left, length);
+                return x == -1 ? -1 : x + mid + 1;
             }
-            return ChopUnsafe(searchFor, left, length);
         }
 
         public static int ChopRec2(int searchFor, int[] array)
