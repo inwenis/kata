@@ -56,16 +56,14 @@ namespace kata02.karate.chop
             }
             else if (*(left + mid) > searchFor)
             {
-                length = length - mid - 1;
-                int x = ChopUnsafe(searchFor, left, length);
-                return x == -1 ? -1 : x;
+                length = (length - 1)/2;
+                return ChopUnsafe(searchFor, left, length);
             }
             else
             {
-                left = left + mid + 1;
-                length = length - mid - 1;
-                int x = ChopUnsafe(searchFor, left, length);
-                return x == -1 ? -1 : x + mid + 1;
+                int half = (length + 1)/2;
+                int x = ChopUnsafe(searchFor, left + half, length - half);
+                return x == -1 ? -1 : x + half;
             }
         }
 
