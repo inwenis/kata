@@ -9,11 +9,38 @@ This Kata is straightforward. Implement a binary search routine (using the speci
 ### Goals
 This Kata has three separate goals:
 
-As you’re coding each algorithm, keep a note of the kinds of error you encounter. A binary search is a ripe breeding ground for “off by one” and fencepost errors. As you progress through the week, see if the frequency of these errors decreases (that is, do you learn from experience in one technique when it comes to coding with a different technique?).
+1. As you're coding each algorithm, keep a note of the kinds of error you encounter. A binary search is a ripe breeding ground for "off by one" and fencepost errors. As you progress through the week, see if the frequency of these errors decreases (that is, do you learn from experience in one technique when it comes to coding with a different technique?).
 
-What can you say about the relative merits of the various techniques you’ve chosen? Which is the most likely to make it in to production code? Which was the most fun to write? Which was the hardest to get working? And for all these questions, ask yourself “why?”.
+```
+My answers:
+I didn't keep track of errors I encountered.
+From what I recall I encountered:
+1. off by one
+2. infinite loop
+3. index out of bounds
+With the first implementation I had a lot of errors. The second one was easier. Even if I had error I knew where to look for their source.
+Writing a variation of recursive chop was especially easy since I remembered every danger from the previous one.
+The last implementation was error prone. I think it is because it's a "madeup" implemetation I only came up with becuase the exercise requires 5 different implementaitons.
+I did learn from previous techniques.
+```
 
-It’s fairly hard to come up with five unique approaches to a binary chop. How did you go about coming up with approaches four and five? What techniques did you use to fire those “off the wall” neurons?
+2. What can you say about the relative merits of the various techniques you've chosen? Which is the most likely to make it in to production code? Which was the most fun to write? Which was the hardest to get working? And for all these questions, ask yourself "why?".
+
+```
+My answers:
+The first one is the most straight forward one and thus it would be the one I'd choose for production code.
+The recursive are simillar but recursion would not be my first choise and it does not seem so obvious to me.
+The most fun to write was the recursive one with pointers.
+The hardest was the last since it is "madeup", and I forced myself to use a for loop in it.
+```
+
+3. It's fairly hard to come up with five unique approaches to a binary chop. How did you go about coming up with approaches four and five? What techniques did you use to fire those "off the wall" neurons?
+
+```
+The fourth implementation was easy, but it is very similar to other recursive implementations. The question rises: Is it really a different appraoch?
+The fifth one was difficult to come up with.
+To think of a new way of implementing this I was thinking "what language construct did't I yet use? (for/while/switch/if/else/recursion/pointers...)
+```
 
 Specification
 Write a binary chop method that takes an integer search target and a sorted array of integers. It should return the integer index of the target in the array, or -1 if the target is not in the array. The signature will logically be:
@@ -24,7 +51,7 @@ chop(int, array_of_int)  -> int
 You can assume that the array has less than 100,000 elements. For the purposes of this Kata, time and memory performance are not issues (assuming the chop terminates before you get bored and kill it, and that you have enough RAM to run it).
 
 ### Test Data
-Here is the Test::Unit code I used when developing my methods. Feel free to add to it. The tests assume that array indices start at zero. You’ll probably have to do a couple of global search-and-replaces to make this compile in your language of choice (unless your enlightened choice happens to be Ruby).
+Here is the Test::Unit code I used when developing my methods. Feel free to add to it. The tests assume that array indices start at zero. You'll probably have to do a couple of global search-and-replaces to make this compile in your language of choice (unless your enlightened choice happens to be Ruby).
 
 ```
 def test_chop
