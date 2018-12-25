@@ -6,17 +6,6 @@ namespace Tests
     public class WeatherParserTests
     {
         [Test]
-        public void Parse_EmptyInput_ReturnsEmptyList()
-        {
-            // arrange
-            // act
-            var result = WeatherParser.Parse("");
-
-            // assert
-            Assert.IsNotNull(result);
-        }
-
-        [Test]
         public void Parse_InputWithSingleDataRow_ReturnsParsedRow()
         {
             // arrange

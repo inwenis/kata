@@ -4,25 +4,18 @@ public class WeatherParser
 {
     public static List<Row> Parse(string input)
     {
-        if(input == "")
+        string[] split = input.Split("\n");
+        string data = split[2];
+        Row row = new Row()
         {
-            return new List<Row>();
-        }
-        else
+            DayNumber = int.Parse(data.Substring(2, 2)),
+            MaxTemp = int.Parse(data.Substring(6, 2)),
+            MinTemp = int.Parse(data.Substring(12, 2))
+        };
+        return new List<Row>()
         {
-            string[] split = input.Split("\n");
-            string data = split[2];
-            Row row = new Row()
-            {
-                DayNumber = int.Parse(data.Substring(2, 2)),
-                MaxTemp = int.Parse(data.Substring(6, 2)),
-                MinTemp = int.Parse(data.Substring(12, 2))
-            };
-            return new List<Row>()
-            {
-                row
-            };
-        }
+            row
+        };
     }
 
     public class Row
