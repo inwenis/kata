@@ -27,5 +27,13 @@ public class WeatherParser
         public int DayNumber;
         public int MinTemp;
         public int MaxTemp;
+
+        public int TempSpread
+        {
+            get
+            {
+                return MaxTemp - MinTemp;
+            }
+        }
     }
 }
