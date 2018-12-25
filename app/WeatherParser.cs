@@ -1,38 +1,41 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class WeatherParser
+namespace kata04.data.munging
 {
-    public static List<Row> Parse(string input)
+    public class WeatherParser
     {
-        string[] split = input.Split("\n");
-        List<Row> parsed = split
-            .Skip(2) // header row + empty row
-            .Take(split.Length - 4) // header row + empty row + total row + \n at EOF
-            .Select(x =>
-            {
-                return new Row()
-                {
-                    DayNumber = int.Parse(x.Substring(2, 2)),
-                    MaxTemp = int.Parse(x.Substring(6, 2)),
-                    MinTemp = int.Parse(x.Substring(12, 2))
-                };
-            })
-            .ToList();
-        return parsed;
-    }
-
-    public class Row
-    {
-        public int DayNumber;
-        public int MinTemp;
-        public int MaxTemp;
-
-        public int TempSpread
+        public static List<Row> Parse(string input)
         {
-            get
+            string[] split = input.Split("\n");
+            List<Row> parsed = split
+                .Skip(2) // header row + empty row
+                .Take(split.Length - 4) // header row + empty row + total row + \n at EOF
+                .Select(x =>
+                {
+                    return new Row()
+                    {
+                        DayNumber = int.Parse(x.Substring(2, 2)),
+                        MaxTemp = int.Parse(x.Substring(6, 2)),
+                        MinTemp = int.Parse(x.Substring(12, 2))
+                    };
+                })
+                .ToList();
+            return parsed;
+        }
+
+        public class Row
+        {
+            public int DayNumber;
+            public int MinTemp;
+            public int MaxTemp;
+
+            public int TempSpread
             {
-                return MaxTemp - MinTemp;
+                get
+                {
+                    return MaxTemp - MinTemp;
+                }
             }
         }
     }
