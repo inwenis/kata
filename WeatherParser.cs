@@ -4,7 +4,25 @@ public class WeatherParser
 {
     public static List<Row> Parse(string input)
     {
-        return new List<Row>();
+        if(input == "")
+        {
+            return new List<Row>();
+        }
+        else
+        {
+            string[] split = input.Split("\n");
+            string data = split[2];
+            Row row = new Row()
+            {
+                DayNumber = int.Parse(data.Substring(2, 2)),
+                MaxTemp = int.Parse(data.Substring(6, 2)),
+                MinTemp = int.Parse(data.Substring(12, 2))
+            };
+            return new List<Row>()
+            {
+                row
+            };
+        }
     }
 
     public class Row
