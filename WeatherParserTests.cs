@@ -4,7 +4,7 @@ namespace Tests
 {
     public class WeatherParserTests
     {
-        [Test]  
+        [Test]
         public void Parse_EmptyInput_ReturnsEmptyList()
         {
             // arrange
