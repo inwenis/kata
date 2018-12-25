@@ -8,7 +8,7 @@ public class WeatherParser
         string[] split = input.Split("\n");
         List<Row> parsed = split
             .Skip(2) // header row + empty row
-            .Take(split.Length - 2 - 1) // header row + empty row + \n at EOF
+            .Take(split.Length - 4) // header row + empty row + total row + \n at EOF
             .Select(x =>
             {
                 return new Row()
