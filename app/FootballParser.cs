@@ -11,6 +11,7 @@ namespace kata04.data.munging
             List<Row> parsed = split
                 .Skip(1) // header row + empty row
                 .Take(split.Length - 2) // last row
+                .Where(row => !row.Contains("-------------------------------------------------------"))
                 .Select(x =>
                 {
                     return new Row()
