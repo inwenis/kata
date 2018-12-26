@@ -20,8 +20,8 @@ namespace Tests
             // assert
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual("Arsenal", result.Single().Name);
-            Assert.AreEqual(36, result.Single().ValueA);
-            Assert.AreEqual(79, result.Single().ValueB);
+            Assert.AreEqual(79, result.Single().ValueA);
+            Assert.AreEqual(36, result.Single().ValueB);
         }
 
         [Test]

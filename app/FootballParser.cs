@@ -8,47 +8,43 @@ namespace kata04.data.munging
     {
         public static List<Row> ParseWeather(string input)
         {
-            string[] split = Common(input, 2, 2);
-            List<Row> parsed = split
-                .Select(x =>
-                {
-                    return new Row()
-                    {
-                        Name = x.Substring(2, 2).Trim(),
-                        ValueA = int.Parse(x.Substring(6, 2)),
-                        ValueB = int.Parse(x.Substring(12, 2))
-                    };
-                })
-                .ToList();
-            return parsed;
+            return Common(input, 2, 2, Range.New(2, 2), Range.New(6, 2), Range.New(12, 2));
         }
 
         public static List<Row> ParseFootball(string input)
         {
-            string[] split = Common(input, 1, 1);
-            List<Row> parsed = split
+            return Common(input, 1, 1, Range.New(7, 15), Range.New(43, 2), Range.New(50, 2));
+        }
+
+        private static List<Row> Common(string input, int skipBeginning, int skipEnd, Range name, Range a, Range b)
+        {
+            string[] split = input.Split("\n");
+            var parsed = split
+                .Skip(skipBeginning)
+                .Take(split.Length - (skipBeginning + skipEnd))
                 .Where(row => !row.Contains("-------------------------------------------------------"))
                 .Select(x =>
                 {
                     return new Row()
                     {
-                        Name = x.Substring(7, 15).Trim(),
-                        ValueB = int.Parse(x.Substring(43, 2)),
-                        ValueA = int.Parse(x.Substring(50, 2))
+                        Name = x.Substring(name.From, name.Length).Trim(),
+                        ValueA = int.Parse(x.Substring(a.From, a.Length)),
+                        ValueB = int.Parse(x.Substring(b.From, b.Length))
                     };
                 })
                 .ToList();
             return parsed;
         }
 
-        private static string[] Common(string input, int skipBeginning, int skipEnd)
+        public class Range
         {
-            string[] split = input.Split("\n");
-            var splitTrimmed = split
-                .Skip(skipBeginning)
-                .Take(split.Length - (skipBeginning + skipEnd))
-                .ToArray();
-            return splitTrimmed;
+            public int From;
+            public int Length;
+
+            public static Range New(int from, int length)
+            {
+                return new Range{From = from, Length = length};
+            }
         }
 
         public class Row
