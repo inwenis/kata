@@ -19,6 +19,15 @@ namespace app
                 $" min: {dayWithSmallestSpread.MinTemp}" +
                 $" max: {dayWithSmallestSpread.MaxTemp}" +
                 $" spread: {dayWithSmallestSpread.TempSpread}");
+
+            input = File.ReadAllText("football.dat");
+            var teamWithSmallestDiff = FootballParser.Parse(input)
+                .OrderBy(x => x.Diff)
+                .First();
+            Console.WriteLine($"Day: {teamWithSmallestDiff.Team}" +
+                $" against: {teamWithSmallestDiff.AgainstScore}" +
+                $" for: {teamWithSmallestDiff.ForScore}" +
+                $" diff: {teamWithSmallestDiff.Diff}");
         }
     }
 }

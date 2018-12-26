@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,7 +36,7 @@ namespace kata04.data.munging
             {
                 get
                 {
-                    return ForScore - AgainstScore;
+                    return Math.Abs(ForScore - AgainstScore);
                 }
             }
         }
