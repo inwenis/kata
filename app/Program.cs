@@ -11,23 +11,23 @@ namespace app
         static void Main(string[] args)
         {
             string input = File.ReadAllText("weather.dat");
-            List<WeatherParser.Row> rows = WeatherParser.Parse(input);
-            WeatherParser.Row dayWithSmallestSpread = rows
-                .OrderBy(x => x.TempSpread)
+            List<Parser.Row> rows = Parser.ParseWeather(input);
+            Parser.Row dayWithSmallestSpread = rows
+                .OrderBy(x => x.AbsDiff)
                 .First();
-            Console.WriteLine($"Day: {dayWithSmallestSpread.DayNumber}" +
-                $" min: {dayWithSmallestSpread.MinTemp}" +
-                $" max: {dayWithSmallestSpread.MaxTemp}" +
-                $" spread: {dayWithSmallestSpread.TempSpread}");
+            Console.WriteLine($"Day: {dayWithSmallestSpread.Name}" +
+                $" min: {dayWithSmallestSpread.ValueB}" +
+                $" max: {dayWithSmallestSpread.ValueA}" +
+                $" spread: {dayWithSmallestSpread.AbsDiff}");
 
             input = File.ReadAllText("football.dat");
-            var teamWithSmallestDiff = FootballParser.Parse(input)
-                .OrderBy(x => x.Diff)
+            var teamWithSmallestDiff = Parser.ParseFootball(input)
+                .OrderBy(x => x.AbsDiff)
                 .First();
-            Console.WriteLine($"Day: {teamWithSmallestDiff.Team}" +
-                $" against: {teamWithSmallestDiff.AgainstScore}" +
-                $" for: {teamWithSmallestDiff.ForScore}" +
-                $" diff: {teamWithSmallestDiff.Diff}");
+            Console.WriteLine($"Day: {teamWithSmallestDiff.Name}" +
+                $" against: {teamWithSmallestDiff.ValueA}" +
+                $" for: {teamWithSmallestDiff.ValueB}" +
+                $" diff: {teamWithSmallestDiff.AbsDiff}");
         }
     }
 }

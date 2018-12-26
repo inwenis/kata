@@ -15,13 +15,13 @@ namespace Tests
 "    1. Arsenal         38    26   9   3    79  -  36    87"  + "\n";
 
             // act
-            var result = FootballParser.Parse(input);
+            var result = Parser.ParseFootball(input);
 
             // assert
             Assert.AreEqual(1, result.Count);
-            Assert.AreEqual("Arsenal", result.Single().Team);
-            Assert.AreEqual(36, result.Single().AgainstScore);
-            Assert.AreEqual(79, result.Single().ForScore);
+            Assert.AreEqual("Arsenal", result.Single().Name);
+            Assert.AreEqual(36, result.Single().ValueA);
+            Assert.AreEqual(79, result.Single().ValueB);
         }
 
         [Test]
@@ -38,16 +38,16 @@ namespace Tests
 "   20. Leicester       38     5  13  20    30  -  64    28"  + "\n";
 
             // act
-            var result = FootballParser.Parse(input);
+            var result = Parser.ParseFootball(input);
 
             // assert
             Assert.AreEqual(6, result.Count);
-            Assert.AreEqual("Arsenal", result[0].Team);
-            Assert.AreEqual("Liverpool", result[1].Team);
-            Assert.AreEqual("Manchester_U", result[2].Team);
-            Assert.AreEqual("Ipswich", result[3].Team);
-            Assert.AreEqual("Derby", result[4].Team);
-            Assert.AreEqual("Leicester", result[5].Team);
+            Assert.AreEqual("Arsenal", result[0].Name);
+            Assert.AreEqual("Liverpool", result[1].Name);
+            Assert.AreEqual("Manchester_U", result[2].Name);
+            Assert.AreEqual("Ipswich", result[3].Name);
+            Assert.AreEqual("Derby", result[4].Name);
+            Assert.AreEqual("Leicester", result[5].Name);
         }
     }
 }

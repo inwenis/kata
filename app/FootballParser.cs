@@ -4,9 +4,28 @@ using System.Linq;
 
 namespace kata04.data.munging
 {
-    public class FootballParser
+    public class Parser
     {
-        public static List<Row> Parse(string input)
+        public static List<Row> ParseWeather(string input)
+        {
+            string[] split = input.Split("\n");
+            List<Row> parsed = split
+                .Skip(2) // header row + empty row
+                .Take(split.Length - 4) // header row + empty row + total row + \n at EOF
+                .Select(x =>
+                {
+                    return new Row()
+                    {
+                        Name = x.Substring(2, 2).Trim(),
+                        ValueA = int.Parse(x.Substring(6, 2)),
+                        ValueB = int.Parse(x.Substring(12, 2))
+                    };
+                })
+                .ToList();
+            return parsed;
+        }
+
+        public static List<Row> ParseFootball(string input)
         {
             string[] split = input.Split("\n");
             List<Row> parsed = split
@@ -17,9 +36,9 @@ namespace kata04.data.munging
                 {
                     return new Row()
                     {
-                        Team = x.Substring(7, 15).Trim(),
-                        ForScore = int.Parse(x.Substring(43, 2)),
-                        AgainstScore = int.Parse(x.Substring(50, 2))
+                        Name = x.Substring(7, 15).Trim(),
+                        ValueB = int.Parse(x.Substring(43, 2)),
+                        ValueA = int.Parse(x.Substring(50, 2))
                     };
                 })
                 .ToList();
@@ -28,15 +47,15 @@ namespace kata04.data.munging
 
         public class Row
         {
-            public string Team;
-            public int AgainstScore;
-            public int ForScore;
+            public string Name;
+            public int ValueA;
+            public int ValueB;
 
-            public int Diff
+            public int AbsDiff
             {
                 get
                 {
-                    return Math.Abs(ForScore - AgainstScore);
+                    return Math.Abs(ValueB - ValueA);
                 }
             }
         }

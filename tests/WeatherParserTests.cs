@@ -17,13 +17,13 @@ namespace Tests
 "  mo  82.9  60.5  71.7    16  58.8       0.00              6.9          5.3"               + "\n";
 
             // act
-            var result = WeatherParser.Parse(input);
+            var result = Parser.ParseWeather(input);
 
             // assert
             Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(1, result.Single().DayNumber);
-            Assert.AreEqual(59, result.Single().MinTemp);
-            Assert.AreEqual(88, result.Single().MaxTemp);
+            Assert.AreEqual("1", result.Single().Name);
+            Assert.AreEqual(59, result.Single().ValueB);
+            Assert.AreEqual(88, result.Single().ValueA);
         }
 
         [Test]
@@ -39,22 +39,22 @@ namespace Tests
 "  mo  82.9  60.5  71.7    16  58.8       0.00              6.9          5.3"               + "\n";
 
             // act
-            var result = WeatherParser.Parse(input);
+            var result = Parser.ParseWeather(input);
 
             // assert
             Assert.AreEqual(3, result.Count);
 
-            Assert.AreEqual(1, result[0].DayNumber);
-            Assert.AreEqual(59, result[0].MinTemp);
-            Assert.AreEqual(88, result[0].MaxTemp);
+            Assert.AreEqual("1", result[0].Name);
+            Assert.AreEqual(59, result[0].ValueB);
+            Assert.AreEqual(88, result[0].ValueA);
 
-            Assert.AreEqual(2, result[1].DayNumber);
-            Assert.AreEqual(63, result[1].MinTemp);
-            Assert.AreEqual(79, result[1].MaxTemp);
+            Assert.AreEqual("2", result[1].Name);
+            Assert.AreEqual(63, result[1].ValueB);
+            Assert.AreEqual(79, result[1].ValueA);
 
-            Assert.AreEqual(3, result[2].DayNumber);
-            Assert.AreEqual(55, result[2].MinTemp);
-            Assert.AreEqual(77, result[2].MaxTemp);
+            Assert.AreEqual("3", result[2].Name);
+            Assert.AreEqual(55, result[2].ValueB);
+            Assert.AreEqual(77, result[2].ValueA);
         }
     }
 }
