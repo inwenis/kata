@@ -8,10 +8,8 @@ namespace kata04.data.munging
     {
         public static List<Row> ParseWeather(string input)
         {
-            string[] split = input.Split("\n");
+            string[] split = Common(input, 2, 2);
             List<Row> parsed = split
-                .Skip(2) // header row + empty row
-                .Take(split.Length - 4) // header row + empty row + total row + \n at EOF
                 .Select(x =>
                 {
                     return new Row()
@@ -27,10 +25,8 @@ namespace kata04.data.munging
 
         public static List<Row> ParseFootball(string input)
         {
-            string[] split = input.Split("\n");
+            string[] split = Common(input, 1, 1);
             List<Row> parsed = split
-                .Skip(1) // header row
-                .Take(split.Length - 2) // last row
                 .Where(row => !row.Contains("-------------------------------------------------------"))
                 .Select(x =>
                 {
@@ -43,6 +39,16 @@ namespace kata04.data.munging
                 })
                 .ToList();
             return parsed;
+        }
+
+        private static string[] Common(string input, int skipBeginning, int skipEnd)
+        {
+            string[] split = input.Split("\n");
+            var splitTrimmed = split
+                .Skip(skipBeginning)
+                .Take(split.Length - (skipBeginning + skipEnd))
+                .ToArray();
+            return splitTrimmed;
         }
 
         public class Row
