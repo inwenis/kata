@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Linq;
+using kata04.data.munging;
 
 namespace Tests
 {
