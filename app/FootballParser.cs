@@ -10,7 +10,7 @@ namespace kata04.data.munging
         {
             string[] split = input.Split("\n");
             List<Row> parsed = split
-                .Skip(1) // header row + empty row
+                .Skip(1) // header row
                 .Take(split.Length - 2) // last row
                 .Where(row => !row.Contains("-------------------------------------------------------"))
                 .Select(x =>
