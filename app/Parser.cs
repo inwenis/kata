@@ -8,15 +8,21 @@ namespace kata04.data.munging
     {
         public static List<Row> ParseWeather(string input)
         {
-            return Common(input, 2, 2, Range.New(2, 2), Range.New(6, 2), Range.New(12, 2));
+            return GenericParse(
+                input: input,
+                skipBeginning: 2, // skip header + empty row
+                skipEnd: 2, // skip total row + empty line
+                name: Range.New(2, 2), // day name is a 2-digit number
+                a: Range.New(6, 2), // temp starts at character index 6 and is 2 digits
+                b: Range.New(12, 2)); // temp starts at character index 12 and is 2 digits
         }
 
         public static List<Row> ParseFootball(string input)
         {
-            return Common(input, 1, 1, Range.New(7, 15), Range.New(43, 2), Range.New(50, 2));
+            return GenericParse(input, 1, 1, Range.New(7, 15), Range.New(43, 2), Range.New(50, 2));
         }
 
-        private static List<Row> Common(string input, int skipBeginning, int skipEnd, Range name, Range a, Range b)
+        private static List<Row> GenericParse(string input, int skipBeginning, int skipEnd, Range name, Range a, Range b)
         {
             string[] split = input.Split("\n");
             var parsed = split
