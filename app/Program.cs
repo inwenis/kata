@@ -39,17 +39,19 @@ namespace app
     {
         private byte[] _bitmap;
         private MD5 _md5Hash;
-        private int _hashCount;
+        private byte[] _randoms;
         public BloomFilter(int len, int hashCount)
         {
             _bitmap = new byte[len];
-            _hashCount = hashCount;
             _md5Hash = MD5.Create();
+            _randoms = new byte[hashCount];
+            Random random = new Random();
+            random.NextBytes(_randoms);
         }
 
         public void Add(string word)
         {
-            List<(int, byte)> addresses = GetAddress(word);
+            var addresses = GetAddress(word);
             foreach((int, byte) address in addresses)
             {
                 int byteAddress = address.Item1;
@@ -60,7 +62,7 @@ namespace app
 
         public bool Check(string word)
         {
-            List<(int, byte)> adresses = GetAddress(word);
+            var adresses = GetAddress(word);
             bool wordInDictionary = adresses.All(address => {
                 int byteAddress = address.Item1;
                 int bitInByte = address.Item2;
@@ -69,17 +71,23 @@ namespace app
             return wordInDictionary;
         }
 
-        private List<(int, byte)> GetAddress(string word)
+        private (int, byte)[] GetAddress(string word)
         {
-            byte[] hash = _md5Hash.ComputeHash(Encoding.UTF8.GetBytes(word));
-            int address = Math.Abs(BitConverter.ToInt32(hash));
-            int bitAddress = address % (_bitmap.Length * 8);
-            int byteAddress = bitAddress/8;
-            byte bitInByte = (byte)(1 << (bitAddress - byteAddress * 8));
-            return new List<(int, byte)>()
+            (int, byte)[] addresses = new (int, byte)[_randoms.Length];
+            byte[] wordBytes = Encoding.UTF8.GetBytes(word);
+            for (int i = 0; i < _randoms.Length; i++)
             {
-                (byteAddress, bitInByte)
-            };
+                byte random = _randoms[i];
+                byte[] xoredBytes = wordBytes.Select(b => (byte)(b ^ random)).ToArray();
+                byte[] hash = _md5Hash.ComputeHash(wordBytes);
+                int address = Math.Abs(BitConverter.ToInt32(hash));
+                int bitAddress = address % (_bitmap.Length * 8);
+                int byteAddress = bitAddress/8;
+                byte bitInByte = (byte)(1 << (bitAddress - byteAddress * 8));
+                addresses[i] = (byteAddress, bitInByte);
+            }
+            
+            return addresses;
         }
     }
 }
