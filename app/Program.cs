@@ -36,31 +36,32 @@ namespace app
     class BloomFilter
     {
         private byte[] _bitmap;
+        private MD5 _md5Hash;
         public BloomFilter(int len)
         {
             _bitmap = new byte[len];
+            _md5Hash = MD5.Create();
         }
 
         public void Add(string word)
         {
-            MD5 md5Hash = MD5.Create();
-            byte[] hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(word));
-            int address = Math.Abs(BitConverter.ToInt32(hash));
-            int bitAddress = address % (_bitmap.Length * 8);
-            int byteAddress = bitAddress/8;
-            byte x = (byte)(1 << (bitAddress - byteAddress * 8));
-            _bitmap[byteAddress] = (byte) (_bitmap[byteAddress] | x);
+            GetAddress(word, out int byteAddress, out byte bitInByte);
+            _bitmap[byteAddress] = (byte) (_bitmap[byteAddress] | bitInByte);
         }
 
         public bool Check(string word)
         {
-            MD5 md5Hash = MD5.Create();
-            byte[] hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(word));
+            GetAddress(word, out int byteAddress, out byte bitInByte);
+            return (_bitmap[byteAddress] & bitInByte) != 0;
+        }
+
+        private void GetAddress(string word, out int byteAddress, out byte bitInByte)
+        {
+            byte[] hash = _md5Hash.ComputeHash(Encoding.UTF8.GetBytes(word));
             int address = Math.Abs(BitConverter.ToInt32(hash));
             int bitAddress = address % (_bitmap.Length * 8);
-            int byteAddress = bitAddress/8;
-            byte x = (byte)(1 << (bitAddress - byteAddress * 8));
-            return (_bitmap[byteAddress] & x) != 0;
+            byteAddress = bitAddress/8;
+            bitInByte = (byte)(1 << (bitAddress - byteAddress * 8));
         }
     }
 }
