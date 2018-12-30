@@ -3,6 +3,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace app
 {
@@ -10,18 +11,37 @@ namespace app
     {
         static void Main(string[] args)
         {
-            BloomFilter bm = new BloomFilter(1024, 5);
-            bm.Add("word");
-            bm.Add("test");
-            bm.Add("aaa");
-            bm.Add("bbb");
+            BloomFilter bm = new BloomFilter(64 * 1024, 5);
+            var words = File.ReadAllLines("wordlist.txt");
+            System.Console.WriteLine("Adding word to bloom filter...");
+            foreach(var word in words)
+            {
+                bm.Add(word);
+            }
+            System.Console.WriteLine("Done adding word to bloom filter");
 
-            System.Console.WriteLine($"word: {bm.Check("word")}");
-            System.Console.WriteLine($"test: {bm.Check("test")}");
-            System.Console.WriteLine($"aaa:  {bm.Check("aaa")}");
-            System.Console.WriteLine($"bbb:  {bm.Check("bbb")}");
-            System.Console.WriteLine($"ccc:  {bm.Check("ccc")}");
-            System.Console.WriteLine($"this: {bm.Check("this")}");
+            System.Console.WriteLine("Checking if all words belong to dictionary...");
+            foreach(var word in words)
+            {
+                var check = bm.Check(word);
+                if(!check)
+                {
+                    System.Console.WriteLine("we have a problem!");
+                    System.Console.WriteLine(word);
+                }
+            }
+            System.Console.WriteLine("Done checking if all words belong to dictionary");
+
+            System.Console.WriteLine("Gimmie a word and I'll check if it is in the dictionary");
+            System.Console.WriteLine("type `q` (without the backticks) to exit");
+            string input;
+            do
+            {
+                input = System.Console.ReadLine();
+                System.Console.WriteLine($"Checking if {input} belongs to dictionary");
+                var check = bm.Check(input);
+                System.Console.WriteLine(check);
+            }while(input != "q");
         }
 
         public static decimal ByteArrayToDecimal(byte[] src, int offset)
