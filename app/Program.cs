@@ -8,16 +8,18 @@ namespace app
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            int len = 1024;
-            byte[] bitmap = new byte[len];
-            MD5 md5Hash = MD5.Create();
-            byte[] hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes("word"));
-            int address = BitConverter.ToInt32(hash);
-            int bitAddress = address % (len * 8);
-            int byteAddress = bitAddress/8;
-            byte x = (byte)(1 << (bitAddress - byteAddress));
-            bitmap[byteAddress] = (byte) (bitmap[byteAddress] | x);
+            BloomFilter bm = new BloomFilter(1024);
+            bm.Add("word");
+            bm.Add("test");
+            bm.Add("aaa");
+            bm.Add("bbb");
+
+            System.Console.WriteLine($"word: {bm.Check("word")}");
+            System.Console.WriteLine($"test: {bm.Check("test")}");
+            System.Console.WriteLine($"aaa:  {bm.Check("aaa")}");
+            System.Console.WriteLine($"bbb:  {bm.Check("bbb")}");
+            System.Console.WriteLine($"ccc:  {bm.Check("ccc")}");
+            System.Console.WriteLine($"this: {bm.Check("this")}");
         }
 
         public static decimal ByteArrayToDecimal(byte[] src, int offset)
@@ -43,22 +45,22 @@ namespace app
         {
             MD5 md5Hash = MD5.Create();
             byte[] hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(word));
-            int address = BitConverter.ToInt32(hash);
+            int address = Math.Abs(BitConverter.ToInt32(hash));
             int bitAddress = address % (_bitmap.Length * 8);
             int byteAddress = bitAddress/8;
-            byte x = (byte)(1 << (bitAddress - byteAddress));
+            byte x = (byte)(1 << (bitAddress - byteAddress * 8));
             _bitmap[byteAddress] = (byte) (_bitmap[byteAddress] | x);
         }
 
-        public void Check(string word)
+        public bool Check(string word)
         {
             MD5 md5Hash = MD5.Create();
             byte[] hash = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(word));
-            int address = BitConverter.ToInt32(hash);
+            int address = Math.Abs(BitConverter.ToInt32(hash));
             int bitAddress = address % (_bitmap.Length * 8);
             int byteAddress = bitAddress/8;
-            byte x = (byte)(1 << (bitAddress - byteAddress));
-            return _bitmap[byteAddress] & x;
+            byte x = (byte)(1 << (bitAddress - byteAddress * 8));
+            return (_bitmap[byteAddress] & x) != 0;
         }
     }
 }
