@@ -33,15 +33,23 @@ namespace app
             System.Console.WriteLine("Done checking if all words belong to dictionary");
 
             System.Console.WriteLine("Gimmie a word and I'll check if it is in the dictionary");
-            System.Console.WriteLine("type `q` (without the backticks) to exit");
+            System.Console.WriteLine("type `q!` (without the backticks) to exit");
+            System.Console.WriteLine("type `d!` (without the backticks) to dump bitmap as binary");
             string input;
             do
             {
                 input = System.Console.ReadLine();
-                System.Console.WriteLine($"Checking if {input} belongs to dictionary");
-                var check = bm.Check(input);
-                System.Console.WriteLine(check);
-            }while(input != "q");
+                if(input == "d!")
+                {
+                    System.Console.WriteLine(bm.DumpBitMapToBinary());
+                }
+                else
+                {
+                    System.Console.WriteLine($"Checking if {input} belongs to dictionary");
+                    var check = bm.Check(input);
+                    System.Console.WriteLine(check);
+                }
+            }while(input != "q!");
         }
 
         public static decimal ByteArrayToDecimal(byte[] src, int offset)
@@ -108,6 +116,13 @@ namespace app
             }
             
             return addresses;
+        }
+
+        public string DumpBitMapToBinary()
+        {
+            var binary = _bitmap
+                .Select(b => Convert.ToString(b, 2).PadLeft(8, '0'));
+            return string.Join(" ", binary);
         }
     }
 }
