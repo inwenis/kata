@@ -9,7 +9,7 @@ namespace app
     {
         static void Main(string[] args)
         {
-            BloomFilter bm = new BloomFilter(64 * 1024, 5);
+            BloomFilter bm = new BloomFilter(8 * 64 * 1024, 5);
             var words = File.ReadAllLines("wordlist.txt");
             System.Console.WriteLine("Adding word to bloom filter...");
             foreach(var word in words)
@@ -29,13 +29,24 @@ namespace app
                 }
             }
             System.Console.WriteLine("Done checking if all words belong to dictionary");
+            System.Console.WriteLine();
+            System.Console.WriteLine($"{"bitmap size",-11}|false positives");
+            System.Console.WriteLine($"---------------------------");
+            for (int i = 1; i <= 10; i++)
+            {
+                int bitmapSize = 64 * 1024 * i;
+                bm = new BloomFilter(bitmapSize, 5);
+                foreach(var word in words)
+                {
+                    bm.Add(word);
+                }
+                double falsePositives = TestUsingRandom5LetterWords(bm, words, 1000);
+                System.Console.WriteLine($"{bitmapSize,-11}|{falsePositives}");
+            }
 
-            System.Console.WriteLine("Gimmie a word and I'll check if it is in the dictionary");
-            System.Console.WriteLine("type `q!` (without the backticks) to exit");
-            System.Console.WriteLine("type `d!` (without the backticks) to dump bitmap as binary");
-
-            TestUsingRandom5LetterWords(bm);
-
+            // System.Console.WriteLine("Gimmie a word and I'll check if it is in the dictionary");
+            // System.Console.WriteLine("type `q!` (without the backticks) to exit");
+            // System.Console.WriteLine("type `d!` (without the backticks) to dump bitmap as binary");
             // string input;
             // do
             // {
@@ -53,26 +64,19 @@ namespace app
             // }while(input != "q!");
         }
 
-        private static void TestUsingRandom5LetterWords(BloomFilter bm)
+        private static double TestUsingRandom5LetterWords(BloomFilter bm, string[] words, int repeatCount)
         {
-            var words = File.ReadAllLines("wordlist.txt");
             Random random = new Random();
-            int total = 0;
             int falsePositive = 0;
-            while(true)
+            for(int i = 0 ; i < repeatCount; i++)
             {
-                char[] chars = Enumerable
-                    .Range(1, 5)
-                    .Select(x => (char) random.Next('a', 'z'))
-                    .ToArray();
-                string word = new string(chars);
+                string word = random.NextLowerCaseWord(5);
                 if(bm.Check(word) && !words.Any(x => x == word))
                 {
                     falsePositive++;
                 }
-                total++;
-                System.Console.WriteLine($"{falsePositive}/{total} = {(double)falsePositive/total}");
             }
+            return (double)falsePositive/repeatCount;
         }
     }
 }
