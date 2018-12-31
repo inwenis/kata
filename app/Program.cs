@@ -57,16 +57,21 @@ namespace app
         {
             var words = File.ReadAllLines("wordlist.txt");
             Random random = new Random();
-            char[] chars = Enumerable
-                .Range(1, 5)
-                .Select(x => (char) random.Next('a', 'z'))
-                .ToArray();
-            string word = new string(chars);
-            System.Console.WriteLine(word);
-            if(bm.Check(word))
+            int total = 0;
+            int falsePositive = 0;
+            while(true)
             {
-                System.Console.WriteLine("BM says OK");
-                System.Console.WriteLine($"word in list: {words.Any(x => x == word)}");
+                char[] chars = Enumerable
+                    .Range(1, 5)
+                    .Select(x => (char) random.Next('a', 'z'))
+                    .ToArray();
+                string word = new string(chars);
+                if(bm.Check(word) && !words.Any(x => x == word))
+                {
+                    falsePositive++;
+                }
+                total++;
+                System.Console.WriteLine($"{falsePositive}/{total} = {(double)falsePositive/total}");
             }
         }
     }
