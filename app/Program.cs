@@ -40,7 +40,7 @@ namespace app
                 {
                     bm.Add(word);
                 }
-                double falsePositives = TestUsingRandom5LetterWords(bm, words, 1000);
+                double falsePositives = TestUsingRandom5LetterWords(bm, words, 2000);
                 System.Console.WriteLine($"{bitmapSize,-11}|{falsePositives}");
             }
 
