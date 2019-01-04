@@ -2,12 +2,16 @@ My attempt on http://codekata.com/kata/kata07-howd-i-do/
 Reviewing: https://github.com/inwenis/bakeChart
 
 + 10 * 60 * 1000 -> makes it easy to see it's 10 min
+
 + private static string _rootOutputDirectory = "C:/bakeChartData"; -> good naming, I know this app outpus something and all will be in this dir
+
 +             var result = Download();
             return Parse(result); -> good separation, it's clear what download is and what parse is
+
 +
 var xPathToAreaName = "//*[@id=\"gtsms_sms-wyniki\"]/h2";
 var xPathToCompetitorListItem = "//*[@id=\"gtsms_sms-wyniki\"]/ul/li"; -> good naming, it's easy to see to which elements this xpaths points too
+
 +
     var dateTimeFromFileName = DateTimeOffset.ParseExact(
         Path.GetFileNameWithoutExtension(file),
@@ -38,6 +42,7 @@ If you get a screwdriver and nails it's rally hard only based on those tools to 
 + areaName_Competitor_Points -> it'a a dic<string,dic<string,point>> -> naming makes it clear what it holds
 
 + this code is clear to me:
+```C#
             var bestCompetitorsFromAreas = allPoints
                 .GroupBy(x => x.AreaName)
                 .Select(areaGroup =>
@@ -49,10 +54,11 @@ If you get a screwdriver and nails it's rally hard only based on those tools to 
                         .Last();
                     return bestCompetitorFromThisArea.Competitor;
                 });
+```
 Is it clear because I still remember what it's supossed to do?
 Or is it clear because it's clearly expressed?
 
-Bad things:
+## Bad things:
 
 - hardcoded paths
 - commented code
@@ -115,22 +121,25 @@ is this case it might make sense to order and then filter since we are filtering
 - poor naming - method and parameters
 `private static void DoChart(Dictionary<string, List<Point>> dictionary, string tortowyZascianekKey, string outputFileName)`
 
-- var justSomeKey = areaNameCompetitorPoint.Value.First().Key; - poor name
-- var dic = areaNameCompetitorPoint.Value; - dic poor name
--                     var fileName = areaNameCompetitorPoint.Key
+- `var justSomeKey = areaNameCompetitorPoint.Value.First().Key;` - poor name
+- `var dic = areaNameCompetitorPoint.Value;` - dic poor name
+-                     
+```C#
+var fileName = areaNameCompetitorPoint.Key
                         .Substring(areaNameCompetitorPoint.Key.IndexOf("("))
                         .Replace(" ", "")
                         .Replace("(", "")
                         .Replace(")", "")
                         .Replace("/", "")
                         .Replace("-", "");
+```
                         could be extracted to some ToFileName fun()
                         or RemoveIllegalfileNameCharacters
  - `@"C:\inetpub\wwwroot\" + outputFileName` should be done by Path.Join()
  - `foreach (var keyValuePair in dictionary)` - bad naming, we only have type names here
 
+##Bugs:
 
-Bugs:
 1. bakeChart.Program.Main() - no reference to timer, can be garbage collected
     same for bakeChart.Charting.Program.Main()
 2. accidentally pressing [enter] stops the app
