@@ -1,6 +1,8 @@
 My attempt on http://codekata.com/kata/kata07-howd-i-do/
 Reviewing: https://github.com/inwenis/bakeChart
 
+## Good things:
+
 + 10 * 60 * 1000 -> makes it easy to see it's 10 min
 
 + private static string _rootOutputDirectory = "C:/bakeChartData"; -> good naming, I know this app outpus something and all will be in this dir
@@ -138,7 +140,7 @@ var fileName = areaNameCompetitorPoint.Key
  - `@"C:\inetpub\wwwroot\" + outputFileName` should be done by Path.Join()
  - `foreach (var keyValuePair in dictionary)` - bad naming, we only have type names here
 
-##Bugs:
+## Bugs:
 
 1. bakeChart.Program.Main() - no reference to timer, can be garbage collected
     same for bakeChart.Charting.Program.Main()
