@@ -10,8 +10,7 @@ namespace spliter
         {
             var result = new List<(string, string, string)>();
 
-            List<string> sumCandidates = words.Where(w => w.Length == 6).ToList();
-
+            string[] sumCandidates = words.Where(w => w.Length == 6).ToArray();
             string[] summands = words.Where(w => w.Length < 6).ToArray();
 
             foreach (string sumCandidate in sumCandidates)
