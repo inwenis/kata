@@ -13,11 +13,19 @@ namespace spliter
             {
                 return new List<(string, string, string)>();
             }
-            else
+            else if (wordsArray.Length == 3)
             {
                 return new List<(string, string, string)>
                 {
                     (wordsArray[0], wordsArray[1], wordsArray[2])
+                };
+            }
+            else
+            {
+                return new List<(string, string, string)>
+                {
+                    (wordsArray[0], wordsArray[1], wordsArray[2]),
+                    (wordsArray[3], wordsArray[4], wordsArray[5])
                 };
             }
         }
