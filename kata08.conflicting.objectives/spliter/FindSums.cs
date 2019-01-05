@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace spliter
 {
-    public class FunnyMonkey
+    public class FindSums
     {
-        public static List<(string, string, string)> EatBanana(IEnumerable<string> words)
+        public static List<(string, string, string)> In(IEnumerable<string> words)
         {
             var result = new List<(string, string, string)>();
 

@@ -4,15 +4,10 @@ using spliter;
 
 namespace Tests
 {
-    public class Tests
+    public class FindSumsTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
-        public void EatBanana_EmptyInput_ReturnsEmptyList()
+        public void FindSums_EmptyInput_ReturnsEmptyList()
         {
             // arrange
             var list = new List<string>()
@@ -20,7 +15,7 @@ namespace Tests
             };
 
             // act
-            List<(string, string, string)> result = FunnyMonkey.EatBanana(list);
+            List<(string, string, string)> result = FindSums.In(list);
 
             // assert
             Assert.IsNotNull(result);
@@ -28,7 +23,7 @@ namespace Tests
         }
 
         [Test]
-        public void EatBanana_ListContaininValidTrio_ReturnsTrio()
+        public void FindSums_ListContaininValidTrio_ReturnsTrio()
         {
             // arrange
             var list = new List<string>()
@@ -39,14 +34,14 @@ namespace Tests
             };
 
             // act
-            List<(string, string, string)> result = FunnyMonkey.EatBanana(list);
+            List<(string, string, string)> result = FindSums.In(list);
 
             // assert
             Assert.AreEqual(("aaa", "bbb", "aaabbb"), result[0]);
         }
 
         [Test]
-        public void EatBanana_ListContainin2ValidTrios_Returns2Trios()
+        public void FindSums_ListContainin2ValidTrios_Returns2Trios()
         {
             // arrange
             var list = new List<string>()
@@ -60,7 +55,7 @@ namespace Tests
             };
 
             // act
-            List<(string, string, string)> result = FunnyMonkey.EatBanana(list);
+            List<(string, string, string)> result = FindSums.In(list);
 
             // assert
             Assert.Contains(("aaa", "bbb", "aaabbb"), result);
@@ -68,7 +63,7 @@ namespace Tests
         }
 
         [Test]
-        public void EatBanana_ListContainin1ValidTrioAndSomeExtraWord_Returns1Trio()
+        public void FindSums_ListContainin1ValidTrioAndSomeExtraWord_Returns1Trio()
         {
             // arrange
             var list = new List<string>()
@@ -80,7 +75,7 @@ namespace Tests
             };
 
             // act
-            List<(string, string, string)> result = FunnyMonkey.EatBanana(list);
+            List<(string, string, string)> result = FindSums.In(list);
 
             // assert
             Assert.Contains(("aaa", "bbb", "aaabbb"), result);
