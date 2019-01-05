@@ -11,7 +11,7 @@ namespace spliter
             var result = new List<(string, string, string)>();
 
             string[] sumCandidates = words.Where(w => w.Length == 6).ToArray();
-            HashSet<string> summands = new HashSet<string>(words.Where(w => w.Length < 6));
+            HashSet<string> summands = words.Where(w => w.Length < 6).ToHashSet();
 
             foreach (string sumCandidate in sumCandidates)
             {
