@@ -20,6 +20,30 @@ namespace spliter
                     (wordsArray[0], wordsArray[1], wordsArray[2])
                 };
             }
+            else if (wordsArray.Length == 4)
+            {
+                var result = new List<(string, string, string)>();
+
+                List<string> sumCandidates = words.Where(w => w.Length == 6).ToList();
+
+                string[] summands = words.Where(w => w.Length < 6).ToArray();
+
+                foreach (string sumCandidate in sumCandidates)
+                {
+                    var augends = summands.Where(s => sumCandidate.StartsWith(sumCandidate));
+
+                    foreach(string augend in augends)
+                    {
+                        string addend = sumCandidate.Substring(augend.Length);
+                        if(summands.Contains(addend))
+                        {
+                            result.Add((augend, addend, sumCandidate));
+                        }
+                    }
+                }
+
+                return result;
+            }
             else
             {
                 return new List<(string, string, string)>

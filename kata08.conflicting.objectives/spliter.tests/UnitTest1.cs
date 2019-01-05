@@ -66,5 +66,24 @@ namespace Tests
             Assert.Contains(("aaa", "bbb", "aaabbb"), result);
             Assert.Contains(("xxx", "yyy", "xxxyyy"), result);
         }
+
+        [Test]
+        public void EatBanana_ListContainin1ValidTrioAndSomeExtraWord_Returns1Trio()
+        {
+            // arrange
+            var list = new List<string>()
+            {
+                "aaa",
+                "wha",
+                "bbb",
+                "aaabbb",
+            };
+
+            // act
+            List<(string, string, string)> result = FunnyMonkey.EatBanana(list);
+
+            // assert
+            Assert.Contains(("aaa", "bbb", "aaabbb"), result);
+        }
     }
 }
