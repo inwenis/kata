@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using System.Collections.Generic;
+using spliter;
 
 namespace Tests
 {
@@ -10,9 +12,19 @@ namespace Tests
         }
 
         [Test]
-        public void Test1()
+        public void EatBanana_EmptyInput_ReturnsEmptyList()
         {
-            Assert.Pass();
+            // arrange
+            var list = new List<string>()
+            {
+            };
+
+            // act
+            List<(string, string, string)> result = FunnyMonkey.EatBanana(list);
+
+            // assert
+            Assert.IsNotNull(result);
+            Assert.IsEmpty(result);
         }
     }
 }
