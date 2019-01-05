@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using spliter;
+using System.Linq;
 
 namespace Tests
 {
@@ -15,7 +16,7 @@ namespace Tests
             };
 
             // act
-            List<(string, string, string)> result = FindSums.In(list);
+            var result = FindSums.In(list);
 
             // assert
             Assert.IsNotNull(result);
@@ -34,10 +35,10 @@ namespace Tests
             };
 
             // act
-            List<(string, string, string)> result = FindSums.In(list);
+            var result = FindSums.In(list);
 
             // assert
-            Assert.AreEqual(("aaa", "bbb", "aaabbb"), result[0]);
+            Assert.AreEqual(("aaa", "bbb", "aaabbb"), result.ToArray()[0]);
         }
 
         [Test]
@@ -55,11 +56,11 @@ namespace Tests
             };
 
             // act
-            List<(string, string, string)> result = FindSums.In(list);
+            var result = FindSums.In(list);
 
             // assert
-            Assert.Contains(("aaa", "bbb", "aaabbb"), result);
-            Assert.Contains(("xxx", "yyy", "xxxyyy"), result);
+            Assert.Contains(("aaa", "bbb", "aaabbb"), result.ToArray());
+            Assert.Contains(("xxx", "yyy", "xxxyyy"), result.ToArray());
         }
 
         [Test]
@@ -75,10 +76,28 @@ namespace Tests
             };
 
             // act
-            List<(string, string, string)> result = FindSums.In(list);
+            var result = FindSums.In(list);
 
             // assert
-            Assert.Contains(("aaa", "bbb", "aaabbb"), result);
+            Assert.Contains(("aaa", "bbb", "aaabbb"), result.ToArray());
+        }
+
+        [Test]
+        public void FindSums_ListContainingNoValidTrio_ReturnsEmptyList()
+        {
+            // arrange
+            var list = new List<string>()
+            {
+                "ABC's",
+                "a",
+                "A'asia",
+            };
+
+            // act
+            var result = FindSums.In(list);
+
+            // assert
+            Assert.IsEmpty(result);
         }
     }
 }

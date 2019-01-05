@@ -15,7 +15,7 @@ namespace spliter
 
             foreach (string sumCandidate in sumCandidates)
             {
-                var augends = summands.Where(s => sumCandidate.StartsWith(sumCandidate));
+                var augends = summands.Where(s => sumCandidate.StartsWith(s));
 
                 foreach(string augend in augends)
                 {
