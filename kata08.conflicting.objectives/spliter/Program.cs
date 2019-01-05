@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 
 namespace spliter
 {
@@ -6,7 +8,12 @@ namespace spliter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var words = File.ReadAllLines("wordlist.txt");
+            var sums = FindSums.In(words);
+            foreach(var sum in sums.Take(10))
+            {
+                Console.WriteLine($"{sum.Item1} + {sum.Item2} => {sum.Item3}");
+            }
         }
     }
 }

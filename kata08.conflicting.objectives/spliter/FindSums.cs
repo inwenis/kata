@@ -6,7 +6,7 @@ namespace spliter
 {
     public class FindSums
     {
-        public static List<(string, string, string)> In(IEnumerable<string> words)
+        public static IEnumerable<(string, string, string)> In(IEnumerable<string> words)
         {
             var result = new List<(string, string, string)>();
 
@@ -22,12 +22,10 @@ namespace spliter
                     string addend = sumCandidate.Substring(augend.Length);
                     if(summands.Contains(addend))
                     {
-                        result.Add((augend, addend, sumCandidate));
+                        yield return (augend, addend, sumCandidate);
                     }
                 }
             }
-
-            return result;
         }
     }
 }
