@@ -26,5 +26,23 @@ namespace Tests
             Assert.IsNotNull(result);
             Assert.IsEmpty(result);
         }
+
+        [Test]
+        public void EatBanana_ListContaininValidTrio_ReturnsTrio()
+        {
+            // arrange
+            var list = new List<string>()
+            {
+                "aaa",
+                "bbb",
+                "aaabbb"
+            };
+
+            // act
+            List<(string, string, string)> result = FunnyMonkey.EatBanana(list);
+
+            // assert
+            Assert.AreEqual(("aaa", "bbb", "aaabbb"), result[0]);
+        }
     }
 }
