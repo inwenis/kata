@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Tests
 {
-    public class FindSumsTests
+    public class ProgramTests
     {
         [Test]
         public void FindSums_EmptyInput_ReturnsEmptyList()
@@ -16,7 +16,7 @@ namespace Tests
             };
 
             // act
-            var result = FindSums.In(list);
+            var result = Program.FindSums(list);
 
             // assert
             Assert.IsNotNull(result);
@@ -35,7 +35,7 @@ namespace Tests
             };
 
             // act
-            var result = FindSums.In(list);
+            var result = Program.FindSums(list);
 
             // assert
             Assert.AreEqual(("aaa", "bbb", "aaabbb"), result.ToArray()[0]);
@@ -56,7 +56,7 @@ namespace Tests
             };
 
             // act
-            var result = FindSums.In(list);
+            var result = Program.FindSums(list);
 
             // assert
             Assert.Contains(("aaa", "bbb", "aaabbb"), result.ToArray());
@@ -76,7 +76,7 @@ namespace Tests
             };
 
             // act
-            var result = FindSums.In(list);
+            var result = Program.FindSums(list);
 
             // assert
             Assert.Contains(("aaa", "bbb", "aaabbb"), result.ToArray());
@@ -94,7 +94,7 @@ namespace Tests
             };
 
             // act
-            var result = FindSums.In(list);
+            var result = Program.FindSums(list);
 
             // assert
             Assert.IsEmpty(result);
