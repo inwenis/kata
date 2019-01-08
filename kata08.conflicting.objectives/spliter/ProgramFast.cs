@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using System.Text;
 
 namespace spliter
 {
@@ -23,10 +24,12 @@ namespace spliter
             var find = sw.Elapsed;
             Console.WriteLine($"{sw.Elapsed}");
             sw.Restart();
+            StringBuilder output = new StringBuilder();
             foreach(var sum in sums)
             {
-                Console.WriteLine($"{sum.Item1} + {sum.Item2} => {sum.Item3}");
+                output.AppendLine($"{sum.Item1} + {sum.Item2} => {sum.Item3}");
             }
+            Console.WriteLine(output);
             var write = sw.Elapsed;
             Console.WriteLine($"{sw.Elapsed}");
             Console.WriteLine($"read:{read} find:{find} write:{write}");
