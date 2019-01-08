@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace spliter
 {
@@ -13,28 +15,31 @@ namespace spliter
             Stopwatch sw = new Stopwatch();
             sw.Start();
             var words = File.ReadAllLines("wordlist.txt");
+            var read = sw.Elapsed;
             Console.WriteLine($"{sw.Elapsed}");
             sw.Restart();
             var sums = FindSums(words).ToArray();
             sw.Stop();
+            var find = sw.Elapsed;
             Console.WriteLine($"{sw.Elapsed}");
             sw.Restart();
             foreach(var sum in sums)
             {
                 Console.WriteLine($"{sum.Item1} + {sum.Item2} => {sum.Item3}");
             }
+            var write = sw.Elapsed;
             Console.WriteLine($"{sw.Elapsed}");
+            Console.WriteLine($"read:{read} find:{find} write:{write}");
         }
 
         public static IEnumerable<(string, string, string)> FindSums(string[] words)
         {
-            var result = new List<(string, string, string)>();
+            var result = new ConcurrentBag<(string, string, string)>();
 
             string[] sumCandidates = words.Where(w => w.Length == 6).ToArray();
             HashSet<string> summands = words.Where(w => w.Length < 6).ToHashSet();
 
-            foreach (string sumCandidate in sumCandidates)
-            {
+            Parallel.ForEach(sumCandidates, sumCandidate => {
                 var augends = summands.Where(s => sumCandidate.StartsWith(s)).ToArray();
 
                 foreach(string augend in augends)
@@ -42,10 +47,11 @@ namespace spliter
                     string addend = sumCandidate.Substring(augend.Length);
                     if(summands.Contains(addend))
                     {
-                        yield return (augend, addend, sumCandidate);
+                        result.Append((augend, addend, sumCandidate));
                     }
                 }
-            }
+            });
+            return result;
         }
     }
 }
