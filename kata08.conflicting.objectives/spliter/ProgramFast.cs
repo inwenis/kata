@@ -27,7 +27,7 @@ namespace spliter
             StringBuilder output = new StringBuilder();
             foreach(var sum in sums)
             {
-                output.AppendLine($"{sum.Item1} + {sum.Item2} => {sum.Item3}");
+                output.AppendFormat("{0} + {1} => {2}\n", sum.Item1, sum.Item2, sum.Item3);
             }
             Console.WriteLine(output);
             var write = sw.Elapsed;
