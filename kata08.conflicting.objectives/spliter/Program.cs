@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            ProgramReadable.Run(args);
+            //ProgramReadable.Run(args);
             ProgramFast.Run(args);
         }
     }
