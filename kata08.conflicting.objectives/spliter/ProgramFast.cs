@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 
 namespace spliter
 {
-    internal class ProgramFast
+    public class ProgramFast
     {
         public static void Run(string[] args)
         {
@@ -32,7 +32,7 @@ namespace spliter
             Console.WriteLine($"read:{read} find:{find} write:{write}");
         }
 
-        public static IEnumerable<(string, string, string)> FindSums(string[] words)
+        public static IEnumerable<(string, string, string)> FindSums(IEnumerable<string> words)
         {
             var result = new ConcurrentBag<(string, string, string)>();
 
@@ -47,7 +47,7 @@ namespace spliter
                     string addend = sumCandidate.Substring(augend.Length);
                     if(summands.Contains(addend))
                     {
-                        result.Append((augend, addend, sumCandidate));
+                        result.Add((augend, addend, sumCandidate));
                     }
                 }
             });
