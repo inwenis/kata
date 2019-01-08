@@ -16,7 +16,7 @@ namespace Tests
             };
 
             // act
-            var result = Program.FindSums(list);
+            var result = ProgramReadable.FindSums(list);
 
             // assert
             Assert.IsNotNull(result);
@@ -35,7 +35,7 @@ namespace Tests
             };
 
             // act
-            var result = Program.FindSums(list);
+            var result = ProgramReadable.FindSums(list);
 
             // assert
             Assert.AreEqual(("aaa", "bbb", "aaabbb"), result.ToArray()[0]);
@@ -56,7 +56,7 @@ namespace Tests
             };
 
             // act
-            var result = Program.FindSums(list);
+            var result = ProgramReadable.FindSums(list);
 
             // assert
             Assert.Contains(("aaa", "bbb", "aaabbb"), result.ToArray());
@@ -76,7 +76,7 @@ namespace Tests
             };
 
             // act
-            var result = Program.FindSums(list);
+            var result = ProgramReadable.FindSums(list);
 
             // assert
             Assert.Contains(("aaa", "bbb", "aaabbb"), result.ToArray());
@@ -94,7 +94,7 @@ namespace Tests
             };
 
             // act
-            var result = Program.FindSums(list);
+            var result = ProgramReadable.FindSums(list);
 
             // assert
             Assert.IsEmpty(result);
