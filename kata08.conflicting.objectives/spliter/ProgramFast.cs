@@ -39,22 +39,72 @@ namespace spliter
         {
             var result = new ConcurrentBag<(string, string, string)>();
 
-            string[] sumCandidates = words.Where(w => w.Length == 6).ToArray();
-            HashSet<string> summands = words.Where(w => w.Length < 6).ToHashSet();
+            byte[][] wordsAsBytes = words.Select(word => Encoding.Unicode.GetBytes(word)).ToArray();
 
-            Parallel.ForEach(sumCandidates, sumCandidate => {
-                var augends = summands.Where(s => sumCandidate.StartsWith(s)).ToArray();
+            byte[][] sumCandidates = words
+                .Where(w => w.Length == 6)
+                .Select(w => Encoding.Unicode.GetBytes(w))
+                .ToArray();
+            HashSet<byte[]> summands = words
+                .Where(w => w.Length < 6)
+                .Select(w => Encoding.Unicode.GetBytes(w))
+                .ToHashSet(new Max6ElementsByteArrayComparer());
 
-                foreach(string augend in augends)
+            Parallel.ForEach(sumCandidates, sumCandidate =>
+            //foreach (var sumCandidate in sumCandidates)
+            {
+                var augends = summands.Where(s => StartsWith(sumCandidate,s)).ToArray();
+
+                foreach(byte[] augend in augends)
                 {
-                    string addend = sumCandidate.Substring(augend.Length);
+                    byte[] addend = new byte[12 - augend.Length];
+                    Array.Copy(sumCandidate, augend.Length, addend, 0, 12 - augend.Length);
                     if(summands.Contains(addend))
                     {
-                        result.Add((augend, addend, sumCandidate));
+                        result.Add((
+                            Encoding.Unicode.GetString(augend),
+                            Encoding.Unicode.GetString(addend),
+                            Encoding.Unicode.GetString(sumCandidate)));
                     }
                 }
-            });
+            }
+            );
             return result;
+        }
+
+        private static bool StartsWith(byte[] bigger, byte[] smaller)
+        {
+            for (int i = 0; i < smaller.Length; i++)
+            {
+                if (smaller[i] != bigger[i])
+                    return false;
+            }
+            return true;
+        }
+    }
+
+    public class Max6ElementsByteArrayComparer : IEqualityComparer<byte[]>
+    {
+        public bool Equals(byte[] x, byte[] y)
+        {
+            if (x.Length != y.Length)
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < x.Length; i++)
+                {
+                    if (x[i] != y[i])
+                        return false;
+                }
+                return true;
+            }
+        }
+
+        public int GetHashCode(byte[] obj)
+        {
+            return Encoding.Unicode.GetString(obj).GetHashCode();
         }
     }
 }
