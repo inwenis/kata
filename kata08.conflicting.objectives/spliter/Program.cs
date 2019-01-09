@@ -10,12 +10,12 @@ namespace spliter
         static void Main(string[] args)
         {
             Stopwatch sw = new Stopwatch();
-            
+
             Console.WriteLine($"Running {nameof(ProgramReadable)}");
             sw.Start();
             ProgramReadable.Run(args);
             var readableRunningTime = sw.Elapsed;
-            
+
             Console.WriteLine($"Running {nameof(ProgramFast)}");
             sw.Restart();
             ProgramFast.Run(args);
