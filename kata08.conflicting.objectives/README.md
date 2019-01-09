@@ -32,9 +32,9 @@ Readable was running for: 00:02:21.2813950
 Fast was running for:     00:00:08.0776183
 ```
 
-Both implementations return a different number of sums. This is because the input wordlist.txt contains invalid UTF8 characters. The `string.StartsWtih()` funstion in `.NET` works differently than my own implementation for bytes.
+Both implementations return a different number of sums. This is because the input wordlist.txt contains invalid UTF8 characters. `string.StartsWtih()` in `.NET` works differently than my own `StartsWith(byte[] bigger, byte[] smaller)`.
 
-Also: it's worth noticing that writing the output takes some time. It was optimized in the Fast version with preparing a single string and writing it with one invocation to `Sytem.Console.WriteLine()`.
+Also: it's worth noticing that writing the output takes some time. It was optimized in the Fast version with preparing a single string and writing it with a single call to `Sytem.Console.WriteLine()`.
 
 > For example, does making the program as fast as possible make it more or less readable?
 
@@ -49,12 +49,12 @@ Optimizing code can be based on some strict constraints put on our program by th
 
 > Does making the program readable make it slower or faster, flexible or rigid?
 
-Making a program readable does not have to make it slower. Depends with what we start. But readable software is clearly easier to chage/maintain.
+Making a program readable does not have to make it slower. But readable software is clearly easier to chage/maintain.
 
 > And does making it extendible make it more or less readable, slower or faster?
 
 I didn't write any "extendible" version. What should be the extensibility points in this program?
-This program is preety short and can be modified in a lot of way, especially the readable version. We could allow to parametrize the length of words we are interested in, or the number of summands. But would this make the program extendible or configurable?
+This program is preety short and can be modified in a lot of ways, especially the readable version. We could allow to parametrize the length of words we are interested in, or the number of summands. But would this make the program extendible or configurable?
 
 > Are any of these correlations stronger than others?
 
@@ -71,4 +71,4 @@ If you write a complicated piece of code, which puts togeter a monthly summary o
 I rarely get the requirement for something to be fast. Usually it is "stable", "reliable", "readable" (requiered by other developers not by the business).
 
 Even when there is a requirement for speed, we need to have some common sense what is enoght. At which point will futher optimization by a too big trade off in readability?
-I'm working in C# usually, if I was supposed to write something "as optimal as possible" I could study C or Assembler but who would like to maintain this? And would anyone really like to pay for this degree of optimization?
+I'm working in C# usually, if I was supposed to write something "as optimal as possible" I could study C or Assembler but who would like to maintain code written in Assembles in a company full of C# developers? And would anyone really like to pay for this degree of optimization?
