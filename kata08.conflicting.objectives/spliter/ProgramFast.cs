@@ -13,26 +13,14 @@ namespace spliter
     {
         public static void Run(string[] args)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
             var words = File.ReadAllLines("wordlist.txt");
-            var read = sw.Elapsed;
-            Console.WriteLine($"{sw.Elapsed}");
-            sw.Restart();
             var sums = FindSums(words).ToArray();
-            sw.Stop();
-            var find = sw.Elapsed;
-            Console.WriteLine($"{sw.Elapsed}");
-            sw.Restart();
             StringBuilder output = new StringBuilder();
             foreach(var sum in sums)
             {
                 output.AppendFormat("{0} + {1} => {2}\n", sum.Item1, sum.Item2, sum.Item3);
             }
             Console.WriteLine(output);
-            var write = sw.Elapsed;
-            Console.WriteLine($"{sw.Elapsed}");
-            Console.WriteLine($"read:{read} find:{find} write:{write}");
         }
 
         public static IEnumerable<(string, string, string)> FindSums(IEnumerable<string> words)
