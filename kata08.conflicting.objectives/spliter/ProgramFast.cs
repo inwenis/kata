@@ -36,7 +36,7 @@ namespace spliter
             HashSet<byte[]> summands = words
                 .Where(w => w.Length < 6)
                 .Select(w => Encoding.Unicode.GetBytes(w))
-                .ToHashSet(new Max6ElementsByteArrayComparer());
+                .ToHashSet(new ByteArrayComparer());
 
             Parallel.ForEach(sumCandidates, sumCandidate =>
             //foreach (var sumCandidate in sumCandidates)
@@ -71,7 +71,7 @@ namespace spliter
         }
     }
 
-    public class Max6ElementsByteArrayComparer : IEqualityComparer<byte[]>
+    public class ByteArrayComparer : IEqualityComparer<byte[]>
     {
         public bool Equals(byte[] x, byte[] y)
         {
