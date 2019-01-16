@@ -1,18 +1,16 @@
+using checkout;
 using NUnit.Framework;
 
-namespace Tests
+public class CheckoutTests
 {
-    public class Tests
+    [Test]
+    public void ScanNoItems_TotalIs0()
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
+        // arrange
+        Checkout sut = new Checkout(null);
 
-        [Test]
-        public void Test1()
-        {
-            Assert.Pass();
-        }
+        // act
+
+        Assert.AreEqual(0, sut.Total);
     }
 }
