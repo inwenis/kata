@@ -30,4 +30,21 @@ public class CheckoutTests
 
         Assert.AreEqual(50, sut.Total);
     }
+
+    [Test]
+    public void Scan2ItemsWithSimplePrice_TotalIsEqual2TimesItemPrice()
+    {
+        // arrange
+        var rules = new List<PricingRule>()
+        {
+            new PricingRule('A', 50)
+        };
+        Checkout sut = new Checkout(rules);
+
+        // act
+        sut.Scan('A');
+        sut.Scan('A');
+
+        Assert.AreEqual(100, sut.Total);
+    }
 }
