@@ -26,25 +26,28 @@ namespace checkout
             get
             {
                 decimal total = 0m;
-                var itemsGroup = _items.GroupBy(x => x);
-                if(itemsGroup.Any(g => g.Count() == 2))
-                {
-                    var multipleItems = itemsGroup.Single(g => g.Count() == 2).Key;
-                    var pricingRule = _pricingRules.SingleOrDefault(r => r.Item == multipleItems && r.Count == 2);
-                    if(pricingRule != null)
-                    {
-                        total += pricingRule.Price;
-                        itemsGroup = itemsGroup.Where(g => g.Key != multipleItems);
-                    }
-                }
+                var itemsGroups = _items.GroupBy(x => x);
 
                 var simpleRules = _pricingRules.Where(r => r.Count == 1);
 
-                total += itemsGroup
-                    .SelectMany(g => g)
-                    .Join(simpleRules, x => x, r => r.Item, (g, r) => r)
-                    .Sum(r => r.Price);
+                foreach(var @group in itemsGroups)
+                {
+                    var simpleRule = _pricingRules.SingleOrDefault(r => r.Item == @group.Key && r.Count == 1);
+                    var specialRule = _pricingRules.SingleOrDefault(r => r.Item == @group.Key && r.Count == 2);
 
+                    if(@group.Count() == 1)
+                    {
+                        total += simpleRule.Price;
+                    }
+                    else if(@group.Count() == 2 && specialRule != null)
+                    {
+                        total += specialRule.Price;
+                    }
+                    else
+                    {
+                        total += simpleRule.Price * @group.Count();
+                    }
+                }
                 return total;
             }
         }
