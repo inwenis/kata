@@ -16,7 +16,7 @@ public class CheckoutTests
     }
 
     [Test]
-    public void ScanSingleItem_Monkey_TotalIsTotal()
+    public void ScanSingleItemWithSimplePrice_TotalIsEqualItemPrice()
     {
         // arrange
         var rules = new List<PricingRule>()
