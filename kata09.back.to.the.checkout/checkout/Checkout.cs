@@ -6,7 +6,6 @@ namespace checkout
     public class Checkout
     {
         private PricingRule[] _pricingRules;
-        private decimal _total;
         private List<char> _items;
 
         public Checkout(IEnumerable<PricingRule> pricingRules)
@@ -17,7 +16,6 @@ namespace checkout
 
         public void Scan(char item)
         {
-            _total += _pricingRules.Single(x => x.Item == item).Price;
             _items.Add(item);
         }
 

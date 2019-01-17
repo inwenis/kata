@@ -101,4 +101,23 @@ public class CheckoutTests
 
         Assert.AreEqual(45 + 10, sut.Total);
     }
+
+    [Test]
+    public void Scan3ItemsWhere2HaveASpecialPriceAndThirdHasRegularPrice_TotalIsCorrect()
+    {
+        // arrange
+        var rules = new List<PricingRule>()
+        {
+            new PricingRule('B', 2, 17),
+            new PricingRule('B', 10),
+        };
+        Checkout sut = new Checkout(rules);
+
+        // act
+        sut.Scan('B');
+        sut.Scan('B');
+        sut.Scan('B');
+
+        Assert.AreEqual(17 + 10, sut.Total);
+    }
 }
