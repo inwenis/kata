@@ -80,6 +80,6 @@ public class CheckoutTests
         sut.Scan('B');
         sut.Scan('B');
 
-        Assert.AreEqual(70, sut.Total);
+        Assert.AreEqual(45, sut.Total);
     }
 }
