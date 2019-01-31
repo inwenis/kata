@@ -28,7 +28,9 @@ namespace checkout
 
                 foreach(var @group in itemsGroups)
                 {
-                    var rules = _pricingRules.Where(r => r.Item == @group.Key).OrderByDescending(r => r.Count);
+                    var rules = _pricingRules
+                        .Where(r => r.Item == @group.Key)
+                        .OrderByDescending(r => r.Count);
                     var itemCount = @group.Count();
 
                     while(itemCount > 0)
