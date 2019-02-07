@@ -2,6 +2,9 @@ public static class JavaLinesCounter
 {
     public static int Count(string code)
     {
-        return 0;
+        if(code.Length == 0)
+            return 0;
+        else
+            return 1;
     }
 }
