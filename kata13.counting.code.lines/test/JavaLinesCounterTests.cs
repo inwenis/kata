@@ -38,5 +38,22 @@ namespace Tests
             // assert
             Assert.AreEqual(5, result);
         }
+
+        [Test]
+        public void Count_CodeWithWholeLineComment_ReturnsLinesCount()
+        {
+            string code = "" +
+            "public class Hello {                                              " + "\n" +
+            "    public static final void main(String[] args) {                " + "\n" +
+            "    // this is a simple comment                                   " + "\n" +
+            "        System.out.println(\"hello world\");                      " + "\n" +
+            "    }                                                             " + "\n" +
+            "}                                                                 ";
+
+            // act
+            int result = JavaLinesCounter.Count(code);
+            // assert
+            Assert.AreEqual(5, result);
+        }
     }
 }

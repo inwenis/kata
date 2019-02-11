@@ -1,3 +1,5 @@
+using System.Linq;
+
 public static class JavaLinesCounter
 {
     public static int Count(string code)
@@ -5,6 +7,8 @@ public static class JavaLinesCounter
         if(code.Length == 0)
             return 0;
         else
-            return code.Split('\n').Length;
+        {
+            return code.Split('\n').Count(line => !line.Contains("//"));
+        }
     }
 }
