@@ -71,5 +71,22 @@ namespace Tests
             // assert
             Assert.AreEqual(5, result);
         }
+
+        [Test]
+        public void Count_EmptyLines_AreNotCountedAsCode()
+        {
+            string code = "" +
+            "public class Hello {                                              " + "\n" +
+            "    public static final void main(String[] args) {                " + "\n" +
+            "        System.out.println(\"hello world\");                      " + "\n" +
+            "    }                                                             " + "\n" +
+            "}                                                                 " + "\n" +
+            "                                                                  ";
+
+            // act
+            int result = JavaLinesCounter.Count(code);
+            // assert
+            Assert.AreEqual(5, result);
+        }
     }
 }

@@ -16,7 +16,8 @@ public static class JavaLinesCounter
             string[] split = code.Split('\n');
             int linesCount = split.Length;
             int commentLines = split.Count(line => Regex.IsMatch(line, MatchSingleLineComments));
-            return linesCount - commentLines;
+            int emptyLines = split.Count(line => line.Trim() == "");
+            return linesCount - commentLines - emptyLines;
         }
     }
 }
