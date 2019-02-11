@@ -4,9 +4,7 @@ public static class JavaLinesCounter
     {
         if(code.Length == 0)
             return 0;
-        else if (code.Split('\n').Length > 0)
-            return code.Split('\n').Length;
         else
-            return 1;
+            return code.Split('\n').Length;
     }
 }
