@@ -17,7 +17,15 @@ public static class JavaLinesCounter
             int linesCount = split.Length;
             int commentLines = split.Count(line => Regex.IsMatch(line, MatchSingleLineComments));
             int emptyLines = split.Count(line => line.Trim() == "");
-            return linesCount - commentLines - emptyLines;
+            int multiLineComments = 0;
+
+            Match match = Regex.Match(code, @"/\*.*\*/", RegexOptions.Singleline);
+            if(match.Success)
+            {
+                multiLineComments = match.Value.Split('\n').Length;
+            }
+
+            return linesCount - commentLines - emptyLines - multiLineComments;
         }
     }
 }
