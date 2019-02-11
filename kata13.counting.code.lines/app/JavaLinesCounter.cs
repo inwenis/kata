@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public static class JavaLinesCounter
 {
@@ -8,7 +9,10 @@ public static class JavaLinesCounter
             return 0;
         else
         {
-            return code.Split('\n').Count(line => !line.Contains("//"));
+            string[] split = code.Split('\n');
+            int linesCount = split.Length;
+            int commentLines = split.Count(line => Regex.IsMatch(line, @"^\s*//"));
+            return linesCount - commentLines;
         }
     }
 }
