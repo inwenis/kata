@@ -7,6 +7,10 @@ public static class JavaLinesCounter
     // Matches:
     // " // comment"
     // "\t// comment"
+
+    private static string MatchBlockComments = @"/\*.*\*/";
+    // Matches:
+    // "/*block comment \n more comment \n last line*/
     public static int Count(string code)
     {
         if(code.Length == 0)
@@ -19,7 +23,7 @@ public static class JavaLinesCounter
             int emptyLines = split.Count(line => line.Trim() == "");
             int multiLineComments = 0;
 
-            Match match = Regex.Match(code, @"/\*.*\*/", RegexOptions.Singleline);
+            Match match = Regex.Match(code, MatchBlockComments, RegexOptions.Singleline);
             if(match.Success)
             {
                 multiLineComments = match.Value.Split('\n').Length;
