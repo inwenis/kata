@@ -107,5 +107,26 @@ namespace Tests
             // assert
             Assert.AreEqual(5, result);
         }
+
+
+        [Test]
+        public void Count_CodeBetweenBlockComment_IsCountedAsCode()
+        {
+            string code = "" +
+            "/* this is a block comment                                        " + "\n" +
+            "still a comment                                                   " + "\n" +
+            "here is ends */                                                   " + "\n" +
+            "public class Hello {                                              " + "\n" +
+            "/* another one */                                                 " + "\n" +
+            "    public static final void main(String[] args) {                " + "\n" +
+            "        System.out.println(\"hello world\");                      " + "\n" +
+            "    }                                                             " + "\n" +
+            "}                                                                 ";
+
+            // act
+            int result = JavaLinesCounter.Count(code);
+            // assert
+            Assert.AreEqual(5, result);
+        }
     }
 }
