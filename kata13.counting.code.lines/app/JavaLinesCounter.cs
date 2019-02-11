@@ -3,6 +3,10 @@ using System.Text.RegularExpressions;
 
 public static class JavaLinesCounter
 {
+    private static string MatchSingleLineComments = @"^\s*//";
+    // Matches:
+    // " // comment"
+    // "\t// comment"
     public static int Count(string code)
     {
         if(code.Length == 0)
@@ -11,7 +15,7 @@ public static class JavaLinesCounter
         {
             string[] split = code.Split('\n');
             int linesCount = split.Length;
-            int commentLines = split.Count(line => Regex.IsMatch(line, @"^\s*//"));
+            int commentLines = split.Count(line => Regex.IsMatch(line, MatchSingleLineComments));
             return linesCount - commentLines;
         }
     }

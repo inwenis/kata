@@ -56,7 +56,7 @@ namespace Tests
             Assert.AreEqual(5, result);
         }
 
-                [Test]
+        [Test]
         public void Count_CodeLineWtihCodeAndComment_LineIsCountedAsCode()
         {
             string code = "" +
