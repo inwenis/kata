@@ -26,4 +26,17 @@ public class JavaCommentsRemoverTests
         // assert
         Assert.AreEqual("int x;", result);
     }
+
+    [Test]
+    public void RemoveComments_OneLineBlockComment_IsRemoved()
+    {
+        // arrange
+        string input = "int x;/*block comment*/";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(input);
+
+        // assert
+        Assert.AreEqual("int x;", result);
+    }
 }
