@@ -11,6 +11,8 @@ public static class JavaLinesCounter
     private static string MatchSingleLineBlockComments = @"/\*.*?\*/\s*$";
     // Matches:
     // /*block comment*/
+    // Does not match:
+    // /*block comment*/ int x;
 
     private static string MatchBlockCommentOpening = @"/\*";
     // Matches beginning of block comment /*...
