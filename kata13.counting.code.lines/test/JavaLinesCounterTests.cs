@@ -164,5 +164,21 @@ namespace Tests
             // assert
             Assert.AreEqual(5, result);
         }
+
+        [Test]
+        public void Count_BlockCommentInSameLineAsCode_IsCountedAsLOC()
+        {
+            string code = "" +
+            "public class Hello {                                              " + "\n" +
+            "    public static final void main(String[] args) {                " + "\n" +
+            "/* this line is still code */ int x;                              " + "\n" +
+            "    }                                                             " + "\n" +
+            "}                                                                 ";
+
+            // act
+            int result = JavaLinesCounter.Count(code);
+            // assert
+            Assert.AreEqual(5, result);
+        }
     }
 }

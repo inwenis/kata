@@ -8,9 +8,9 @@ public static class JavaLinesCounter
     // " // comment"
     // "\t// comment"
 
-    private static string MatchSingleLineBlockComments = @"/\*.*?\*/";
+    private static string MatchSingleLineBlockComments = @"/\*.*?\*/\s*$";
     // Matches:
-    // "/*block comment*/
+    // /*block comment*/
 
     private static string MatchBlockCommentOpening = @"/\*";
     // Matches beginning of block comment /*...
@@ -53,7 +53,7 @@ public static class JavaLinesCounter
                 {
                     singleLinesBlockComments += 1;
                 }
-                else if (Regex.IsMatch(line, MatchBlockCommentOpening))
+                else if (Regex.IsMatch(line, MatchBlockCommentOpening) && !Regex.IsMatch(line, MatchBlockCommentClosing))
                 {
                     blockCommentLines += 1;
                     blockCommentOpen = true;
