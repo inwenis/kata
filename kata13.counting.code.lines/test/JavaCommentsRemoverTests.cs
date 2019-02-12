@@ -65,4 +65,24 @@ public class JavaCommentsRemoverTests
         // assert
         Assert.AreEqual("\nint x;", result);
     }
+
+    [Test]
+    public void RemoveComments_MultiLineBlockComments_AreRemovedXX()
+    {
+        // arrange
+        string code = "" +
+            " int x;     \n" +
+            " // comment \n" +
+            " int y;     \n";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        string expected = "" +
+            " int x;     \n" +
+            " \n" +
+            " int y;     \n";
+        Assert.AreEqual(expected, result);
+    }
 }
