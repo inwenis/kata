@@ -12,12 +12,10 @@ public static class JavaLinesCounter
     // Matches:
     // "/*block comment*/
 
-    private static string MatchBlockComments = @"/\*.*?\*/";
-    // Matches:
-    // "/*block comment \n more comment \n last line*/
-
     private static string MatchBlockCommentOpening = @"/\*";
+    // Matches beginning of block comment /*...
     private static string MatchBlockCommentClosing = @"\*/";
+    // Matches end of block comment ...*/
 
     public static int Count(string code)
     {
