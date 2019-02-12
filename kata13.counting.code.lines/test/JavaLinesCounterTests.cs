@@ -181,15 +181,15 @@ namespace Tests
             Assert.AreEqual(5, result);
         }
 
-        // [Test]
-        // public void Count_CodeBetweenBlockCommentsInSameLine_IsCountedAsLOC()
-        // {
-        //     string code = "/* this line is still code */ int x; /* more */";
+        [Test]
+        public void Count_CodeBetweenBlockCommentsInSameLine_IsCountedAsLOC()
+        {
+            string code = "/* this line is still code */ int x; /* more */";
 
-        //     // act
-        //     int result = JavaLinesCounter.Count(code);
-        //     // assert
-        //     Assert.AreEqual(1, result);
-        // }
+            // act
+            int result = JavaLinesCounter.Count(code);
+            // assert
+            Assert.AreEqual(1, result);
+        }
     }
 }
