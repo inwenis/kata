@@ -16,6 +16,7 @@ public static class JavaCommentsRemover
         {
             string result = Regex.Replace(code, MatchSingleLineComments, "");
             result = Regex.Replace(result, MatchSingleLineBlockComments, "");
+            result = Regex.Replace(result, MatchSingleLineBlockComments, "", RegexOptions.Singleline);
             return result;
         }
     }
