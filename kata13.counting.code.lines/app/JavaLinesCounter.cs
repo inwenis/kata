@@ -36,15 +36,12 @@ public static class JavaLinesCounter
                 {
                     blockCommentLines += 1;
                     blockCommentOpen = false;
-                    continue;
                 }
                 else if(blockCommentOpen)
                 {
                     blockCommentLines += 1;
-                    continue;
                 }
-
-                if (Regex.IsMatch(line, MatchSingleLineComments))
+                else if (Regex.IsMatch(line, MatchSingleLineComments))
                 {
                     singleLinesComments += 1;
                 }
