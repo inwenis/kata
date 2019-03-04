@@ -99,4 +99,18 @@ public class JavaCommentsRemoverTests
         string expected = "String s = \"this is a string // still a string \";";
         Assert.AreEqual(expected, result);
     }
+
+    [Test]
+    public void RemoveComments_LineCommentAfterStringWithTwoForwadSlashes_IsRemoved()
+    {
+        // arrange
+        string code = "String s = \"this is a string // still a string \"; // to be removed";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        string expected = "String s = \"this is a string // still a string \"; ";
+        Assert.AreEqual(expected, result);
+    }
 }
