@@ -9,31 +9,21 @@ public static class JavaCommentsRemover
 
     public static string RemoveComments(string code)
     {
-        if(code == "")
-        {
-            return code;
-        }
-        else
-        {
-            Match result = Regex.Match(code, MatchSingleLineComments);
-            string replaced;
-            if(result.Success)
-            {
-                replaced = code.Replace(result.Groups[1].Value, "");
-            }
-            else
-            {
-                replaced = code;
-            }
+        string commentsRemoved = code;
 
-            result = Regex.Match(code, MatchSingleLineCommentsAfterString);
-            if(result.Success)
-            {
-                replaced = replaced.Replace(result.Groups[1].Value, "");
-            }
-
-            replaced = Regex.Replace(replaced, MatchSingleLineBlockComments, "", RegexOptions.Singleline);
-            return replaced;
+        Match result = Regex.Match(code, MatchSingleLineComments);
+        if(result.Success)
+        {
+            commentsRemoved = code.Replace(result.Groups[1].Value, "");
         }
+
+        result = Regex.Match(code, MatchSingleLineCommentsAfterString);
+        if(result.Success)
+        {
+            commentsRemoved = commentsRemoved.Replace(result.Groups[1].Value, "");
+        }
+
+        commentsRemoved = Regex.Replace(commentsRemoved, MatchSingleLineBlockComments, "", RegexOptions.Singleline);
+        return commentsRemoved;
     }
 }
