@@ -67,7 +67,7 @@ public class JavaCommentsRemoverTests
     }
 
     [Test]
-    public void RemoveComments_MultiLineBlockComments_AreRemovedXX()
+    public void RemoveComments_LineCommentBetweenCode_IsRemoved()
     {
         // arrange
         string code = "" +
