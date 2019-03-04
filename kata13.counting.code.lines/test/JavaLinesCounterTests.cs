@@ -195,7 +195,9 @@ namespace Tests
         [Test]
         public void Count_Monkey()
         {
-            string code = "String s = \"this no comment // asdfsafd \"; /* stil no comment \n still \n end */ int code;";
+            string code = "String s = \"this no comment // asdfsafd \"; /* stil no comment\n" +
+                          "still no comments                                              \n" +
+                          "end */ int code;";
 
             // act
             int result = JavaLinesCounter.Count(code);
