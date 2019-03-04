@@ -85,4 +85,18 @@ public class JavaCommentsRemoverTests
             " int y;     \n";
         Assert.AreEqual(expected, result);
     }
+
+    [Test]
+    public void RemoveComments_LineCommentInString_IsNotRemoved()
+    {
+        // arrange
+        string code = "String s = \"this is a string // still a string \";";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        string expected = "String s = \"this is a string // still a string \";";
+        Assert.AreEqual(expected, result);
+    }
 }

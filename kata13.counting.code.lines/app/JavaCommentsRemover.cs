@@ -3,7 +3,8 @@ using System.Text.RegularExpressions;
 
 public static class JavaCommentsRemover
 {
-    private static string MatchSingleLineComments = @"//.*";
+//    private static string MatchSingleLineComments = @"//.*";
+    private static string MatchSingleLineComments = "^[^\"]*(//.*)";
     private static string MatchSingleLineBlockComments = @"/\*.*?\*/";
 
     public static string RemoveComments(string code)
@@ -14,9 +15,20 @@ public static class JavaCommentsRemover
         }
         else
         {
-            string result = Regex.Replace(code, MatchSingleLineComments, "");
-            result = Regex.Replace(result, MatchSingleLineBlockComments, "", RegexOptions.Singleline);
-            return result;
+            //string result = Regex.Replace(code, MatchSingleLineComments, "");
+            Match result = Regex.Match(code, MatchSingleLineComments);
+            string replaced;
+            if(result.Success)
+            {
+                replaced = code.Replace(result.Groups[1].Value, "");
+            }
+            else
+            {
+                replaced = code;
+            }
+            
+            replaced = Regex.Replace(replaced, MatchSingleLineBlockComments, "", RegexOptions.Singleline);
+            return replaced;
         }
     }
 }
