@@ -63,7 +63,7 @@ public class JavaCommentsRemoverTests
         string result = JavaCommentsRemover.RemoveComments(input);
 
         // assert
-        Assert.AreEqual("\nint x;", result);
+        Assert.AreEqual("\n\n\n\n\nint x;", result);
     }
 
     [Test]
@@ -112,5 +112,18 @@ public class JavaCommentsRemoverTests
         // assert
         string expected = "String s = \"this is a string // still a string \"; ";
         Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    public void RemoveComments_MultiLineBlockComment_RemovesCommentButNewLinesStay()
+    {
+        // arrange
+        string code = "int x; /* comment \n comment */ int y;";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("int x; \n int y;", result);
     }
 }

@@ -203,5 +203,18 @@ namespace Tests
             // assert
             Assert.AreEqual(1, result);
         }
+
+        [Test]
+        public void Count_CodeLineSeparatedByBlock_Monkey()
+        {
+            string code = "int x = 0; /* comment \n" +
+                          " more comments        \n" +
+                          " */ int y = 1;          ";
+
+            // act
+            int result = JavaLinesCounter.Count(code);
+            // assert
+            Assert.AreEqual(2, result);
+        }
     }
 }
