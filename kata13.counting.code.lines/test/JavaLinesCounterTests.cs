@@ -193,16 +193,15 @@ namespace Tests
         }
 
         [Test]
-        public void Count_Monkey()
+        public void Count_InlineCommentInString_IsNotAComment()
         {
             string code = "String s = \"this no comment // asdfsafd \"; /* stil no comment\n" +
-                          "still no comments                                              \n" +
-                          "end */ int code;";
+                          "still no comments end */                                         ";
 
             // act
             int result = JavaLinesCounter.Count(code);
             // assert
-            Assert.AreEqual(2, result);
+            Assert.AreEqual(1, result);
         }
     }
 }
