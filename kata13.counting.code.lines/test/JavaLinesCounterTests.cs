@@ -205,7 +205,7 @@ namespace Tests
         }
 
         [Test]
-        public void Count_CodeLineSeparatedByBlock_Monkey()
+        public void Count_CodeLineSeparatedByBlockComments_AreCountedAreSeparateLOC()
         {
             string code = "int x = 0; /* comment \n" +
                           " more comments        \n" +
