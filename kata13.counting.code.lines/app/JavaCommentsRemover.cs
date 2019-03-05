@@ -24,16 +24,12 @@ public static class JavaCommentsRemover
         }
 
         var matches = Regex.Matches(commentsRemoved, MatchSingleLineBlockComments, RegexOptions.Singleline);
-        if(matches.Any())
+        foreach(var match in matches.Cast<Match>())
         {
-            foreach(var match in matches.Cast<Match>())
-            {
-                var newLinesCount = match.Groups[1].Value.Count(x => x == '\n');
-                var replaceWith = string.Join("", Enumerable.Repeat('\n', newLinesCount));
-                commentsRemoved = commentsRemoved.Replace(match.Groups[1].Value, replaceWith);
-            }
+            var newLinesCount = match.Groups[1].Value.Count(x => x == '\n');
+            var replaceWith = string.Join("", Enumerable.Repeat('\n', newLinesCount));
+            commentsRemoved = commentsRemoved.Replace(match.Groups[1].Value, replaceWith);
         }
-        //commentsRemoved = Regex.Replace(commentsRemoved, MatchSingleLineBlockComments, "", RegexOptions.Singleline);
         return commentsRemoved;
     }
 }
