@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 public static class JavaCommentsRemover
 {
-    private static string MatchSingleLineComments = "^[^\"]*(//.*)"; // no string before
+    private static string MatchSingleLineComments = "^[^\"]*?(//.*)"; // no string before
     private static string MatchSingleLineCommentsAfterString = "\".*\".*?(//.*)";
     private static string MatchSingleLineBlockComments = @"(/\*.*?\*/)";
 
@@ -11,19 +11,19 @@ public static class JavaCommentsRemover
     {
         string commentsRemoved = code;
 
-        Match result = Regex.Match(code, MatchSingleLineComments); // should match on commentsRemoved
-        if(result.Success)
+        var matches = Regex.Matches(commentsRemoved, MatchSingleLineComments, RegexOptions.Multiline);
+        foreach(var match in matches.Cast<Match>())
         {
-            commentsRemoved = code.Replace(result.Groups[1].Value, "");
+            commentsRemoved = commentsRemoved.Replace(match.Groups[1].Value, "");
         }
 
-        result = Regex.Match(code, MatchSingleLineCommentsAfterString); // bug, should match on commentsRemoved
+        var result = Regex.Match(code, MatchSingleLineCommentsAfterString); // bug, should match on commentsRemoved
         if(result.Success)
         {
             commentsRemoved = commentsRemoved.Replace(result.Groups[1].Value, "");
         }
 
-        var matches = Regex.Matches(commentsRemoved, MatchSingleLineBlockComments, RegexOptions.Singleline);
+        matches = Regex.Matches(commentsRemoved, MatchSingleLineBlockComments, RegexOptions.Singleline);
         foreach(var match in matches.Cast<Match>())
         {
             var newLinesCount = match.Groups[1].Value.Count(x => x == '\n');

@@ -126,4 +126,17 @@ public class JavaCommentsRemoverTests
         // assert
         Assert.AreEqual("int x; \n int y;", result);
     }
+
+    [Test]
+    public void RemoveComments_MultipleLineComments_AreRemoved()
+    {
+        // arrange
+        string code = "int x; //comment \n int y; //comment \n int x; //another one";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("int x; \n int y; \n int x; ", result);
+    }
 }
