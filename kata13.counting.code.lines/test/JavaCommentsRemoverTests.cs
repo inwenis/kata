@@ -139,4 +139,17 @@ public class JavaCommentsRemoverTests
         // assert
         Assert.AreEqual("int x; \n int y; \n int x; ", result);
     }
+
+    [Test]
+    public void RemoveComments_StringLookingAsBlockComments_AreNotRemoved()
+    {
+        // arrange
+        string code = "String x = \"/*\" \n String y = \"*/\";";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("String x = \"/*\" \n String y = \"*/\";", result);
+    }
 }
