@@ -5,10 +5,8 @@ using System;
 
 public static class JavaCommentsRemover
 {
-    private static string MatchSingleLineComments = "^[^\"]*?(//.*)"; // no string before
-    private static string MatchSingleLineCommentsAfterString = "\".*\".*?(//.*)";
+    private static string MatchSingleLineComments = "(//.*)";
     private static string MatchSingleLineBlockComments = @"(/\*.*?\*/)";
-
     private static string MatchString = "\"(.*?)\"";
 
     public static string RemoveComments(string code)
@@ -30,12 +28,6 @@ public static class JavaCommentsRemover
         foreach(var match in matches.Cast<Match>())
         {
             commentsRemoved = commentsRemoved.Replace(match.Groups[1].Value, "");
-        }
-
-        var result = Regex.Match(code, MatchSingleLineCommentsAfterString); // bug, should match on commentsRemoved
-        if(result.Success)
-        {
-            commentsRemoved = commentsRemoved.Replace(result.Groups[1].Value, "");
         }
 
         matches = Regex.Matches(commentsRemoved, MatchSingleLineBlockComments, RegexOptions.Singleline);
