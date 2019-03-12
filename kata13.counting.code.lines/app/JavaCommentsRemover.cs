@@ -7,7 +7,7 @@ public static class JavaCommentsRemover
 {
     private static string MatchSingleLineComments = "(//.*)";
     private static string MatchSingleLineBlockComments = @"(/\*.*?\*/)";
-    private static string MatchString = "\"(.*?)\"";
+    private static string MatchString = "\"((?:\\\\\"|[^\"])*?)\"";
 
     public static string RemoveComments(string code)
     {

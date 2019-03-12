@@ -152,4 +152,17 @@ public class JavaCommentsRemoverTests
         // assert
         Assert.AreEqual("String x = \"/*\" \n String y = \"*/\";", result);
     }
+
+    [Test]
+    public void RemoveComments_QuotesInStrings_AreHandledCorrectly()
+    {
+        // arrange
+        string code = "String x = \"some words \\\" more\";";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual(code, result);
+    }
 }
