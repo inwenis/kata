@@ -13,17 +13,18 @@ public static class JavaCommentsRemover
 
     public static string RemoveComments(string code)
     {
+        string codeWithReplacedStrings = code;
         var strings = new List<KeyValuePair<string, string>>();
         var matches = Regex.Matches(code, MatchString);
         foreach(var match in matches.Cast<Match>())
         {
-            string toBeRemoved = match.Groups[1].Value;
+            string stringWithoutQuotes = match.Groups[1].Value;
             string id = Guid.NewGuid().ToString();
-            code = code.Replace(toBeRemoved, id);
-            strings.Add(new KeyValuePair<string, string>(id, toBeRemoved));
+            codeWithReplacedStrings = codeWithReplacedStrings.Replace(stringWithoutQuotes, id);
+            strings.Add(new KeyValuePair<string, string>(id, stringWithoutQuotes));
         }
 
-        string commentsRemoved = code; // todo
+        string commentsRemoved = codeWithReplacedStrings;
 
         matches = Regex.Matches(commentsRemoved, MatchSingleLineComments, RegexOptions.Multiline);
         foreach(var match in matches.Cast<Match>())
