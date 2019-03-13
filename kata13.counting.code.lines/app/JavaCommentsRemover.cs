@@ -23,7 +23,7 @@ public static class JavaCommentsRemover
     {
         replacedStrings = new List<KeyValuePair<string, string>>();
         var matches = Regex.Matches(code, MatchString);
-        foreach (var match in matches.Cast<Match>())
+        foreach (Match match in matches)
         {
             string stringWithoutQuotes = match.Groups[1].Value;
             string id = Guid.NewGuid().ToString();
@@ -35,10 +35,11 @@ public static class JavaCommentsRemover
 
     private static string RemoveLineComments(string code)
     {
-        MatchCollection matches = Regex.Matches(code, MatchLineComments, RegexOptions.Multiline);
-        foreach (var match in matches.Cast<Match>())
+        var matches = Regex.Matches(code, MatchLineComments, RegexOptions.Multiline);
+        foreach (Match match in matches)
         {
-            code = code.Replace(match.Groups[1].Value, "");
+            string comment = match.Groups[1].Value;
+            code = code.Replace(comment, "");
         }
         return code;
     }
@@ -46,13 +47,13 @@ public static class JavaCommentsRemover
     private static string RemoveBlockComments(string code)
     {
         MatchCollection matches = Regex.Matches(code, MatchBlockComments, RegexOptions.Singleline);
-        foreach (var match in matches.Cast<Match>())
+        foreach (Match match in matches)
         {
-            var newLinesCount = match.Groups[1].Value.Count(x => x == '\n');
-            var replaceWith = string.Join("", Enumerable.Repeat('\n', newLinesCount));
-            code = code.Replace(match.Groups[1].Value, replaceWith);
+            string comment = match.Groups[1].Value;
+            int newLinesCount = comment.Count(x => x == '\n');
+            string newLines = string.Join("", Enumerable.Repeat('\n', newLinesCount));
+            code = code.Replace(comment, newLines);
         }
-
         return code;
     }
 
