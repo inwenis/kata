@@ -216,5 +216,17 @@ namespace Tests
             // assert
             Assert.AreEqual(2, result);
         }
+
+        [Test]
+        public void Count_CodeWithCRLF_LOCAreCountedCorrectly()
+        {
+            string code = "int x = 0; \r\n" +
+                          "int y = 1;     ";
+
+            // act
+            int result = JavaLinesCounter.Count(code);
+            // assert
+            Assert.AreEqual(2, result);
+        }
     }
 }
