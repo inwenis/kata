@@ -5,9 +5,9 @@ using System;
 
 public static class JavaCommentsRemover
 {
-    private static string MatchSingleLineComments = "(//.*)";
-    private static string MatchSingleLineBlockComments = @"(/\*.*?\*/)";
     private static string MatchString = "\"((?:\\\"|[^\"])*?)\"";
+    private static string MatchLineComments = "(//.*)";
+    private static string MatchBlockComments = @"(/\*.*?\*/)";
 
     public static string RemoveComments(string code)
     {
@@ -24,13 +24,13 @@ public static class JavaCommentsRemover
 
         string commentsRemoved = codeWithReplacedStrings;
 
-        matches = Regex.Matches(commentsRemoved, MatchSingleLineComments, RegexOptions.Multiline);
+        matches = Regex.Matches(commentsRemoved, MatchLineComments, RegexOptions.Multiline);
         foreach(var match in matches.Cast<Match>())
         {
             commentsRemoved = commentsRemoved.Replace(match.Groups[1].Value, "");
         }
 
-        matches = Regex.Matches(commentsRemoved, MatchSingleLineBlockComments, RegexOptions.Singleline);
+        matches = Regex.Matches(commentsRemoved, MatchBlockComments, RegexOptions.Singleline);
         foreach(var match in matches.Cast<Match>())
         {
             var newLinesCount = match.Groups[1].Value.Count(x => x == '\n');
