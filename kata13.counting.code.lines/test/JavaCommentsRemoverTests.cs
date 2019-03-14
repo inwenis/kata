@@ -191,4 +191,17 @@ public class JavaCommentsRemoverTests
         // assert
         Assert.AreEqual("\nint x = 0;", result);
     }
+
+    [Test]
+    public void RemoveComments_LineCommentWhichIsALineCommentAndTheSameIsNestedInABlockComment_IsHandledCorrectly()
+    {
+        // arrange
+        string code = "//line comment*/\nint x = 0;/* //line comment*/";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("\nint x = 0;", result);
+    }
 }

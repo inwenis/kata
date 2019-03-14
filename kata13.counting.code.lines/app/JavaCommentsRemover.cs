@@ -56,12 +56,22 @@ public static class JavaCommentsRemover
         return code;
     }
 
-    private static string RemoveComment(string codeWithStringsReplaced, string comment)
+    private static string RemoveComment(string code, string comment)
     {
         int newLinesCount = comment.Count(x => x == '\n');
         string newLines = string.Join("", Enumerable.Repeat('\n', newLinesCount));
-        codeWithStringsReplaced = codeWithStringsReplaced.Replace(comment, newLines);
-        return codeWithStringsReplaced;
+        code = ReplaceFirst(code, comment, newLines);
+        return code;
+    }
+
+    private static string ReplaceFirst(string text, string search, string replace)
+    {
+        int pos = text.IndexOf(search);
+        if (pos < 0)
+        {
+            return text;
+        }
+        return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
     }
 
     private static string ReplaceStrings(string code, ref List<KeyValuePair<string, string>> replacedStrings)
