@@ -13,46 +13,55 @@ public static class JavaCommentsRemover
     {
         List<KeyValuePair<string, string>> strings = null;
         string codeWithStringsReplaced = ReplaceStrings(code, ref strings);
+        string codeWithOutComments = RemoveCommentsInternal(codeWithStringsReplaced);
+        string stringsReadded = ReAddStrings(codeWithOutComments, strings);
+        return stringsReadded;
+    }
 
+    // the `code` can not contain "//" or "/*" or "*/" in string literals for this method to work correctly
+    private static string RemoveCommentsInternal(string code)
+    {
         bool anyMatch = true;
-        while(anyMatch)
+        while (anyMatch)
         {
-            Match lineCommentMatch = Regex.Match(codeWithStringsReplaced, MatchLineComments, RegexOptions.Multiline);
-            Match blockCommentMatch = Regex.Match(codeWithStringsReplaced, MatchBlockComments, RegexOptions.Singleline);
-
+            Match lineCommentMatch = Regex.Match(code, MatchLineComments, RegexOptions.Multiline);
+            Match blockCommentMatch = Regex.Match(code, MatchBlockComments, RegexOptions.Singleline);
+            Match firstMatch = null;
             anyMatch = lineCommentMatch.Success || blockCommentMatch.Success;
 
             if (lineCommentMatch.Success && !blockCommentMatch.Success)
             {
-                string comment = lineCommentMatch.Groups[1].Value;
-                codeWithStringsReplaced = codeWithStringsReplaced.Replace(comment, "");
+                firstMatch = lineCommentMatch;
             }
             else if (!lineCommentMatch.Success && blockCommentMatch.Success)
             {
-                string comment = blockCommentMatch.Groups[1].Value;
-                int newLinesCount = comment.Count(x => x == '\n');
-                string newLines = string.Join("", Enumerable.Repeat('\n', newLinesCount));
-                codeWithStringsReplaced = codeWithStringsReplaced.Replace(comment, newLines);
+                firstMatch = blockCommentMatch;
             }
             else if (lineCommentMatch.Index < blockCommentMatch.Index)
             {
-                string comment = lineCommentMatch.Groups[1].Value;
-                codeWithStringsReplaced = codeWithStringsReplaced.Replace(comment, "");
+                firstMatch = lineCommentMatch;
             }
             else if (lineCommentMatch.Index > blockCommentMatch.Index)
             {
-                string comment = blockCommentMatch.Groups[1].Value;
-                int newLinesCount = comment.Count(x => x == '\n');
-                string newLines = string.Join("", Enumerable.Repeat('\n', newLinesCount));
-                codeWithStringsReplaced = codeWithStringsReplaced.Replace(comment, newLines);
+                firstMatch = blockCommentMatch;
+            }
+
+            if (anyMatch)
+            {
+                string comment = firstMatch.Groups[1].Value;
+                code = RemoveComment(code, comment);
             }
         }
 
-        // string lineCommentsRemoved = RemoveLineComments(codeWithStringsReplaced);
-        // string blockCommentsRemoved = RemoveBlockComments(lineCommentsRemoved);
+        return code;
+    }
 
-        string stringsReadded = ReAddStrings(codeWithStringsReplaced, strings);
-        return stringsReadded;
+    private static string RemoveComment(string codeWithStringsReplaced, string comment)
+    {
+        int newLinesCount = comment.Count(x => x == '\n');
+        string newLines = string.Join("", Enumerable.Repeat('\n', newLinesCount));
+        codeWithStringsReplaced = codeWithStringsReplaced.Replace(comment, newLines);
+        return codeWithStringsReplaced;
     }
 
     private static string ReplaceStrings(string code, ref List<KeyValuePair<string, string>> replacedStrings)
@@ -65,30 +74,6 @@ public static class JavaCommentsRemover
             string id = Guid.NewGuid().ToString();
             code = code.Replace(stringWithoutQuotes, id);
             replacedStrings.Add(new KeyValuePair<string, string>(id, stringWithoutQuotes));
-        }
-        return code;
-    }
-
-    private static string RemoveLineComments(string code)
-    {
-        var matches = Regex.Matches(code, MatchLineComments, RegexOptions.Multiline);
-        foreach (Match match in matches)
-        {
-            string comment = match.Groups[1].Value;
-            code = code.Replace(comment, "");
-        }
-        return code;
-    }
-
-    private static string RemoveBlockComments(string code)
-    {
-        MatchCollection matches = Regex.Matches(code, MatchBlockComments, RegexOptions.Singleline);
-        foreach (Match match in matches)
-        {
-            string comment = match.Groups[1].Value;
-            int newLinesCount = comment.Count(x => x == '\n');
-            string newLines = string.Join("", Enumerable.Repeat('\n', newLinesCount));
-            code = code.Replace(comment, newLines);
         }
         return code;
     }
