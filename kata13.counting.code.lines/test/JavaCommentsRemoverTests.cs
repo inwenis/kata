@@ -165,4 +165,30 @@ public class JavaCommentsRemoverTests
         // assert
         Assert.AreEqual(code, result);
     }
+
+    [Test]
+    public void RemoveComments_BlockCommentWithTwoForwardSlashes_IsRemoved()
+    {
+        // arrange
+        string code = "/* block comment \n // block comment closing */";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("\n", result);
+    }
+
+    [Test]
+    public void RemoveComments_ForwardSlashAndAsteriksInALineCommnet_IsNotABlockComment()
+    {
+        // arrange
+        string code = "//line comment/* \nint x = 0;//line comment*/";
+
+        // act
+        string result = JavaCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("\nint x = 0;", result);
+    }
 }
