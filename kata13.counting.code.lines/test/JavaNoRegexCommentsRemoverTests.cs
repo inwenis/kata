@@ -19,6 +19,7 @@ public class JavaNoRegexCommentsRemoverTests
     [TestCase("String x=\"//\";", "String x=\"//\";", "TwoForwardSlashesInString_AreNotComments")]
     [TestCase("String x=\"/*\";", "String x=\"/*\";", "BlockCommentOpeningInString_InNotAComment")]
     [TestCase("String x=\"sss\";//comment", "String x=\"sss\";", "LineCommentAfterString_IsRemoved")]
+    [TestCase("//comment\"\nint x=0;//comment", "\nint x=0;", "DoubleQuoteInComments_AreHandledCorrectly")]
     public void Test(string code, string expected, string message)
     {
         // arrange
