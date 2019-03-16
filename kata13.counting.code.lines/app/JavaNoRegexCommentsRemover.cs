@@ -51,7 +51,7 @@ public class JavaNoRegexCommentsRemover
 
     private static bool StringEnds(string code, int i)
     {
-        return code[i] == '"';
+        return code[i-1] != '\\' && code[i] == '"';
     }
 
     private static bool StringStarts(string code, int i)

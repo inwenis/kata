@@ -21,6 +21,7 @@ public class JavaNoRegexCommentsRemoverTests
     [TestCase("String x=\"sss\";//comment", "String x=\"sss\";", "LineCommentAfterString_IsRemoved")]
     [TestCase("//comment\"\nint x=0;//comment", "\nint x=0;", "DoubleQuoteInLineComments_AreHandledCorrectly")]
     [TestCase("/*comment\"*/\nint x=0;//comment", "\nint x=0;", "DoubleQuoteInBlockComments_AreHandledCorrectly")]
+    [TestCase("String x=\"sss\\\"//still string\";", "String x=\"sss\\\"//still string\";", "NotAllDoubleQuotesEndAString")]
     public void Test(string code, string expected, string message)
     {
         // arrange
