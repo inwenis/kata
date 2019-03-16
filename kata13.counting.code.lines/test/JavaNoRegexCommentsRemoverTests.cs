@@ -80,4 +80,17 @@ public class JavaNoRegexCommentsRemoverTests
         // assert
         Assert.AreEqual("\r\nint x = 0;", result);
     }
+
+    [Test]
+    public void RemoveComments_CommentEndingWithOnlyCR_CommentIsRemoved()
+    {
+        // arrange
+        string code = "//this is a comment\r";
+
+        // act
+        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("", result);
+    }
 }

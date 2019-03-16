@@ -16,7 +16,7 @@ public class JavaNoRegexCommentsRemover
             {
                 lineComment = false;
             }
-            else if(code[i] == '\r' && code[i+1] == '\n' && lineComment)
+            else if(code[i] == '\r' && code.Length > i+1 && code[i+1] == '\n' && lineComment)
             {
                 lineComment = false;
             }
