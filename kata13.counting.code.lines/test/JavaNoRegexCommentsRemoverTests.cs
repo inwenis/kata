@@ -13,4 +13,17 @@ public class JavaNoRegexCommentsRemoverTests
         // assert
         Assert.AreEqual("", result);
     }
+
+    [Test]
+    public void RemoveComments_CodeWithNoComments_DoesNothing()
+    {
+        // arrange
+        string code = "int x = 0;";
+
+        // act
+        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual(code, result);
+    }
 }
