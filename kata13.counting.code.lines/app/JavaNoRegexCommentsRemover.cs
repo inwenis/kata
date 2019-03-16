@@ -22,7 +22,7 @@ public class JavaNoRegexCommentsRemover
             {
                 lineComment = true;
             }
-            else if (BlockCommentStarts(code, i))
+            else if (!lineComment && BlockCommentStarts(code, i))
             {
                 blockComment = true;
             }
