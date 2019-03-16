@@ -16,6 +16,10 @@ public class JavaNoRegexCommentsRemover
             {
                 lineComment = false;
             }
+            else if(code[i] == '\r' && code[i+1] == '\n' && lineComment)
+            {
+                lineComment = false;
+            }
 
             if (!lineComment)
             {
