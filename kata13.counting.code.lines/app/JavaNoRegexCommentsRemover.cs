@@ -9,19 +9,15 @@ public class JavaNoRegexCommentsRemover
         bool blockComment = false;
         for (int i = 0; i < code.Length; i++)
         {
-            if(code[i] == '/' && code.Length > i+1 && code[i+1] == '/')
+            if (lineComment && LineCommentEnds3(code, i))
+            {
+                lineComment = false;
+            }
+            else if (LineCommentStarts(code, i))
             {
                 lineComment = true;
             }
-            else if(code[i] == '\n' && lineComment)
-            {
-                lineComment = false;
-            }
-            else if(code[i] == '\r' && code.Length > i+1 && code[i+1] == '\n' && lineComment)
-            {
-                lineComment = false;
-            }
-            else if(code[i] == '/' && code.Length > i+1 && code[i+1] == '*')
+            else if (BlockCommentStarts(code, i))
             {
                 blockComment = true;
             }
@@ -33,5 +29,20 @@ public class JavaNoRegexCommentsRemover
         }
 
         return output.ToString();
+    }
+
+    private static bool LineCommentEnds3(string code, int i)
+    {
+        return code[i] == '\n' || code[i] == '\r' && code.Length > i + 1 && code[i + 1] == '\n';
+    }
+
+    private static bool BlockCommentStarts(string code, int i)
+    {
+        return code[i] == '/' && code.Length > i + 1 && code[i + 1] == '*';
+    }
+
+    private static bool LineCommentStarts(string code, int i)
+    {
+        return code[i] == '/' && code.Length > i + 1 && code[i + 1] == '/';
     }
 }
