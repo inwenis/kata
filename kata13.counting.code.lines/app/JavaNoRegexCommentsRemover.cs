@@ -18,7 +18,7 @@ public class JavaNoRegexCommentsRemover
             {
                 blockComment = false;
             }
-            else if (LineCommentStarts(code, i))
+            else if (!blockComment && LineCommentStarts(code, i))
             {
                 lineComment = true;
             }
