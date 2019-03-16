@@ -2,105 +2,22 @@ using NUnit.Framework;
 
 public class JavaNoRegexCommentsRemoverTests
 {
-    [Test]
-    public void RemoveComments_EmptyString_ReturnEmptyString()
+    [TestCase("", "", "EmptyString_ReturnEmptyString")]
+    [TestCase("int x = 0", "int x = 0", "CodeWithNoComments_DoesNothing")]
+    [TestCase("//this is a comment", "", "CodeWithOnlyComment_RemovesEverything")]
+    [TestCase("int x = 0; //this is a comment", "int x = 0; ", "CodeWithLineCommentAtEnd_LineCommentIsRemoved")]
+    [TestCase("//this is a comment\nint x = 0;", "\nint x = 0;", "CodeWithLineCommentBeforeCode_LineCommentIsRemoved")]
+    [TestCase("//this is a comment\r\nint x = 0;", "\r\nint x = 0;", "CodeWithLineCommentBeforeCodeWithCRLF_LineCommentIsRemoved")]
+    [TestCase("//this is a comment\r", "", "CommentEndingWithOnlyCR_CommentIsRemoved")]
+    [TestCase("/", "/", "SingleForwardSlash_IsNotRemoved")]
+    public void Test(string code, string expected, string message)
     {
         // arrange
-
-        // act
-        string result = JavaNoRegexCommentsRemover.RemoveComments("");
-
-        // assert
-        Assert.AreEqual("", result);
-    }
-
-    [Test]
-    public void RemoveComments_CodeWithNoComments_DoesNothing()
-    {
-        // arrange
-        string code = "int x = 0;";
 
         // act
         string result = JavaNoRegexCommentsRemover.RemoveComments(code);
 
         // assert
-        Assert.AreEqual(code, result);
-    }
-
-    [Test]
-    public void RemoveComments_CodeWithOnlyComment_RemovesEverything()
-    {
-        // arrange
-        string code = "//this is a comment";
-
-        // act
-        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
-
-        // assert
-        Assert.AreEqual("", result);
-    }
-
-    [Test]
-    public void RemoveComments_CodeWithLineCommentAtEnd_LineCommentIsRemoved()
-    {
-        // arrange
-        string code = "int x = 0; //this is a comment";
-
-        // act
-        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
-
-        // assert
-        Assert.AreEqual("int x = 0; ", result);
-    }
-
-    [Test]
-    public void RemoveComments_CodeWithLineCommentBeforeCode_LineCommentIsRemoved()
-    {
-        // arrange
-        string code = "//this is a comment\n" +
-                      "int x = 0;";
-
-        // act
-        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
-
-        // assert
-        Assert.AreEqual("\nint x = 0;", result);
-    }
-
-    [Test]
-    public void RemoveComments_CodeWithLineCommentBeforeCodeWithCRLF_LineCommentIsRemoved()
-    {
-        // arrange
-        string code = "//this is a comment\r\n" +
-                      "int x = 0;";
-
-        // act
-        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
-
-        // assert
-        Assert.AreEqual("\r\nint x = 0;", result);
-    }
-
-    [Test]
-    public void RemoveComments_CommentEndingWithOnlyCR_CommentIsRemoved()
-    {
-        // arrange
-        string code = "//this is a comment\r";
-
-        // act
-        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
-
-        // assert
-        Assert.AreEqual("", result);
-    }
-
-    [Test]
-    public void RemoveComments_SingleForwardSlash_IsNotRemoved()
-    {
-        string code = "/";
-
-        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
-
-        Assert.AreEqual("/", result);
+        Assert.AreEqual(expected, result, message);
     }
 }
