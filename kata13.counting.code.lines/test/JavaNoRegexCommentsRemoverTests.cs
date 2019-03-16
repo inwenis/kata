@@ -93,4 +93,14 @@ public class JavaNoRegexCommentsRemoverTests
         // assert
         Assert.AreEqual("", result);
     }
+
+    [Test]
+    public void RemoveComments_SingleForwardSlash_IsNotRemoved()
+    {
+        string code = "/";
+
+        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
+
+        Assert.AreEqual("/", result);
+    }
 }

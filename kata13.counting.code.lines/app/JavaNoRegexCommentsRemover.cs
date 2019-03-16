@@ -8,7 +8,7 @@ public class JavaNoRegexCommentsRemover
         bool lineComment = false;
         for (int i = 0; i < code.Length; i++)
         {
-            if(code[i] == '/' && code[i+1] == '/')
+            if(code[i] == '/' && code.Length > i+1 && code[i+1] == '/')
             {
                 lineComment = true;
             }
