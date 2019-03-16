@@ -14,6 +14,7 @@ public class JavaNoRegexCommentsRemoverTests
     [TestCase("/* comment */int x = 0;", "int x = 0;", "CodeAfterBlockComment_OnlyCommentIsRemoved")]
     [TestCase("/* //comment */int x = 0;", "int x = 0;", "LineCommentNestedInBlockComment_CommentsAreRemoved")]
     [TestCase("//line/*this is not block comment\nint x = 0;", "\nint x = 0;", "BlockCommentNestedInLineComment_CommentsAreRemoved")]
+    [TestCase("/*\n\n*/", "\n\n", "MultiLineBlockComment_NewLineCharactersAreNotRemoved")]
     public void Test(string code, string expected, string message)
     {
         // arrange
