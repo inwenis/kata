@@ -31,7 +31,7 @@ public class JavaNoRegexCommentsRemover
             {
                 output.Append(code[i]);
             }
-            else if (blockComment && code[i] == '\n')
+            else if (blockComment && (code[i] == '\n' || code[i] == '\r'))
             {
                 output.Append(code[i]);
             }
