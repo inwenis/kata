@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 public class JavaNoRegexCommentsRemover
@@ -12,6 +13,10 @@ public class JavaNoRegexCommentsRemover
             if (lineComment && LineCommentEnds3(code, i))
             {
                 lineComment = false;
+            }
+            else if (blockComment && BlockCommentEnds(code, i))
+            {
+                blockComment = false;
             }
             else if (LineCommentStarts(code, i))
             {
@@ -29,6 +34,11 @@ public class JavaNoRegexCommentsRemover
         }
 
         return output.ToString();
+    }
+
+    private static bool BlockCommentEnds(string code, int i)
+    {
+        return i - 2 >= 0 && code[i-2] == '*' && code[i-1] == '/';
     }
 
     private static bool LineCommentEnds3(string code, int i)
