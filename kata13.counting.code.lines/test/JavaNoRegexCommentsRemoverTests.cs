@@ -16,6 +16,7 @@ public class JavaNoRegexCommentsRemoverTests
     [TestCase("//line/*this is not block comment\nint x = 0;", "\nint x = 0;", "BlockCommentNestedInLineComment_CommentsAreRemoved")]
     [TestCase("/*\n\n*/", "\n\n", "MultiLineBlockComment_NewLineCharactersAreNotRemoved")]
     [TestCase("/*\r\n \n \r*/", "\r\n\n\r", "MultiLineBlockCommentWithDifferentLineEndings_NewLineCharactersAreNotRemoved")]
+    [TestCase("String x=\"//\";", "String x=\"//\";", "TwoForwardSlashesInString_AreNotComments")]
     public void Test(string code, string expected, string message)
     {
         // arrange

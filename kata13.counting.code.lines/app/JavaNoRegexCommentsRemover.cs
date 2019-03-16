@@ -8,6 +8,7 @@ public class JavaNoRegexCommentsRemover
         StringBuilder output = new StringBuilder();
         bool lineComment = false;
         bool blockComment = false;
+        bool stringSwitch = false;
         for (int i = 0; i < code.Length; i++)
         {
             if (lineComment && LineCommentEnds(code, i))
@@ -18,13 +19,17 @@ public class JavaNoRegexCommentsRemover
             {
                 blockComment = false;
             }
-            else if (!blockComment && LineCommentStarts(code, i))
+            else if (!blockComment && !stringSwitch && LineCommentStarts(code, i))
             {
                 lineComment = true;
             }
             else if (!lineComment && BlockCommentStarts(code, i))
             {
                 blockComment = true;
+            }
+            else if (StringStarts(code, i))
+            {
+                stringSwitch = true;
             }
 
             if (!lineComment && !blockComment)
@@ -38,6 +43,11 @@ public class JavaNoRegexCommentsRemover
         }
 
         return output.ToString();
+    }
+
+    private static bool StringStarts(string code, int i)
+    {
+        return code[i] == '"';
     }
 
     private static bool BlockCommentEnds(string code, int i)
