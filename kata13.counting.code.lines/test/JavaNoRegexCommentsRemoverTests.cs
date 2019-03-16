@@ -39,4 +39,17 @@ public class JavaNoRegexCommentsRemoverTests
         // assert
         Assert.AreEqual("", result);
     }
+
+    [Test]
+    public void RemoveComments_CodeWithLineComment_LineCommentIsRemoved()
+    {
+        // arrange
+        string code = "int x = 0; //this is a comment";
+
+        // act
+        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("int x = 0; ", result);
+    }
 }
