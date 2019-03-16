@@ -10,7 +10,7 @@ public class JavaNoRegexCommentsRemover
         bool blockComment = false;
         for (int i = 0; i < code.Length; i++)
         {
-            if (lineComment && LineCommentEnds3(code, i))
+            if (lineComment && LineCommentEnds(code, i))
             {
                 lineComment = false;
             }
@@ -41,7 +41,7 @@ public class JavaNoRegexCommentsRemover
         return i - 2 >= 0 && code[i-2] == '*' && code[i-1] == '/';
     }
 
-    private static bool LineCommentEnds3(string code, int i)
+    private static bool LineCommentEnds(string code, int i)
     {
         return code[i] == '\n' || code[i] == '\r' && code.Length > i + 1 && code[i + 1] == '\n';
     }
