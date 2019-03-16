@@ -31,7 +31,7 @@ public class JavaNoRegexCommentsRemover
             {
                 blockComment = true;
             }
-            else if (!lineComment && StringStarts(code, i))
+            else if (!lineComment && !blockComment && StringStarts(code, i))
             {
                 stringSwitch = true;
             }
