@@ -26,4 +26,17 @@ public class JavaNoRegexCommentsRemoverTests
         // assert
         Assert.AreEqual(code, result);
     }
+
+    [Test]
+    public void RemoveComments_CodeWithOnlyComment_RemovesEverything()
+    {
+        // arrange
+        string code = "//this is a comment";
+
+        // act
+        string result = JavaNoRegexCommentsRemover.RemoveComments(code);
+
+        // assert
+        Assert.AreEqual("", result);
+    }
 }

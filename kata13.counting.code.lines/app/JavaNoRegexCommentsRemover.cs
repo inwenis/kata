@@ -2,6 +2,13 @@ public class JavaNoRegexCommentsRemover
 {
     public static string RemoveComments(string code)
     {
-        return code;
+        if(code.Contains("//"))
+        {
+            return "";
+        }
+        else
+        {
+            return code;
+        }
     }
 }
