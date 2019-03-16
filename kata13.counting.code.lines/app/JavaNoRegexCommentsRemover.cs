@@ -19,6 +19,10 @@ public class JavaNoRegexCommentsRemover
             {
                 blockComment = false;
             }
+            else if (stringSwitch && StringEnds(code, i))
+            {
+                stringSwitch = false;
+            }
             else if (!blockComment && !stringSwitch && LineCommentStarts(code, i))
             {
                 lineComment = true;
@@ -43,6 +47,11 @@ public class JavaNoRegexCommentsRemover
         }
 
         return output.ToString();
+    }
+
+    private static bool StringEnds(string code, int i)
+    {
+        return code[i] == '"';
     }
 
     private static bool StringStarts(string code, int i)
