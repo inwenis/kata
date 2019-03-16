@@ -10,6 +10,7 @@ public class JavaNoRegexCommentsRemoverTests
     [TestCase("//this is a comment\r\nint x = 0;", "\r\nint x = 0;", "CodeWithLineCommentBeforeCodeWithCRLF_LineCommentIsRemoved")]
     [TestCase("//this is a comment\r", "", "CommentEndingWithOnlyCR_CommentIsRemoved")]
     [TestCase("/", "/", "SingleForwardSlash_IsNotRemoved")]
+    [TestCase("/* comment */", "", "BlockComment_IsRemoved")]
     public void Test(string code, string expected, string message)
     {
         // arrange

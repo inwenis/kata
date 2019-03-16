@@ -6,6 +6,7 @@ public class JavaNoRegexCommentsRemover
     {
         StringBuilder output = new StringBuilder();
         bool lineComment = false;
+        bool blockComment = false;
         for (int i = 0; i < code.Length; i++)
         {
             if(code[i] == '/' && code.Length > i+1 && code[i+1] == '/')
@@ -20,8 +21,12 @@ public class JavaNoRegexCommentsRemover
             {
                 lineComment = false;
             }
+            else if(code[i] == '/' && code.Length > i+1 && code[i+1] == '*')
+            {
+                blockComment = true;
+            }
 
-            if (!lineComment)
+            if (!lineComment && !blockComment)
             {
                 output.Append(code[i]);
             }
