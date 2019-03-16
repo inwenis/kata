@@ -17,6 +17,7 @@ public class JavaNoRegexCommentsRemoverTests
     [TestCase("/*\n\n*/", "\n\n", "MultiLineBlockComment_NewLineCharactersAreNotRemoved")]
     [TestCase("/*\r\n \n \r*/", "\r\n\n\r", "MultiLineBlockCommentWithDifferentLineEndings_NewLineCharactersAreNotRemoved")]
     [TestCase("String x=\"//\";", "String x=\"//\";", "TwoForwardSlashesInString_AreNotComments")]
+    [TestCase("String x=\"/*\";", "String x=\"/*\";", "BlockCommentOpeningInString_InNotAComment")]
     public void Test(string code, string expected, string message)
     {
         // arrange
