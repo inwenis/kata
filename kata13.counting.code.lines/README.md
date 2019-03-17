@@ -36,3 +36,6 @@ Remember that Java comments are either `// to the end of line`, or `/* to the ne
 
 Goals of the Kata
 The mixture of line-based things (single line comments, blank lines, and so on) with the stream-based block comments can make solutions slightly ugly. While coding your solution, consider the structure of your code, and see how well it fits the structure of the problem. As with most of these kata, consider coding multiple alternative implementations. Does what you learned on the first tries affect your approach to subsequent ones?
+
+## Notes after implementing:
+It seems like a simple task but the edge cases made it quite complex. The string/comment nesting made me change my approach at some point. I tried 2 implementations: with and witout regex. Writing the second implementation was easier by a factor of magnitued. I had all the edge cases up front, I knew where I was heading with my solution. Writing the first problem was like solving a task at work: you think you know the problem but in reality you start to understand it when you're coding it.
