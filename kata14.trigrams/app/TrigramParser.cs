@@ -10,9 +10,20 @@ public class TrigramParser
             return new Dictionary<(string, string), string>();
         }
         string[] split = text.Split(" ");
-        return new Dictionary<(string, string), string>
+        if (split.Length == 3)
         {
-            {(split[0], split[1]), split[2]}
-        };
+            return new Dictionary<(string, string), string>
+            {
+                {(split[0], split[1]), split[2]}
+            };
+        }
+        else
+        {
+            return new Dictionary<(string, string), string>
+            {
+                {(split[0], split[1]), split[2]},
+                {(split[1], split[2]), split[3]}
+            };
+        }
     }
 }
