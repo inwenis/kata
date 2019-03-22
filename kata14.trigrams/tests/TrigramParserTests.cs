@@ -46,4 +46,23 @@ public class Tests
         Assert.AreEqual(("dummyB", "dummyC"), result.ElementAt(1).Key);
         Assert.AreEqual("dummyD", result.ElementAt(1).Value);
     }
+
+    [Test]
+    public void Parse_SentenceWithMultipleWords_ReturnsDictionaryWithTrigram()
+    {
+        // arrange
+        string text = "dummyA dummyB dummyC dummyD dummyE";
+
+        // act
+        Dictionary<(string, string), string> result = TrigramParser.Parse(text);
+
+        // assert
+        Assert.AreEqual(3, result.Count);
+        Assert.AreEqual(("dummyA", "dummyB"), result.ElementAt(0).Key);
+        Assert.AreEqual("dummyC", result.ElementAt(0).Value);
+        Assert.AreEqual(("dummyB", "dummyC"), result.ElementAt(1).Key);
+        Assert.AreEqual("dummyD", result.ElementAt(1).Value);
+        Assert.AreEqual(("dummyC", "dummyD"), result.ElementAt(2).Key);
+        Assert.AreEqual("dummyE", result.ElementAt(2).Value);
+    }
 }

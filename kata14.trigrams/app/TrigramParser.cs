@@ -17,13 +17,22 @@ public class TrigramParser
                 {(split[0], split[1]), split[2]}
             };
         }
-        else
+        else if (split.Length == 4)
         {
             return new Dictionary<(string, string), string>
             {
                 {(split[0], split[1]), split[2]},
                 {(split[1], split[2]), split[3]}
             };
+        }
+        else
+        {
+            var dic = new Dictionary<(string, string), string>();
+            for( int i = 0; i < split.Length - 2; ++i)
+            {
+                dic.Add((split[i], split[i+1]), split[i+2]);
+            }
+            return dic;
         }
     }
 }
