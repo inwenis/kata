@@ -26,8 +26,6 @@ namespace spliter
         {
             var result = new ConcurrentBag<(string, string, string)>();
 
-            byte[][] wordsAsBytes = words.Select(word => Encoding.Unicode.GetBytes(word)).ToArray();
-
             byte[][] sumCandidates = words
                 .Where(w => w.Length == 6)
                 .Select(w => Encoding.Unicode.GetBytes(w))
