@@ -18,8 +18,8 @@ This kata is a thought experiment. What are the top three advantages and top thr
 
 # Notes
 1. hashes - you can pass through any properies you don't have special handling for.
-   1.1. if you want to omit some properties, you just filter them out
-   1.2. if you have special handling for some properties you can specify just it
+1.1. if you want to omit some properties, you just filter them out
+1.2. if you have special handling for some properties you can specify just it
 2. hashes - useful if you have business objects with a lot of properies and you don't want to specify all of them, they can change, and you just want to pass the through when they change
    * then again when you code the "special processing"/"handling" ussing regular classes it's easier to avoid typos etc.
      * I sometimes use dynamic classes, but if I pass those dynamic object to too many places and use too many properies of them I get lost, and introduce a type for them.
@@ -45,6 +45,6 @@ Then again I remember when downloading some data from the internet. The rows had
 I also remember working on a CMS (Content Managment System). It's like sharepoint or google drive for the company I was working for.
 A document had it's content and a lot of meta-data. The meta-data aka. attributes were dynamic - you could change available properties on a document in runtime (happend rarely or never).
 It was how the system was designed by the vendor. I remember that we initially started with totally dyanimc stuff since this was how the API was defined. Then moved to classes with properites representing attributes. The class hierarchy grew bigger. I recall it didn't work too well.
-We ended up with a "sort of dynamic" `attribute bag` object which was storing attributes as key/values pairs. There were some predefined, frequently used keys, but you were free to use any string as a ket. I recall this worked quite well.
+We ended up with a "sort of dynamic" `attribute bag` object which was storing attributes as key/values pairs. There were some predefined, frequently used keys, but you were free to use any string as a key. I recall this worked quite well.
 
 To sumup - from my POV it depends on the usecase and your preferences.
