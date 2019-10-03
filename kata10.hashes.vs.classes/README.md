@@ -18,8 +18,8 @@ This kata is a thought experiment. What are the top three advantages and top thr
 
 # Notes
 1. hashes - you can pass through any properies you don't have special handling for.
-1.1. if you want to omit some properties, you just filter them out
-1.2. if you have special handling for some properties you can specify just it
+    1. if you want to omit some properties, you just filter them out
+    2. if you have special handling for some properties you can specify just it
 2. hashes - useful if you have business objects with a lot of properies and you don't want to specify all of them, they can change, and you just want to pass the through when they change
    * then again when you code the "special processing"/"handling" ussing regular classes it's easier to avoid typos etc.
      * I sometimes use dynamic classes, but if I pass those dynamic object to too many places and use too many properies of them I get lost, and introduce a type for them.
