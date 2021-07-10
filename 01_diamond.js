@@ -1,3 +1,5 @@
+// https://codingdojo.org/kata/Diamond/
+
 function copy(arr) {
     return [].concat(arr)
 }
