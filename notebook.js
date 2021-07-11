@@ -39,3 +39,47 @@ console.log("X" > "x")
 
 console.log("Itchy" != "Scratchy") // → true
 console.log("Apple" == "Orange") // → false
+
+// logical
+// && || !
+console.log(true || true && false) // true
+console.log(true ? 1 : 2)
+let n = "apple"
+let y =
+  n == "apple"  ? 1 :
+  n == "banana" ? 2 :
+  n == "lemon"  ? 3 :
+                  0
+console.log(y)
+
+// null undefined
+console.log(null)
+console.log(undefined)
+
+console.log(typeof null) // object
+console.log(typeof undefined) // undefined
+
+// type conversion
+console.log(null == undefined) // true
+console.log(0 == null)
+console.log(0 == undefined)
+console.log(0 != null)
+console.log(0 != undefined)
+
+console.log("" == 0) // true, automatis type conversion
+console.log("" === 0) // no type conversion
+
+// short circuiting of logical operators
+console.log(null || "user")
+console.log(undefined || "user")
+let k = null || "default"
+
+console.group({data: [1,2,3,4,5]})
+
+console.log("bye")
+
+if (condition) {
+    
+} else {
+    
+}
