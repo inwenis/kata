@@ -76,10 +76,36 @@ let k = null || "default"
 
 console.group({data: [1,2,3,4,5]})
 
-console.log("bye")
+console.log("bye");
 
-if (condition) {
-    
+if (1==1) {
+    console.log("here")
 } else {
-    
+  console.log("there")
+}
+
+let x2 = 30;
+console.log("the value of x is", x2, true, null, undefined);
+
+let theNumber = "ads";
+if (!Number.isNaN(Number(theNumber))) {
+  console.log("Your number is the square root of " + theNumber * theNumber);
+}
+
+if (1 + 1 == 2) console.log("It's true");
+
+let number = 0;
+while (number <= 12) {
+  console.log(number);
+  number = number + 2;
+}
+
+let x3 = 10;
+do {
+  console.log(x3)
+  x3 = x3 - 1;
+} while (x3 > 2);
+
+for (let number = 0; number <= 12; number = number + 2) {
+  console.log(number);
 }
