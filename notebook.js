@@ -109,3 +109,4 @@ do {
 for (let number = 0; number <= 12; number = number + 2) {
   console.log(number);
 }
+Array.from({length:5}, (x,i) => [i, i+1])
