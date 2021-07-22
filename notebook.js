@@ -110,3 +110,50 @@ for (let number = 0; number <= 12; number = number + 2) {
   console.log(number);
 }
 Array.from({length:5}, (x,i) => [i, i+1])
+
+for (let current = 20; ; current = current + 1) {
+  if (current % 7 == 0) {
+    console.log(current);
+    break; // continue also works
+  }
+}
+
+// shortcuts
+let counter = 0;
+counter++
+counter += 1
+counter *= 2
+
+if (x == "value1") action1();
+else if (x == "value2") action2();
+else if (x == "value3") action3();
+else defaultAction();
+
+// quite horrible syntax
+switch ("xyz") {
+  case "rainy":
+    console.log("Remember to bring an umbrella.");
+    break;
+  case "sunny":
+    console.log("Dress lightly.");
+  case "cloudy":
+    console.log("Go outside.");
+    break;
+  default:
+    console.log("Unknown weather type!");
+    break;
+}
+
+switch ("xyz") {
+  case "rainy":  console.log("Remember to bring an umbrella."); break;
+  case "sunny":  console.log("Go outside. Dress lightly.");     break;
+  case "cloudy": console.log("Go outside.");                    break;
+  default:       console.log("Unknown weather type!");          break;
+}
+
+// fuzzylittleturtle
+// fuzzy_little_turtle
+// FuzzyLittleTurtle
+// fuzzyLittleTurtle -> used by js libs
+
+/* multiline comments */
