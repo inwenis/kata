@@ -36,12 +36,7 @@ function decode(test1) {
 }
 
 function validateCheckSum(digits) {
-    //checksum calculation:
-    //(d1+2*d2+3*d3+...+9*d9) mod 11 = 0
-    let sum = 0;
-    for (let i = 0; i < 9; i++) {
-        sum += digits[i] * (i+1)
-    }
+    const sum = digits.map((d, i) => d * (i+1)).reduce((a,b) => a+b, 0);
     const isValid = sum % 11 === 0;
     return isValid;
 }
