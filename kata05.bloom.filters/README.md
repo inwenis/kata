@@ -1,0 +1,1 @@
+![Chart - False positives for different bitmap sizes](https://github.com/inwenis/kata05.bloom.filters/blob/master/chart.png?raw=true)
